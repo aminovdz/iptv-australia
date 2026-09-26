@@ -28,6 +28,7 @@ import {
 } from 'lucide-astro';
 
 export async function getStaticPaths() {
+  const currentYear = new Date().getFullYear();
   const comparisons = [
     {
       brandSlug: "au-iptv",
@@ -35,7 +36,7 @@ export async function getStaticPaths() {
       competitorSlug: "iptvv-au",
       competitorName: "IPTVV AU",
       competitorUrl: "https://iptvv.au/",
-      metaTitle: "AU IPTV vs IPTVV AU (2026 Comparison) — Which Aussie IPTV Is Better?",
+      metaTitle: `AU IPTV vs IPTVV AU (${currentYear} Comparison) — Which Aussie IPTV Is Better?`,
       metaDescription: "Detailed head-to-head comparison: AU IPTV vs IPTVV AU. Compare 4K sports stability, AUD pricing, Anti-Freeze 9.8™ technology, and Australian customer support.",
       summary: "While IPTVV AU is a recognized competitor in the Australian market, AU IPTV delivers significantly superior network stability during live sports, includes a free premium player app with the 12-month pass ($90 AUD), and provides instant AEST support via WhatsApp.",
       competitorPrice: "$120 - $140 AUD / yr",
@@ -49,7 +50,7 @@ export async function getStaticPaths() {
       competitorSlug: "aussie-iptv",
       competitorName: "Aussie IPTV",
       competitorUrl: "https://aussieiptv.com/",
-      metaTitle: "AU IPTV vs Aussie IPTV (2026 Review) — Feature & Price Audit",
+      metaTitle: `AU IPTV vs Aussie IPTV (${currentYear} Review) — Feature & Price Audit`,
       metaDescription: "AU IPTV vs Aussie IPTV side-by-side audit. Learn why AU IPTV's Anti-Freeze 9.8™ and local NBN servers outperform older streaming setups.",
       summary: "Aussie IPTV offers basic IPTV streaming, but frequently suffers from ISP throttling on major Australian broadband providers. AU IPTV's Anti-Freeze 9.8™ and built-in protocol encryption deliver smooth 60 FPS sports without needing a separate VPN.",
       competitorPrice: "$110 - $130 AUD / yr",
@@ -63,7 +64,7 @@ export async function getStaticPaths() {
       competitorSlug: "xtreme-tv-australia",
       competitorName: "Xtreme TV Australia",
       competitorUrl: "https://xtremetvaustralia.com.au/",
-      metaTitle: "AU IPTV vs Xtreme TV Australia (2026 Benchmark) — Performance Test",
+      metaTitle: `AU IPTV vs Xtreme TV Australia (${currentYear} Benchmark) — Performance Test`,
       metaDescription: "Compare AU IPTV and Xtreme TV Australia. Real speed tests, sports stream stability, AUD pricing, and refund policies compared.",
       summary: "Xtreme TV Australia markets heavily to cord-cutters, but charges high subscription markups. AU IPTV provides equivalent or superior 4K feeds with genuine 50/60 FPS motion fluidity at just $90 AUD per year including a free premium player.",
       competitorPrice: "$130 - $150 AUD / yr",
@@ -77,7 +78,7 @@ export async function getStaticPaths() {
       competitorSlug: "traditional-cable",
       competitorName: "Traditional Aussie Pay-TV",
       competitorUrl: "#",
-      metaTitle: "AU IPTV vs Traditional Aussie Cable & Pay-TV (2026 Cord-Cutting Guide)",
+      metaTitle: `AU IPTV vs Traditional Aussie Cable & Pay-TV (${currentYear} Cord-Cutting Guide)`,
       metaDescription: "Save over $1,200 AUD every year. Compare AU IPTV ($90/yr) vs legacy Australian pay-TV cable packages ($100-$140/mo) for NRL, AFL and entertainment.",
       summary: "Traditional Australian cable packages cost $1,200 to $1,680+ AUD each year, requiring proprietary hardware, lock-in contracts, and expensive sports add-ons. AU IPTV delivers pristine 4K coverage for just $90 AUD per year with zero lock-in contracts.",
       competitorPrice: "$1,200 - $1,680 AUD / yr",
@@ -166,7 +167,7 @@ const reviewSchema = {
         
         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#059669]/15 border border-[#059669]/30 text-[#34D399] text-xs font-bold uppercase tracking-wider mb-6">
           <Sparkles class="w-3.5 h-3.5 text-[#FDE047]" />
-          <span>Independent 2026 Technical Benchmark</span>
+          <span>Independent {currentYear} Technical Benchmark</span>
         </div>
 
         <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight mb-6">

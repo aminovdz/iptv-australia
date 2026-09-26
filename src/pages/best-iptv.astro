@@ -35,7 +35,7 @@ const bestIptvFaqSchema = {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Which is the best IPTV provider in Australia for 2026?",
+      "name": `Which is the best IPTV provider in Australia for ${currentYear}?`,
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Based on independent testing across Australian NBN networks, AU IPTV ranks #1 overall. It features dedicated domestic edge servers in Sydney and Melbourne, Anti-Freeze 9.8™ anti-buffering technology, 60FPS sports feeds, and an all-inclusive 12-month pass for $90 AUD."
@@ -55,11 +55,11 @@ const bestIptvFaqSchema = {
 
 <Layout
   title={`Best IPTV Australia ${currentYear} — Top Aussie Providers Tested & Reviewed`}
-  description="Independent 2026 technical review of the best IPTV services in Australia. Compare live sports stability, 4K picture quality, NBN speed performance, and pricing."
+  description={`Independent ${currentYear} technical review of the best IPTV services in Australia. Compare live sports stability, 4K picture quality, NBN speed performance, and pricing.`}
   keywords={[
     'best iptv',
     'best iptv australia',
-    'best iptv provider australia 2026',
+    `best iptv provider australia ${currentYear}`,
     'what is the best iptv service in australia',
     'top iptv australia',
     'reliable iptv australia'

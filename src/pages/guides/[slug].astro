@@ -39,6 +39,11 @@ interface Props {
 const { guide } = Astro.props;
 const { Content, headings } = await guide.render();
 
+const currentYear = new Date().getFullYear();
+const formatYear = (str: string) => str ? str.replace(/\b202[0-9]\b/g, String(currentYear)) : str;
+const dynamicTitle = formatYear(guide.data.title);
+const dynamicDescription = formatYear(guide.data.description);
+
 const siteUrl = 'https://au-iptv.net';
 const pageUrl = `${siteUrl}/guides/${guide.slug}`;
 
@@ -50,8 +55,8 @@ const articleSchema = {
     "@type": "WebPage",
     "@id": pageUrl
   },
-  "headline": guide.data.title,
-  "description": guide.data.description,
+  "headline": dynamicTitle,
+  "description": dynamicDescription,
   "image": guide.data.image ? new URL(guide.data.image, siteUrl).toString() : `${siteUrl}/images/og-banner.webp`,
   "author": {
     "@type": "Organization",
@@ -72,8 +77,8 @@ const articleSchema = {
 ---
 
 <Layout
-  title={`${guide.data.title} — AU IPTV Australia`}
-  description={guide.data.description}
+  title={`${dynamicTitle} — AU IPTV Australia`}
+  description={dynamicDescription}
   keywords={guide.data.tags}
   type="article"
   publishedTime={guide.data.pubDate.toISOString()}
@@ -91,7 +96,7 @@ const articleSchema = {
         <span>/</span>
         <a href="/guides" class="hover:text-white transition-colors">Guides</a>
         <span>/</span>
-        <span class="text-[#34D399] font-medium truncate max-w-[280px] sm:max-w-none">{guide.data.title}</span>
+        <span class="text-[#34D399] font-medium truncate max-w-[280px] sm:max-w-none">{dynamicTitle}</span>
       </div>
     </div>
 
@@ -114,11 +119,11 @@ const articleSchema = {
 
         <!-- Single # H1 Tag for Master SEO Structure -->
         <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-[1.18] mb-6">
-          {guide.data.title}
+          {dynamicTitle}
         </h1>
 
         <p class="text-gray-300 text-base sm:text-lg leading-relaxed mb-6 font-normal">
-          {guide.data.description}
+          {dynamicDescription}
         </p>
 
         <!-- Author Byline -->

@@ -14,13 +14,15 @@ interface Review {
   verified: boolean;
 }
 
+const currentYear = new Date().getFullYear();
+
 const reviews: Review[] = [
   {
     name: "Lachlan Mitchell",
     city: "Sydney",
     state: "NSW",
     rating: 5,
-    date: "15 September 2026",
+    date: `15 September ${currentYear}`,
     device: "Samsung 65\" 4K Smart TV",
     title: "Watched every State of Origin game without a single millisecond of buffer",
     content: "Normally during big NRL clashes our previous streaming provider would drop down to 480p or buffer endlessly right at the kickoff. AU IPTV was locked on 60 FPS in pristine 4K the entire 80 minutes. The Anti-Freeze technology is genuine dinkum. Cancelled expensive cable pay-TV and never looking back.",
@@ -32,7 +34,7 @@ const reviews: Review[] = [
     city: "Melbourne",
     state: "VIC",
     rating: 5,
-    date: "2 September 2026",
+    date: `2 September ${currentYear}`,
     device: "Amazon Fire Stick 4K Max",
     title: "Best AFL coverage and the 7-day catch-up TV is a lifesaver for 3 AM Premier League",
     content: "Living in Melbourne, footy is non-negotiable. AU IPTV gives me every AFL game plus full European football coverage. The best part is the catch-up TV: I don't have to stay awake until 3:30 AM to watch Arsenal; I just hit replay at breakfast and watch in Full HD.",
@@ -44,7 +46,7 @@ const reviews: Review[] = [
     city: "Brisbane",
     state: "QLD",
     rating: 5,
-    date: "25 August 2026",
+    date: `25 August ${currentYear}`,
     device: "LG OLED C3 & Apple TV 4K",
     title: "The included Premium Player app with the annual pass is super slick",
     content: "I took the 12-month plan for $90 AUD and the support team sent the activation for the Premium Player app immediately over WhatsApp. Setup took under 3 minutes. Clean TV guide, instantaneous zapping, and my partner can watch in the bedroom simultaneously.",
@@ -56,7 +58,7 @@ const reviews: Review[] = [
     city: "Adelaide",
     state: "SA",
     rating: 5,
-    date: "18 August 2026",
+    date: `18 August ${currentYear}`,
     device: "Sony Bravia Google TV",
     title: "Multicultural channels plus all Aussie sports in one subscription",
     content: "Our household wanted Australian cricket and footy, but my parents also wanted Greek television channels (ERT, Mega). AU IPTV gives us both seamlessly over our standard NBN 50 connection with zero stutter. Saves us over $100 a month compared to expensive cable bundles.",
@@ -68,7 +70,7 @@ const reviews: Review[] = [
     city: "Perth",
     state: "WA",
     rating: 5,
-    date: "10 August 2026",
+    date: `10 August ${currentYear}`,
     device: "Chromecast with Google TV",
     title: "Perth ping is genuinely low — no delay on live motorsport & Super Rugby",
     content: "In Western Australia we usually get the worst internet lag from eastern state servers. AU IPTV must have a local WA routing node because live motorsport and rugby start in less than a second with crisp audio and zero lag.",
@@ -80,7 +82,7 @@ const reviews: Review[] = [
     city: "Gold Coast",
     state: "QLD",
     rating: 5,
-    date: "28 July 2026",
+    date: `28 July ${currentYear}`,
     device: "iPad Pro & Fire TV",
     title: "Customer support on WhatsApp answered me in 90 seconds on a Sunday",
     content: "Had a small question about updating the EPG schedule on my Fire Stick. Sent a WhatsApp message on Sunday evening and an Australian-based agent sorted it out within two minutes with clear screenshot steps. Top notch service.",
