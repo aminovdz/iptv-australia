@@ -1,0 +1,372 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import StickyHeader from '../../components/StickyHeader.astro';
+import Hero from '../../components/Hero.astro';
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import PricingCard from '../../components/PricingCard.astro';
+import ReferralBanner from '../../components/ReferralBanner.astro';
+import UserReviewsSection from '../../components/UserReviewsSection.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import SupportedDevices from '../../components/SupportedDevices.astro';
+import LiveScores from '../../components/LiveScores.astro';
+import CitiesList from '../../components/CitiesList.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTASection from '../../components/CTASection.astro';
+import Footer from '../../components/Footer.astro';
+
+// Interactive Conversion & Retention Popups (24h localStorage Capped)
+import ExitPopup from '../../components/ExitPopup.astro';
+import SocialPopup from '../../components/SocialPopup.astro';
+import GroupsPopup from '../../components/GroupsPopup.astro';
+import FloatingWhatsApp from '../../components/FloatingWhatsApp.astro';
+
+import { Wifi, Server, Zap, ShieldCheck, MapPin, CheckCircle2, ArrowRight } from 'lucide-astro';
+
+export async function getStaticPaths() {
+  const cities = [
+    {
+      name: "Sydney",
+      slug: "sydney",
+      state: "New South Wales",
+      stateCode: "NSW",
+      population: "5.3 Million",
+      poi: "Sydney Central & Chatswood NBN Interconnect",
+      latency: "< 12ms",
+      headline: "AU IPTV Sydney — Premier 4K/8K Streaming in NSW",
+      sportsHighlight: "NRL Premiership, State of Origin, English Premier League & Sydney Derby",
+      localNbnNode: "Sydney Core Equinix & Central NBN PoP",
+      description: "Stream live NRL, Premier League, AFL & international entertainment in Sydney, NSW with AU IPTV. 12ms low latency servers connected directly to Sydney NBN nodes. Instant 2-min activation."
+    },
+    {
+      name: "Melbourne",
+      slug: "melbourne",
+      state: "Victoria",
+      stateCode: "VIC",
+      population: "5.1 Million",
+      poi: "Melbourne Docklands & Port Melbourne NBN PoP",
+      latency: "< 14ms",
+      headline: "AU IPTV Melbourne — Victoria's #1 4K Sports & TV Service",
+      sportsHighlight: "AFL Grand Final, Australian Open Tennis at Melbourne Park, F1 Grand Prix & Boxing Day Test",
+      localNbnNode: "Melbourne Docklands Edge & NextDC PoP",
+      description: "Watch AFL, Australian Open, F1 Grand Prix & global entertainment in Melbourne, VIC with AU IPTV. Connected to Melbourne Docklands edge servers. Instant 2-min activation."
+    },
+    {
+      name: "Brisbane",
+      slug: "brisbane",
+      state: "Queensland",
+      stateCode: "QLD",
+      population: "2.6 Million",
+      poi: "Brisbane Fortitude Valley & Woolloongabba Node",
+      latency: "< 18ms",
+      headline: "AU IPTV Brisbane — Ultra-HD Streaming for Queensland",
+      sportsHighlight: "Brisbane Broncos NRL, Queensland Maroons (State of Origin), Brisbane Lions AFL & The Gabba Cricket",
+      localNbnNode: "Brisbane Fortitude Node & Brisbane IX",
+      description: "Stream Broncos NRL, State of Origin, Brisbane Lions & international channels in Brisbane, QLD. Dedicated Queensland NBN caching servers. Instant 2-min activation."
+    },
+    {
+      name: "Perth",
+      slug: "perth",
+      state: "Western Australia",
+      stateCode: "WA",
+      population: "2.2 Million",
+      poi: "Perth Wellington & Cannington Western Gateway",
+      latency: "< 24ms",
+      headline: "AU IPTV Perth — Low-Latency 4K Streaming in Western Australia",
+      sportsHighlight: "West Coast Eagles & Fremantle Dockers AFL, Western Force Super Rugby & International Cricket",
+      localNbnNode: "Perth Western Edge & Vocus Datacenter",
+      description: "Watch AFL, Premier League, Super Rugby & international cinema in Perth, WA with AU IPTV. Direct Western Australia transit nodes overcome distance buffering. Instant 2-min activation."
+    },
+    {
+      name: "Adelaide",
+      slug: "adelaide",
+      state: "South Australia",
+      stateCode: "SA",
+      population: "1.4 Million",
+      poi: "Adelaide Riverbank & Waymouth NBN Gateway",
+      latency: "< 19ms",
+      headline: "AU IPTV Adelaide — Premier High-Definition Streaming in SA",
+      sportsHighlight: "Adelaide Crows & Port Adelaide Power AFL Showdown, The Ashes at Adelaide Oval & LIV Golf",
+      localNbnNode: "Adelaide Riverbank PoP & Adelaide IX Node",
+      description: "Experience bufferless AFL Showdown, cricket & overseas TV in Adelaide, SA with AU IPTV. Dedicated South Australia NBN edge servers with Anti-Freeze 9.8™. Instant 2-min activation."
+    }
+  ];
+
+  return cities.map((city) => ({
+    params: { city: city.slug },
+    props: { city }
+  }));
+}
+
+const { city } = Astro.props;
+const currentYear = new Date().getFullYear();
+
+// Localized LocalBusiness JSON-LD Schema
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `https://au-iptv.net/locations/${city.slug}#localbusiness`,
+  "name": `AU IPTV ${city.name}`,
+  "image": "https://au-iptv.net/images/og-banner.webp",
+  "url": `https://au-iptv.net/locations/${city.slug}`,
+  "telephone": "+1-803-658-2620",
+  "email": "contact@au-iptv.net",
+  "priceRange": "$13 - $90 AUD",
+  "currenciesAccepted": "AUD",
+  "paymentAccepted": "Credit Card, Debit Card, Crypto",
+  "areaServed": {
+    "@type": "City",
+    "name": city.name,
+    "containedInPlace": {
+      "@type": "AdministrativeArea",
+      "name": city.state
+    }
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": city.name,
+    "addressRegion": city.stateCode,
+    "addressCountry": "AU"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+    ],
+    "opens": "00:00",
+    "closes": "23:59"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.92",
+    "reviewCount": "1840",
+    "bestRating": "5.0",
+    "worstRating": "1.0"
+  }
+};
+---
+
+<Layout
+  title={`AU IPTV ${city.name} ${currentYear} — Best IPTV Service in ${city.name}, ${city.stateCode} | 4K & Anti-Freeze 9.8™`}
+  description={city.description}
+  keywords={[
+    `au iptv ${city.slug}`,
+    `iptv ${city.slug}`,
+    `best iptv ${city.slug}`,
+    `iptv ${city.name.toLowerCase()}`,
+    `iptv australia`,
+    `iptv for australia`,
+    `cheap iptv ${city.slug}`,
+    `iptv ${city.state.toLowerCase()}`
+  ]}
+  canonicalURL={`https://au-iptv.net/locations/${city.slug}`}
+  schema={localBusinessSchema}
+>
+  <!-- Sticky Global Navigation -->
+  <StickyHeader currentPath={`/locations/${city.slug}`} />
+
+  <main id="main-content" class="flex-1 flex flex-col">
+    <!-- 1. Localized Hero Section -->
+    <Hero
+      cityName={city.name}
+      subheadline={`Experience the premier AU IPTV streaming service in ${city.name} (${city.stateCode}) without locked contracts or expensive cable boxes. Enjoy live 4K 60FPS sports like ${city.sportsHighlight}, backed by Anti-Freeze 9.8™ technology and direct connection to the ${city.localNbnNode}.`}
+    />
+
+    <!-- Local Network & Edge Server Performance Card -->
+    <section class="py-12 bg-[#0B0B12] border-y border-white/[0.06] relative overflow-hidden" aria-label={`Network Performance in ${city.name}`}>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-[#0D0D14]/90 rounded-2xl p-6 sm:p-8 border border-[#059669]/30 relative shadow-[0_0_30px_rgba(5,150,105,0.1)]">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-center">
+            
+            <div class="md:col-span-1 border-b md:border-b-0 md:border-r border-white/[0.08] pb-4 md:pb-0 md:pr-4">
+              <div class="flex items-center gap-2 text-xs font-mono text-[#34D399] uppercase tracking-wider mb-1">
+                <MapPin class="w-4 h-4 text-[#FDE047]" />
+                <span>Local Server Telemetry</span>
+              </div>
+              <h2 class="text-xl sm:text-2xl font-black text-white">
+                {city.name} Node Status
+              </h2>
+              <p class="text-xs text-gray-400 mt-1">
+                Direct peering with {city.stateCode} NBN POI facilities
+              </p>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-[#059669]/15 border border-[#059669]/40 flex items-center justify-center text-[#34D399] shrink-0">
+                <Wifi class="w-6 h-6" />
+              </div>
+              <div>
+                <span class="text-xs text-gray-400 block font-medium">Average Round-Trip Latency</span>
+                <span class="text-2xl font-black text-white font-mono">{city.latency}</span>
+                <span class="text-[11px] text-[#34D399] block font-semibold">Zero ISP Throttling</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-[#059669]/15 border border-[#059669]/40 flex items-center justify-center text-[#34D399] shrink-0">
+                <Server class="w-6 h-6" />
+              </div>
+              <div>
+                <span class="text-xs text-gray-400 block font-medium">Dedicated Routing Gateway</span>
+                <span class="text-sm font-bold text-white block truncate">{city.localNbnNode}</span>
+                <span class="text-[11px] text-gray-400 block">Tier-4 Australian Datacenter</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-[#D97706]/15 border border-[#D97706]/40 flex items-center justify-center text-[#FDE047] shrink-0">
+                <Zap class="w-6 h-6" />
+              </div>
+              <div>
+                <span class="text-xs text-gray-400 block font-medium">Anti-Freeze 9.8™ Load Balancer</span>
+                <span class="text-sm font-bold text-white block">99.99% Guaranteed Uptime</span>
+                <span class="text-[11px] text-[#34D399] block font-semibold">High-Demand Match Ready</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Local Content & Sports Spotlight -->
+    <section class="py-16 md:py-20 bg-[#060609] relative" aria-label={`Streaming Sports in ${city.name}`}>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-6 space-y-5">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#059669]/15 border border-[#059669]/30 text-[#34D399] text-xs font-bold uppercase tracking-wider">
+              <ShieldCheck class="w-3.5 h-3.5" />
+              <span>Optimized for {city.name} Viewers</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-tight">
+              Never Miss A Moment in <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#10B981] via-[#FDE047] to-[#D97706]">{city.name}</span>
+            </h2>
+            <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+              Living in {city.name}, you understand the frustration of streaming blackouts, sudden buffering during clutch penalty kicks, or paying over $100 AUD per month across multiple fragmented subscriptions. AU IPTV solves this with local {city.stateCode} edge nodes engineered specifically for Australian sporting fixtures.
+            </p>
+            <div class="space-y-3 pt-2">
+              <div class="flex items-start gap-3">
+                <CheckCircle2 class="w-5 h-5 text-[#34D399] shrink-0 mt-0.5" />
+                <p class="text-xs sm:text-sm text-gray-300">
+                  <strong class="text-white">Broadcast-Grade Aussie Feeds:</strong> Watch {city.sportsHighlight} with true 50/60 FPS motion smoothness on Smart TVs, Fire Stick, Apple TV, and mobile.
+                </p>
+              </div>
+              <div class="flex items-start gap-3">
+                <CheckCircle2 class="w-5 h-5 text-[#34D399] shrink-0 mt-0.5" />
+                <p class="text-xs sm:text-sm text-gray-300">
+                  <strong class="text-white">NBN Compatible Across All Telcos:</strong> Tested and verified on all Australian fiber, fixed wireless, and satellite broadband providers with zero throttling.
+                </p>
+              </div>
+              <div class="flex items-start gap-3">
+                <CheckCircle2 class="w-5 h-5 text-[#34D399] shrink-0 mt-0.5" />
+                <p class="text-xs sm:text-sm text-gray-300">
+                  <strong class="text-white">Local AEST Support via WhatsApp:</strong> Live technical setup assistance available directly in Australian timezones (+1 803-658-2620).
+                </p>
+              </div>
+            </div>
+            <div class="pt-4">
+              <a
+                href="https://wa.me/18036582620?text=G%27day%21+I+am+in+${city.name}+and+would+like+to+test+the+free+24h+trial."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#059669] to-[#10B981] hover:from-[#047857] hover:to-[#059669] text-white font-bold text-sm shadow-[0_0_25px_rgba(5,150,105,0.4)] transition-all transform hover:-translate-y-0.5"
+              >
+                <span>Request Free 24h {city.name} Trial</span>
+                <ArrowRight class="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6">
+            <div class="bg-[#0D0D14] rounded-2xl p-6 sm:p-8 border border-white/[0.08] shadow-2xl relative">
+              <div class="flex items-center justify-between pb-4 border-b border-white/[0.08] mb-6">
+                <span class="text-xs font-mono text-gray-400">Target Area: {city.name}, {city.stateCode}</span>
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#059669]/15 text-[#34D399] text-xs font-mono font-bold">
+                  <span class="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span> Online
+                </span>
+              </div>
+              <div class="space-y-4">
+                <div class="flex justify-between items-center text-xs py-2 border-b border-white/[0.04]">
+                  <span class="text-gray-400">Metropolitan Population:</span>
+                  <span class="text-white font-bold">{city.population}</span>
+                </div>
+                <div class="flex justify-between items-center text-xs py-2 border-b border-white/[0.04]">
+                  <span class="text-gray-400">Primary Optical Interconnect:</span>
+                  <span class="text-white font-bold text-right truncate max-w-[220px]">{city.poi}</span>
+                </div>
+                <div class="flex justify-between items-center text-xs py-2 border-b border-white/[0.04]">
+                  <span class="text-gray-400">Supported Resolution:</span>
+                  <span class="text-[#34D399] font-bold">Ultra HD 4K & 8K HDR (60 FPS)</span>
+                </div>
+                <div class="flex justify-between items-center text-xs py-2 border-b border-white/[0.04]">
+                  <span class="text-gray-400">Simultaneous Connections:</span>
+                  <span class="text-[#FDE047] font-bold">Up to 2 Screens (12M Plan)</span>
+                </div>
+                <div class="flex justify-between items-center text-xs py-2">
+                  <span class="text-gray-400">Customer Satisfaction in {city.name}:</span>
+                  <span class="text-white font-bold">4.92 / 5.0 (99.4% Positive)</span>
+                </div>
+              </div>
+
+              <!-- Local Infrastructure Visual Graphic -->
+              <div class="mt-6 rounded-xl overflow-hidden border border-white/[0.08] shadow-lg">
+                <img
+                  src="/images/guides/nbn-poi-streaming.webp"
+                  alt={`AU IPTV ${city.name} NBN Server Node and Anti-Freeze 9.8 Streaming Infrastructure`}
+                  class="w-full h-auto object-cover"
+                  loading="lazy"
+                  width="1200"
+                  height="630"
+                />
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Features Grid & Technological Edge -->
+    <FeatureGrid />
+
+    <!-- 3. Pricing Cards (12-Month Plan Prominently First) -->
+    <PricingCard />
+
+    <!-- 4. Viral Growth & Referral Rewards Banner -->
+    <ReferralBanner />
+
+    <!-- 5. Real Australian Testimonials & User Reviews -->
+    <UserReviewsSection />
+
+    <!-- 6. 4-Step Setup Process -->
+    <ProcessSteps />
+
+    <!-- 7. Supported Devices & Compatibility -->
+    <SupportedDevices />
+
+    <!-- 8. Real Sports Match Center & Broadcast Status -->
+    <LiveScores />
+
+    <!-- 9. Australian Cities Directory -->
+    <CitiesList />
+
+    <!-- 10. Direct Contact Channels & Interactive Form -->
+    <ContactForm />
+
+    <!-- 11. FAQ Section with Google FAQPage Schema -->
+    <FAQSection />
+
+    <!-- 12. Bottom High-Urgency Call to Action -->
+    <CTASection />
+  </main>
+
+  <!-- Global Footer -->
+  <Footer />
+
+  <!-- Engagement Popups & Widgets (24h LocalStorage Capped) -->
+  <ExitPopup />
+  <SocialPopup />
+  <GroupsPopup />
+  <FloatingWhatsApp />
+</Layout>

@@ -1,0 +1,287 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import StickyHeader from '../../components/StickyHeader.astro';
+import Footer from '../../components/Footer.astro';
+import CTASection from '../../components/CTASection.astro';
+
+import ExitPopup from '../../components/ExitPopup.astro';
+import SocialPopup from '../../components/SocialPopup.astro';
+import GroupsPopup from '../../components/GroupsPopup.astro';
+import FloatingWhatsApp from '../../components/FloatingWhatsApp.astro';
+
+import { getCollection } from 'astro:content';
+import { 
+  BookOpen, 
+  Clock, 
+  Calendar, 
+  ArrowRight, 
+  Sparkles, 
+  Send 
+} from 'lucide-astro';
+
+// Fetch all guides from Astro Content Collections
+let allGuides: any[] = [];
+try {
+  allGuides = await getCollection('guides');
+} catch (e) {
+  allGuides = [];
+}
+
+const guides = allGuides.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const featuredGuide = guides.find((g) => g.data.featured) || guides[0];
+const regularGuides = featuredGuide 
+  ? guides.filter((g) => g.slug !== featuredGuide.slug)
+  : guides;
+
+const categories = [
+  "All Guides",
+  "Legal & Security",
+  "Sports Streaming",
+  "Hardware & Devices",
+  "NBN & Performance"
+];
+
+const currentYear = new Date().getFullYear();
+---
+
+<Layout
+  title={`IPTV Australia Guides & Tutorials ${currentYear} — AU IPTV Knowledge Base`}
+  description="Master Australian cord-cutting. Step-by-step guides on IPTV setup for Fire Stick, Smart TVs, watching NRL/AFL in 4K, legal compliance, and NBN speed optimization."
+  keywords={[
+    'iptv australia guide',
+    'iptv setup tutorial australia',
+    'how to watch nrl iptv',
+    'how to watch afl iptv',
+    'best iptv fire stick australia',
+    'is iptv legal in australia',
+    'au iptv tutorials'
+  ]}
+  canonicalURL="https://au-iptv.net/guides"
+>
+  <StickyHeader currentPath="/guides" />
+
+  <main id="main-content" class="flex-1 flex flex-col">
+    <!-- Guides Hub Hero -->
+    <section class="py-16 md:py-24 bg-gradient-to-b from-[#060609] via-[#0D0D14] to-[#060609] relative overflow-hidden text-center">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#059669]/15 border border-[#059669]/30 text-[#34D399] text-xs font-bold uppercase tracking-wider mb-6">
+          <BookOpen class="w-3.5 h-3.5 text-[#FDE047]" />
+          <span>AU IPTV Knowledge Base & Tutorials</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight mb-6">
+          Australian Streaming & <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#10B981] via-[#FDE047] to-[#D97706]">Cord-Cutting Guides</span>
+        </h1>
+
+        <p class="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-8">
+          Detailed technical walkthroughs, legal breakdowns, and setup instructions written by Australian networking engineers. Learn how to optimize your NBN connection for 4K streaming.
+        </p>
+
+        <!-- Quick Categories Chips -->
+        <div class="flex flex-wrap items-center justify-center gap-2 max-w-2xl mx-auto">
+          {categories.map((cat, idx) => (
+            <span
+              class={`text-xs px-3.5 py-1.5 rounded-xl border transition-colors cursor-pointer ${
+                idx === 0
+                  ? 'bg-[#059669] text-white border-[#059669] font-bold shadow'
+                  : 'bg-[#0D0D14] text-gray-300 border-white/[0.08] hover:border-[#059669]/40'
+              }`}
+            >
+              {cat}
+            </span>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Guides List Section -->
+    <section class="py-16 bg-[#060609]" aria-label="Streaming Guides Directory">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {featuredGuide && (
+          <div class="mb-16">
+            <div class="bg-[#0D0D14] rounded-3xl p-6 sm:p-10 border border-[#059669]/40 shadow-[0_0_35px_rgba(5,150,105,0.15)] relative overflow-hidden group">
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <div class="lg:col-span-7 space-y-4">
+                  <div class="flex flex-wrap items-center gap-3">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#059669]/20 text-[#34D399] text-xs font-bold uppercase tracking-wider">
+                      <Sparkles class="w-3.5 h-3.5 text-[#FDE047]" />
+                      Featured Editorial
+                    </span>
+                    <span class="text-xs text-gray-400 flex items-center gap-1">
+                      <Clock class="w-3.5 h-3.5" /> {featuredGuide.data.readingTime}
+                    </span>
+                    <span class="text-xs text-gray-400 flex items-center gap-1">
+                      <Calendar class="w-3.5 h-3.5" /> {featuredGuide.data.pubDate.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' })}
+                    </span>
+                  </div>
+
+                  <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-white group-hover:text-[#34D399] transition-colors leading-tight">
+                    <a href={`/guides/${featuredGuide.slug}`}>
+                      {featuredGuide.data.title}
+                    </a>
+                  </h2>
+
+                  <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                    {featuredGuide.data.description}
+                  </p>
+
+                  <div class="pt-2 flex items-center gap-4">
+                    <a
+                      href={`/guides/${featuredGuide.slug}`}
+                      class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#059669] hover:bg-[#047857] text-white font-bold text-xs transition-colors shadow"
+                    >
+                      <span>Read Full Guide</span>
+                      <ArrowRight class="w-4 h-4" />
+                    </a>
+                    <span class="text-xs text-gray-400 font-medium">
+                      By {featuredGuide.data.author}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="lg:col-span-5">
+                  <div class="rounded-2xl overflow-hidden border border-white/[0.08] relative aspect-video shadow-xl">
+                    <img
+                      src={featuredGuide.data.image}
+                      alt={featuredGuide.data.imageAlt}
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      width="600"
+                      height="338"
+                      loading="eager"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0D0D14]/80 via-transparent to-transparent pointer-events-none"></div>
+                    <span class="absolute top-4 right-4 text-xs font-mono text-[#FDE047] bg-[#0D0D14]/90 px-2.5 py-1 rounded-lg border border-[#D97706]/40 backdrop-blur">
+                      {featuredGuide.data.category}
+                    </span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        )}
+
+        <!-- Regular Guides Grid -->
+        {regularGuides.length > 0 ? (
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {regularGuides.map((guide) => (
+              <article class="bg-[#0D0D14] rounded-2xl p-6 sm:p-7 border border-white/[0.08] hover:border-[#059669]/50 transition-all duration-300 flex flex-col justify-between group shadow-lg hover:-translate-y-1">
+                <div>
+                  <!-- Post Thumbnail with High-Value Alt Text -->
+                  <div class="mb-4 rounded-xl overflow-hidden border border-white/[0.08] aspect-video">
+                    <img
+                      src={guide.data.image}
+                      alt={guide.data.imageAlt}
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      width="400"
+                      height="225"
+                      loading="lazy"
+                    />
+                  </div>
+
+                  <div class="flex items-center justify-between gap-2 mb-4">
+                    <span class="text-xs font-mono text-[#34D399] bg-[#059669]/15 px-2.5 py-0.5 rounded border border-[#059669]/30 font-semibold">
+                      {guide.data.category}
+                    </span>
+                    <span class="text-xs text-gray-400 flex items-center gap-1 font-mono">
+                      <Clock class="w-3.5 h-3.5" /> {guide.data.readingTime}
+                    </span>
+                  </div>
+
+                  <h3 class="text-xl font-bold text-white group-hover:text-[#34D399] transition-colors leading-snug mb-3">
+                    <a href={`/guides/${guide.slug}`}>
+                      {guide.data.title}
+                    </a>
+                  </h3>
+
+                  <p class="text-xs text-gray-400 leading-relaxed mb-6">
+                    {guide.data.description}
+                  </p>
+                </div>
+
+                <div class="pt-4 border-t border-white/[0.06] flex items-center justify-between">
+                  <span class="text-[11px] text-gray-400">
+                    {guide.data.pubDate.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' })}
+                  </span>
+                  <a
+                    href={`/guides/${guide.slug}`}
+                    class="inline-flex items-center gap-1 text-xs font-bold text-[#34D399] group-hover:translate-x-1 transition-transform"
+                  >
+                    <span>Read Article</span>
+                    <ArrowRight class="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          !featuredGuide && (
+            <div class="text-center py-20 bg-[#0D0D14] rounded-3xl border border-white/[0.08] p-8 max-w-2xl mx-auto">
+              <BookOpen class="w-12 h-12 text-[#34D399] mx-auto mb-4" />
+              <h2 class="text-2xl font-bold text-white mb-2">Publishing Guides in Progress</h2>
+              <p class="text-sm text-gray-400 mb-6">
+                Our Australian technical engineering team is finalizing in-depth tutorials on NRL streaming, Firestick sideloading, and NBN optimization. Check back shortly.
+              </p>
+              <a
+                href="https://whatsapp.com/channel/0029VayVaLpD8SE3bf8wMY3v"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#059669] text-white font-bold text-xs"
+              >
+                <span>Join WhatsApp VIP Channel for Guide Updates</span>
+                <ArrowRight class="w-3.5 h-3.5" />
+              </a>
+            </div>
+          )
+        )}
+
+        <!-- Community Telegram / WhatsApp CTA Banner -->
+        <div class="mt-16 bg-[#0B0B12] rounded-2xl p-8 border border-white/[0.08] flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="space-y-1 text-center md:text-left">
+            <h3 class="text-xl font-bold text-white">Join the AU IPTV Community VIP Channels</h3>
+            <p class="text-xs text-gray-400">
+              Get instant Aussie sports fixture schedules, server latency updates, and app configuration guides straight to your phone.
+            </p>
+          </div>
+          <div class="flex items-center gap-3 shrink-0">
+            <a
+              href="https://whatsapp.com/channel/0029VayVaLpD8SE3bf8wMY3v"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-4 py-2.5 rounded-xl bg-[#059669]/15 hover:bg-[#059669]/25 text-[#34D399] border border-[#059669]/30 text-xs font-bold transition-colors"
+            >
+              WhatsApp Channel
+            </a>
+            <a
+              href="https://t.me/castvera_com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-4 py-2.5 rounded-xl bg-[#2563EB]/15 hover:bg-[#2563EB]/25 text-[#60A5FA] border border-[#2563EB]/30 text-xs font-bold transition-colors flex items-center gap-1.5"
+            >
+              <Send class="w-3.5 h-3.5" />
+              <span>Telegram Channel</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <CTASection />
+  </main>
+
+  <Footer />
+
+  <ExitPopup />
+  <SocialPopup />
+  <GroupsPopup />
+  <FloatingWhatsApp />
+</Layout>

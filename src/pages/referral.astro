@@ -1,0 +1,120 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { Gift, Share2, ArrowRight } from 'lucide-astro';
+
+const currentYear = new Date().getFullYear();
+const shareMessage = encodeURIComponent("G'day! I watch live NRL, AFL, and 4K sports with AU IPTV. Sign up through my referral and we both get 1 month completely free: https://au-iptv.net/referral");
+const whatsappShareUrl = `https://wa.me/?text=${shareMessage}`;
+---
+
+<Layout
+  title={`Refer a Mate Program — AU IPTV Australia ${currentYear}`}
+  description="Earn free IPTV streaming every month. Refer an Australian friend or mate to AU IPTV and both of you receive 1 bonus month completely free."
+  canonicalURL="https://au-iptv.net/referral"
+>
+  <StickyHeader currentPath="/referral" />
+
+  <main class="flex-1 py-16 sm:py-24 bg-[#060609]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Page Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#059669]/15 border border-[#059669]/30 text-[#34D399] text-xs font-bold uppercase tracking-wider mb-4">
+          <Gift class="w-3.5 h-3.5 text-[#FDE047]" />
+          <span>Viral Aussie Community Growth</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+          Refer a Mate & <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#10B981] via-[#FDE047] to-[#D97706]">Both Get 1 Month Free</span>
+        </h1>
+        <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+          Sharing is caring, especially when it comes to live Australian footy, cricket, and 4K cinema. Introduce friends and family to AU IPTV and earn unlimited free subscription extensions.
+        </p>
+      </div>
+
+      <!-- How It Works 3-Step Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+        
+        <div class="bg-[#0D0D14] rounded-2xl p-6 sm:p-8 border border-white/[0.08] hover:border-[#059669]/50 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-[#059669]/15 border border-[#059669]/35 text-[#34D399] flex items-center justify-center font-black text-xl mb-4 font-mono">
+              01
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Share Your Invite</h3>
+            <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">
+              Send your personal invite link or tell your mates to mention your registered WhatsApp number or email when they order.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/[0.06] text-xs font-semibold text-[#10B981]">
+            Unlimited invites
+          </div>
+        </div>
+
+        <div class="bg-[#0D0D14] rounded-2xl p-6 sm:p-8 border border-white/[0.08] hover:border-[#D97706]/50 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-[#D97706]/15 border border-[#D97706]/35 text-[#FDE047] flex items-center justify-center font-black text-xl mb-4 font-mono">
+              02
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Your Mate Joins</h3>
+            <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">
+              When your mate subscribes to any 3, 6, or 12-month pass, their account automatically receives <strong>+1 bonus month</strong> added on top.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/[0.06] text-xs font-semibold text-[#FDE047]">
+            Mate gets 30 extra days
+          </div>
+        </div>
+
+        <div class="bg-[#0D0D14] rounded-2xl p-6 sm:p-8 border border-white/[0.08] hover:border-[#10B981]/50 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-[#10B981]/15 border border-[#10B981]/35 text-[#10B981] flex items-center justify-center font-black text-xl mb-4 font-mono">
+              03
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">You Get 1 Month Free</h3>
+            <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">
+              Our automated system extends your subscription by <strong>30 free days</strong> for every successful referral. Refer 12 mates and stream free for a full year!
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/[0.06] text-xs font-semibold text-[#34D399]">
+            Instantly added to your pass
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Quick Share Action Card -->
+      <div class="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-[#0D1F17] via-[#0D0D14] to-[#14261C] border border-[#059669]/50 shadow-2xl text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-2xl sm:text-3xl font-black text-white mb-3">Ready to Share with Your Mates?</h2>
+        <p class="text-xs sm:text-sm text-gray-300 mb-6 max-w-lg mx-auto">
+          Click below to share directly to your WhatsApp groups or individual contacts with a pre-written invite message.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href={whatsappShareUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-[#25D366] hover:bg-[#20ba5a] text-black font-black text-xs uppercase tracking-wider shadow-[0_0_30px_rgba(37,211,102,0.4)] transition-all hover:scale-105"
+          >
+            <Share2 class="w-4 h-4 text-black" />
+            <span>Share via WhatsApp Fast</span>
+          </a>
+
+          <a
+            href="/#pricing"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-[#0D0D14] hover:bg-[#131320] text-white font-bold text-xs uppercase tracking-wider border border-white/[0.12] transition-all"
+          >
+            <span>View All Subscription Passes</span>
+            <ArrowRight class="w-4 h-4 text-[#34D399]" />
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>

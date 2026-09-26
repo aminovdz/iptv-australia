@@ -1,0 +1,55 @@
+---
+import { MessageCircle, X } from 'lucide-astro';
+
+const whatsappUrl = "https://wa.me/18036582620?text=G%27day%21+I+would+like+instant+support+for+AU+IPTV.";
+---
+
+<aside class="fixed bottom-6 right-6 z-40 flex flex-col items-end" aria-label="Live WhatsApp Support">
+  <!-- Expandable Tooltip Teaser -->
+  <div
+    id="whatsapp-teaser"
+    class="mb-3 hidden sm:flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-[#0D0D14]/95 backdrop-blur-xl border border-[#059669]/50 shadow-[0_8px_30px_rgba(0,0,0,0.8)] text-xs text-white transform transition-all duration-300 animate-bounce"
+    style="animation-iteration-count: 3;"
+  >
+    <span class="flex h-2.5 w-2.5 relative">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#10B981]"></span>
+    </span>
+    <div>
+      <span class="font-bold text-[#34D399] block text-[11px]">Online Now in AEST</span>
+      <span class="text-gray-300 text-xs">Chat live with our Aussie team</span>
+    </div>
+    <button
+      id="close-wa-teaser"
+      type="button"
+      class="text-gray-400 hover:text-white p-1 rounded-md ml-1 focus:outline-none"
+      aria-label="Dismiss chat teaser"
+    >
+      <X class="w-3.5 h-3.5" />
+    </button>
+  </div>
+
+  <!-- Pulsing Floating WhatsApp Button -->
+  <a
+    href={whatsappUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="group relative flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white shadow-[0_8px_30px_rgba(37,211,102,0.4)] hover:shadow-[0_8px_40px_rgba(37,211,102,0.6)] transition-all duration-300 hover:scale-110 active:scale-95 focus:outline-none focus:ring-4 focus:ring-[#25D366]/40"
+    aria-label="Start live WhatsApp chat with AU IPTV support"
+  >
+    <!-- Background pulse ring -->
+    <span class="absolute inset-0 rounded-full bg-[#25D366] opacity-30 animate-ping pointer-events-none"></span>
+    
+    <MessageCircle class="w-7 h-7 fill-white text-[#128C7E] group-hover:scale-110 transition-transform" />
+    <span class="sr-only">Open WhatsApp Chat</span>
+  </a>
+</aside>
+
+<script>
+  const teaser = document.getElementById('whatsapp-teaser');
+  const closeBtn = document.getElementById('close-wa-teaser');
+
+  closeBtn?.addEventListener('click', () => {
+    if (teaser) teaser.classList.add('hidden');
+  });
+</script>

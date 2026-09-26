@@ -1,0 +1,175 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Hero from '../components/Hero.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import PricingCard from '../components/PricingCard.astro';
+import ReferralBanner from '../components/ReferralBanner.astro';
+import UserReviewsSection from '../components/UserReviewsSection.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import SupportedDevices from '../components/SupportedDevices.astro';
+import LiveScores from '../components/LiveScores.astro';
+import CitiesList from '../components/CitiesList.astro';
+import ContactForm from '../components/ContactForm.astro';
+import FAQSection from '../components/FAQSection.astro';
+import CTASection from '../components/CTASection.astro';
+import Footer from '../components/Footer.astro';
+
+// Interactive Conversion & Retention Popups (24h localStorage Capped)
+import ExitPopup from '../components/ExitPopup.astro';
+import SocialPopup from '../components/SocialPopup.astro';
+import GroupsPopup from '../components/GroupsPopup.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+
+const currentYear = new Date().getFullYear();
+---
+
+<Layout
+  title={`Best Cable TV Alternative Australia ${currentYear} — Cut the Cord & Save $1,800/yr`}
+  description="Break free from expensive Aussie pay-TV contracts. AU IPTV replaces fragmented subscriptions with 4K UHD streaming, Anti-Freeze 9.8™ technology, and local AEST support."
+  keywords={[
+    'cable alternative australia',
+    'cut the cord australia',
+    'cheap iptv australia',
+    'pay tv alternative',
+    'iptv service australia',
+    'save on australian pay tv',
+    'iptv subscription australia',
+    'best iptv australia 2026'
+  ]}
+  canonicalURL="https://au-iptv.net/cable-alternative"
+>
+  <!-- Sticky Global Navigation -->
+  <StickyHeader currentPath="/cable-alternative" />
+
+  <!-- Main Content Sequence (Strict Required Order) -->
+  <main id="main-content" class="flex-1 flex flex-col">
+    <!-- 1. Hero Conversion Section (Tuned for Cord Cutters) -->
+    <Hero
+      headline="Cut the Cable Cord in Australia — AU IPTV Replaces Costly Cable for $7.50 AUD/Month"
+      subheadline="Australians pay some of the highest television prices in the world. Between $104/mo for basic cable and another $60/mo for sports add-ons, the average household bleeds over $2,000 every year. AU IPTV gives you back your financial freedom with uncompressed 4K streaming, zero hardware fees, and no lock-in contracts."
+    />
+
+    <!-- Visual Cord-Cutting Infographic Card with Cinematic Image -->
+    <section class="py-8 bg-[#060609]">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="rounded-3xl overflow-hidden border border-white/[0.1] shadow-2xl relative">
+          <img
+            src="/images/guides/aussie-sports-crisis.webp"
+            alt="Cord-Cutting Comparison: Traditional Cable Pay-TV vs AU IPTV Annual Savings in Australia"
+            class="w-full h-auto max-h-[420px] object-cover"
+            loading="eager"
+            width="1200"
+            height="630"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Cord Cutting Economic Analysis Table -->
+    <section class="py-12 bg-[#090A10] border-y border-white/[0.06]">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
+            The True Cost of Australian Television in {currentYear}
+          </h2>
+          <p class="text-gray-400 text-sm mt-2">
+            Independent cost breakdown comparing legacy television providers with the AU IPTV 12-month pass.
+          </p>
+        </div>
+
+        <div class="overflow-x-auto rounded-2xl border border-white/[0.08] bg-[#0D0D14]">
+          <table class="w-full text-left text-sm text-gray-300">
+            <thead class="bg-white/[0.04] text-xs uppercase text-gray-400 border-b border-white/[0.08]">
+              <tr>
+                <th scope="col" class="py-4 px-6">Expense Category</th>
+                <th scope="col" class="py-4 px-6 text-red-400">Legacy Cable / Satellite</th>
+                <th scope="col" class="py-4 px-6 text-[#34D399] font-bold">AU IPTV (12-Month Pass)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/[0.05]">
+              <tr>
+                <td class="py-4 px-6 font-medium text-white">Base Monthly Subscription</td>
+                <td class="py-4 px-6 text-gray-400">$84.00 – $119.00 / mo</td>
+                <td class="py-4 px-6 text-[#34D399] font-bold">$7.50 AUD / mo ($90 / yr)</td>
+              </tr>
+              <tr>
+                <td class="py-4 px-6 font-medium text-white">Live Sports Add-on Packages</td>
+                <td class="py-4 px-6 text-gray-400">$35.00 – $60.00 / mo extra</td>
+                <td class="py-4 px-6 text-[#34D399] font-bold">Included ($0 AUD extra)</td>
+              </tr>
+              <tr>
+                <td class="py-4 px-6 font-medium text-white">Set-Top Box & Installation Fees</td>
+                <td class="py-4 px-6 text-gray-400">$150.00 – $250.00 upfront</td>
+                <td class="py-4 px-6 text-[#34D399] font-bold">$0 AUD (Uses Fire Stick, Apple TV, Smart TV)</td>
+              </tr>
+              <tr>
+                <td class="py-4 px-6 font-medium text-white">PPV Championship Boxing / UFC Cards</td>
+                <td class="py-4 px-6 text-gray-400">$59.95 AUD per event</td>
+                <td class="py-4 px-6 text-[#34D399] font-bold">Included ($0 AUD extra)</td>
+              </tr>
+              <tr>
+                <td class="py-4 px-6 font-medium text-white">Contract Commitments</td>
+                <td class="py-4 px-6 text-gray-400">12 or 24 Month Lock-in</td>
+                <td class="py-4 px-6 text-[#34D399] font-bold">Cancel Anytime · 24-Hr Refund Window</td>
+              </tr>
+              <tr class="bg-[#059669]/10 font-bold">
+                <td class="py-5 px-6 text-white text-base">Estimated Total Annual Cost</td>
+                <td class="py-5 px-6 text-red-400 line-through text-base">$1,890.00+ AUD</td>
+                <td class="py-5 px-6 text-[#10B981] text-lg">$90.00 AUD total / year</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="mt-8 text-center">
+          <p class="text-xs text-gray-400">
+            * Average Australian household savings: <strong class="text-white font-bold">$1,800.00 AUD per year</strong> with zero hardware waste or technician visits.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Feature Grid -->
+    <FeatureGrid />
+
+    <!-- 3. Real Live Sports Scoreboard Component -->
+    <LiveScores />
+
+    <!-- 4. Interactive Pricing Cards -->
+    <PricingCard />
+
+    <!-- 5. Referral Banner (15% commission) -->
+    <ReferralBanner />
+
+    <!-- 6. Verified Australian Customer Reviews -->
+    <UserReviewsSection />
+
+    <!-- 7. 3-Step Setup Process -->
+    <ProcessSteps />
+
+    <!-- 8. Supported Devices Matrix -->
+    <SupportedDevices />
+
+    <!-- 9. Major Aussie Metro Cities Covered -->
+    <CitiesList />
+
+    <!-- 10. Direct Contact Form (Telegram / WhatsApp Fallback) -->
+    <ContactForm />
+
+    <!-- 11. Frequently Asked Questions -->
+    <FAQSection />
+
+    <!-- 12. Final High-Conversion CTA Banner -->
+    <CTASection />
+  </main>
+
+  <!-- Global Footer -->
+  <Footer />
+
+  <!-- Conversion & Retention Boosters (Capped 24h via LocalStorage) -->
+  <ExitPopup />
+  <SocialPopup />
+  <GroupsPopup />
+  <FloatingWhatsApp />
+</Layout>

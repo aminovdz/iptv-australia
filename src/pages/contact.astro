@@ -1,0 +1,100 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { MessageCircle, Mail, Send, Sparkles } from 'lucide-astro';
+
+const currentYear = new Date().getFullYear();
+---
+
+<Layout
+  title={`Contact AU IPTV Support — 24/7 Aussie Streaming Assistance ${currentYear}`}
+  description="Contact the official AU IPTV team. 24/7 Australian live support on WhatsApp, email assistance, and active Telegram/WhatsApp community channels."
+  canonicalURL="https://au-iptv.net/contact"
+>
+  <StickyHeader currentPath="/contact" />
+
+  <main class="flex-1 bg-[#060609]">
+    <!-- Hero Header -->
+    <div class="pt-12 pb-6 text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#059669]/15 border border-[#059669]/30 text-[#34D399] text-xs font-bold uppercase tracking-wider mb-4">
+        <Sparkles class="w-3.5 h-3.5 text-[#FDE047]" />
+        <span>Australian Customer Care Desk</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+        Contact <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#10B981] via-[#FDE047] to-[#D97706]">AU IPTV</span> Support
+      </h1>
+      <p class="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+        We are here to assist with free trial activations, Smart TV application setup, and NBN speed optimization. Our team operates around the clock in Australian Eastern Standard Time (AEST).
+      </p>
+    </div>
+
+    <!-- Official Contact Directory Strip -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <a
+          href="https://wa.me/18036582620"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-5 rounded-2xl bg-[#0D0D14] border border-[#059669]/40 hover:border-[#10B981] transition-all flex items-center gap-3.5 group"
+        >
+          <div class="w-12 h-12 rounded-xl bg-[#25D366]/20 border border-[#25D366]/40 flex items-center justify-center text-[#25D366] shrink-0 group-hover:scale-110 transition-transform">
+            <MessageCircle class="w-6 h-6" />
+          </div>
+          <div>
+            <span class="text-[10px] font-black uppercase tracking-wider text-[#34D399] block">WhatsApp Desk</span>
+            <span class="text-sm font-bold text-white group-hover:text-[#34D399] transition-colors">+1 (803) 658-2620</span>
+            <span class="text-[10px] text-gray-500 block">Instant reply in &lt;2 min</span>
+          </div>
+        </a>
+
+        <div class="p-5 rounded-2xl bg-[#0D0D14] border border-white/[0.08] flex items-center gap-3.5">
+          <div class="w-12 h-12 rounded-xl bg-[#059669]/15 border border-[#059669]/30 flex items-center justify-center text-[#34D399] shrink-0">
+            <Mail class="w-6 h-6" />
+          </div>
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400 block">General Contact</span>
+            <a href="mailto:contact@au-iptv.net" class="text-xs font-bold text-white hover:text-[#34D399] transition-colors">contact@au-iptv.net</a>
+            <span class="text-[10px] text-gray-500 block">Billing & inquiries</span>
+          </div>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-[#0D0D14] border border-white/[0.08] flex items-center gap-3.5">
+          <div class="w-12 h-12 rounded-xl bg-[#D97706]/15 border border-[#D97706]/30 flex items-center justify-center text-[#FDE047] shrink-0">
+            <Mail class="w-6 h-6" />
+          </div>
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400 block">Technical Support</span>
+            <a href="mailto:support@castvera.com" class="text-xs font-bold text-white hover:text-[#FDE047] transition-colors">support@castvera.com</a>
+            <span class="text-[10px] text-gray-500 block">Server & player help</span>
+          </div>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-[#0D0D14] border border-white/[0.08] flex items-center gap-3.5">
+          <div class="w-12 h-12 rounded-xl bg-[#2563EB]/15 border border-[#2563EB]/30 flex items-center justify-center text-[#60A5FA] shrink-0">
+            <Send class="w-6 h-6" />
+          </div>
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400 block">VIP Channels</span>
+            <div class="flex items-center gap-2 mt-0.5">
+              <a href="https://whatsapp.com/channel/0029VayVaLpD8SE3bf8wMY3v" target="_blank" rel="noopener noreferrer" class="text-[11px] font-bold text-[#25D366] hover:underline">WhatsApp</a>
+              <span class="text-gray-600">/</span>
+              <a href="https://t.me/castvera_com" target="_blank" rel="noopener noreferrer" class="text-[11px] font-bold text-[#60A5FA] hover:underline">Telegram</a>
+            </div>
+            <span class="text-[10px] text-gray-500 block">Match schedules & fixtures</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Embedded Comprehensive Contact Form Component -->
+    <ContactForm />
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>

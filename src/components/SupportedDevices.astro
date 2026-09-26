@@ -1,0 +1,160 @@
+---
+import { Tv, Smartphone, Laptop, Cast, Monitor, CheckCircle2, Sparkles, Download, ArrowRight } from 'lucide-astro';
+
+const devices = [
+  {
+    icon: Tv,
+    name: "Amazon Fire TV & Fire Stick",
+    subtitle: "#1 IPTV Streaming Device in Australia",
+    badge: "Fire Stick 4K / Max",
+    apps: ["Premium Player (Included)", "TiviMate IPTV", "IPTV Smarters Pro", "XCIPTV"],
+    setupTime: "2 Minutes",
+    color: "emerald"
+  },
+  {
+    icon: Monitor,
+    name: "Samsung & LG Smart TVs",
+    subtitle: "Tizen OS & LG webOS Native Support",
+    badge: "Smart TV Direct",
+    apps: ["IBO Player", "Smart IPTV", "SET IPTV", "Nanomid Player"],
+    setupTime: "3 Minutes",
+    color: "gold"
+  },
+  {
+    icon: Cast,
+    name: "Apple TV, iPhone & iPad",
+    subtitle: "AirPlay 2 & Native iOS/tvOS Players",
+    badge: "iOS / iPadOS / tvOS",
+    apps: ["GSE Smart IPTV", "IPTV Smarters", "Smarters Player Lite", "Snappier IPTV"],
+    setupTime: "2 Minutes",
+    color: "emerald"
+  },
+  {
+    icon: Smartphone,
+    name: "Android TV, Google TV & Shield",
+    subtitle: "Sony, TCL, Chromecast & Nvidia Shield",
+    badge: "Google Play Store",
+    apps: ["TiviMate Premium", "Premium Player", "Televizo", "OTT Navigator"],
+    setupTime: "2 Minutes",
+    color: "gold"
+  },
+  {
+    icon: Laptop,
+    name: "Windows PC & Mac OS",
+    subtitle: "Desktop Streaming & Web Player",
+    badge: "PC / Mac / Linux",
+    apps: ["IPTV Smarters Pro Windows", "VLC Media Player", "Web Player", "Kodi"],
+    setupTime: "1 Minute",
+    color: "emerald"
+  },
+  {
+    icon: Tv,
+    name: "Dedicated IPTV Set-Top Boxes",
+    subtitle: "Formuler, MAG & BuzzTV Stalker Portals",
+    badge: "Hardware Decoders",
+    apps: ["MyTVOnline 2 / 3", "MAG Stalker Portal", "BuzzTV 5", "Enigma2"],
+    setupTime: "3 Minutes",
+    color: "gold"
+  }
+];
+---
+
+<section id="devices" class="py-20 md:py-28 relative bg-[#060609]" aria-labelledby="devices-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Heading -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#059669]/15 border border-[#059669]/30 text-[#34D399] text-xs font-bold uppercase tracking-wider mb-4">
+        <Sparkles class="w-3.5 h-3.5 text-[#FDE047]" />
+        <span>Universal Hardware Compatibility</span>
+      </div>
+      <h2 id="devices-heading" class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+        Works Flawlessly on <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#10B981] via-[#FDE047] to-[#D97706]">Every Smart Device</span>
+      </h2>
+      <p class="text-gray-300 text-base sm:text-lg leading-relaxed font-normal">
+        No restrictive proprietary cable box needed. AU IPTV supports all major smart television operating systems, streaming sticks, mobile platforms, and desktop environments.
+      </p>
+    </div>
+
+    <!-- Devices Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+      {devices.map((device) => {
+        const IconComponent = device.icon;
+        const isEmerald = device.color === "emerald";
+        return (
+          <div class="bg-[#0D0D14] hover:bg-[#131320] rounded-2xl p-6 sm:p-7 border border-white/[0.08] hover:border-[#059669]/50 transition-all duration-300 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class={`w-12 h-12 rounded-xl flex items-center justify-center border transition-all duration-300 ${
+                  isEmerald
+                    ? 'bg-[#059669]/15 border-[#059669]/35 text-[#34D399] group-hover:bg-[#059669] group-hover:text-white'
+                    : 'bg-[#D97706]/15 border-[#D97706]/35 text-[#FDE047] group-hover:bg-[#D97706] group-hover:text-white'
+                }`}>
+                  <IconComponent class="w-6 h-6" />
+                </div>
+                <span class="text-[10px] font-extrabold uppercase px-2.5 py-1 rounded bg-white/[0.04] text-gray-300 border border-white/[0.08]">
+                  Setup: {device.setupTime}
+                </span>
+              </div>
+
+              <span class={`text-[10px] font-bold uppercase tracking-wider mb-1 block ${
+                isEmerald ? 'text-[#34D399]' : 'text-[#FDE047]'
+              }`}>
+                {device.badge}
+              </span>
+
+              <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#34D399] transition-colors">
+                {device.name}
+              </h3>
+              <p class="text-gray-400 text-xs mb-4">
+                {device.subtitle}
+              </p>
+
+              <!-- Supported Apps Pill List -->
+              <div class="pt-3 border-t border-white/[0.06]">
+                <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider block mb-2">Supported Apps:</span>
+                <div class="flex flex-wrap gap-1.5">
+                  {device.apps.map((app) => (
+                    <span class="text-[11px] px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.06] text-gray-300">
+                      {app}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs text-[#10B981] font-semibold">
+              <span class="flex items-center gap-1.5">
+                <CheckCircle2 class="w-4 h-4" /> 4K 60FPS Validated
+              </span>
+              <span class="text-gray-400">Step-by-step guide ready</span>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Free Player App Promo Banner -->
+    <div class="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#0D0D14] via-[#0E1F17] to-[#0D0D14] border border-[#059669]/40 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-4">
+        <div class="w-14 h-14 rounded-2xl bg-[#059669]/20 border border-[#059669]/50 flex items-center justify-center shrink-0">
+          <Download class="w-7 h-7 text-[#34D399]" />
+        </div>
+        <div>
+          <h4 class="text-base sm:text-lg font-bold text-white">Free Premium Player Included with 6 & 12-Month Plans</h4>
+          <p class="text-xs sm:text-sm text-gray-400">
+            Enjoy instant channel zapping, automated EPG syncing, and multi-screen streaming without purchasing third-party app licenses.
+          </p>
+        </div>
+      </div>
+      <a
+        href="/#pricing"
+        class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#059669] to-[#047857] text-white text-xs font-black uppercase tracking-wider shadow-[0_0_20px_rgba(5,150,105,0.4)] hover:scale-105 transition-all shrink-0"
+      >
+        <span>View Eligible Plans</span>
+        <ArrowRight class="w-4 h-4" />
+      </a>
+    </div>
+
+  </div>
+</section>

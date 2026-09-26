@@ -1,0 +1,120 @@
+---
+import { ShoppingCart, Key, DownloadCloud, PlayCircle, ArrowRight, Sparkles, MessageCircle } from 'lucide-astro';
+
+const steps = [
+  {
+    step: "01",
+    icon: ShoppingCart,
+    title: "Choose Your Pass or Free Trial",
+    description: "Select your preferred subscription duration (12M, 6M, 3M, or 1M) or request a 24-hour free test on WhatsApp to test sports feeds on your home setup.",
+    badge: "Step 1"
+  },
+  {
+    step: "02",
+    icon: Key,
+    title: "Receive Credentials in 2 Minutes",
+    description: "Your login credentials (M3U link, Xtream Codes portal, and login credentials) are generated automatically and sent straight to your WhatsApp or email inbox.",
+    badge: "Instant 120s Delivery"
+  },
+  {
+    step: "03",
+    icon: DownloadCloud,
+    title: "Quick 2-Minute Device Setup",
+    description: "Install our recommended IPTV application (or our free Premium Player included with 6/12M plans) on your Smart TV, Fire Stick, Apple TV, or smartphone.",
+    badge: "Step-by-Step Guide"
+  },
+  {
+    step: "04",
+    icon: PlayCircle,
+    title: "Stream All Aussie Sports in 4K",
+    description: "Sit back and enjoy uninterrupted 4K 60FPS live sports, NRL, AFL, Summer Cricket, EPL, and global cinema with Anti-Freeze 9.8™ stability.",
+    badge: "Zero Buffering"
+  }
+];
+
+const trialUrl = "https://wa.me/18036582620?text=G%27day%21+I+would+like+to+test+the+free+24h+AU+IPTV+trial.";
+---
+
+<section class="py-20 md:py-28 relative bg-[#060609]" aria-labelledby="process-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Heading -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#059669]/15 border border-[#059669]/30 text-[#34D399] text-xs font-bold uppercase tracking-wider mb-4">
+        <Sparkles class="w-3.5 h-3.5 text-[#FDE047]" />
+        <span>Simple 4-Step Process</span>
+      </div>
+      <h2 id="process-heading" class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+        How to Get Started with <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#10B981] via-[#FDE047] to-[#D97706]">AU IPTV</span>
+      </h2>
+      <p class="text-gray-300 text-base sm:text-lg leading-relaxed font-normal">
+        No satellite dishes, no technician callouts, no contracts. You can be streaming live Australian sports and 4K entertainment in less than 5 minutes.
+      </p>
+    </div>
+
+    <!-- Steps Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+      {steps.map((item, index) => {
+        const IconComponent = item.icon;
+        return (
+          <div class="relative bg-[#0D0D14] hover:bg-[#131320] rounded-2xl p-6 sm:p-7 border border-white/[0.08] hover:border-[#059669]/50 transition-all duration-300 flex flex-col justify-between group">
+            
+            <!-- Step Number Glow Background -->
+            <div class="absolute top-4 right-4 text-3xl font-black text-white/[0.05] group-hover:text-[#059669]/20 transition-colors select-none font-mono">
+              {item.step}
+            </div>
+
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-[#059669]/15 border border-[#059669]/35 text-[#34D399] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <IconComponent class="w-6 h-6" />
+              </div>
+
+              <span class="text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded bg-white/[0.04] text-[#FDE047] border border-white/[0.06] mb-3 inline-block">
+                {item.badge}
+              </span>
+
+              <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#34D399] transition-colors">
+                {item.title}
+              </h3>
+              <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">
+                {item.description}
+              </p>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-white/[0.06] flex items-center text-xs text-[#34D399] font-bold gap-1 group-hover:translate-x-1 transition-transform">
+              <span>Step {index + 1} of 4</span>
+              <ArrowRight class="w-3.5 h-3.5" />
+            </div>
+
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Visual Setup Flowchart Graphic with High-Value Alt Text -->
+    <div class="mt-14 rounded-3xl overflow-hidden border border-white/[0.1] shadow-2xl relative max-w-4xl mx-auto">
+      <img
+        src="/images/guides/iptv-setup-steps.webp"
+        alt="AU IPTV Quick 4-Step 2-Minute Setup Process on Smart TVs, Fire Stick and Apple TV in Australia"
+        class="w-full h-auto max-h-[380px] object-cover"
+        loading="lazy"
+        width="1200"
+        height="630"
+      />
+    </div>
+
+    <!-- Live Activation Callout -->
+    <div class="mt-12 text-center">
+      <a
+        href={trialUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-gradient-to-r from-[#059669] via-[#047857] to-[#059669] text-white font-black text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(5,150,105,0.4)] hover:shadow-[0_0_35px_rgba(5,150,105,0.65)] hover:scale-105 transition-all border border-[#10B981]/40"
+      >
+        <MessageCircle class="w-4 h-4 text-[#FDE047]" />
+        <span>Request Instant Setup on WhatsApp</span>
+      </a>
+    </div>
+
+  </div>
+</section>

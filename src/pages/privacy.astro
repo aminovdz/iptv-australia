@@ -1,0 +1,125 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { ShieldCheck, Lock, CheckCircle2 } from 'lucide-astro';
+
+const currentYear = new Date().getFullYear();
+---
+
+<Layout
+  title={`Privacy Policy — AU IPTV Australia ${currentYear}`}
+  description="Learn how AU IPTV protects your personal information in strict compliance with the Australian Privacy Principles (APPs) and Privacy Act 1988. Zero logging, 256-bit encryption."
+  canonicalURL="https://au-iptv.net/privacy"
+>
+  <StickyHeader currentPath="/privacy" />
+
+  <main class="flex-1 py-16 sm:py-24 bg-[#060609]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Page Header -->
+      <div class="mb-12 text-center">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#059669]/15 border border-[#059669]/30 text-[#34D399] text-xs font-bold uppercase tracking-wider mb-4">
+          <ShieldCheck class="w-3.5 h-3.5 text-[#FDE047]" />
+          <span>Australian Privacy Principles (APPs)</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+          Privacy Policy
+        </h1>
+        <p class="text-xs sm:text-sm text-gray-400">
+          Last Updated: September 2026 • AU IPTV Australia (au-iptv.net)
+        </p>
+      </div>
+
+      <!-- Main Legal Content Box -->
+      <div class="rounded-3xl bg-[#0D0D14] border border-white/[0.08] p-8 sm:p-12 space-y-8 text-gray-300 text-sm leading-relaxed">
+        
+        <!-- Summary Callout -->
+        <div class="p-6 rounded-2xl bg-gradient-to-r from-[#0D1F17] to-[#0D0D14] border border-[#059669]/40 text-[#34D399] flex items-start gap-4">
+          <Lock class="w-6 h-6 text-[#10B981] shrink-0 mt-1" />
+          <div>
+            <h2 class="text-base font-bold text-white mb-1">Our Privacy Commitment to Australian Users</h2>
+            <p class="text-xs sm:text-sm text-gray-300">
+              AU IPTV respects your privacy and is dedicated to handling your personal data transparently in accordance with the <em>Privacy Act 1988 (Cth)</em> and Australian Privacy Principles. We maintain a strict zero-activity-log policy on customer stream viewing.
+            </p>
+          </div>
+        </div>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#34D399]">1.</span> Information We Collect
+          </h2>
+          <p class="mb-3">
+            We only collect personal information that is necessary for delivering subscription services, generating M3U/Xtream credentials, and providing technical customer support:
+          </p>
+          <ul class="space-y-2 pl-4">
+            <li class="flex items-start gap-2">
+              <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0 mt-0.5" />
+              <span><strong>Account & Contact Data:</strong> Name, email address, and WhatsApp contact number provided during subscription requests.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0 mt-0.5" />
+              <span><strong>Device Specifications:</strong> Device brand or operating system (e.g., Fire Stick, Samsung Tizen, LG webOS, Apple TV) to send appropriate application setup guides.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0 mt-0.5" />
+              <span><strong>Transaction Reference:</strong> Payment confirmation identifiers. Note: We never store your full credit card numbers or banking passwords on our servers.</span>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#34D399]">2.</span> Zero Stream Activity Logging Policy
+          </h2>
+          <p>
+            AU IPTV does not track, log, record, or monitor the specific channels, sports fixtures, or video-on-demand content you watch. Your viewing history is private and remains strictly on your local client device.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#34D399]">3.</span> How We Use Your Information
+          </h2>
+          <p class="mb-3">
+            Your personal information is used exclusively for the following operational purposes:
+          </p>
+          <ul class="list-disc pl-6 space-y-1.5 text-gray-400">
+            <li>Generating and activating your personal streaming playlist links and Xtream Codes credentials.</li>
+            <li>Delivering immediate 24/7 technical customer support via WhatsApp or email.</li>
+            <li>Sending critical server status notices or schedule updates for major sporting events.</li>
+            <li>Processing voluntary refunds within the 24-hour guarantee window.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#34D399]">4.</span> Data Security & Encryption
+          </h2>
+          <p>
+            All communications between your browser and our website are protected using TLS 1.3 encryption with 256-bit SSL certificates. Access to administrative systems is restricted to authorized personnel with multi-factor authentication.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#34D399]">5.</span> Your Rights & Contact Information
+          </h2>
+          <p class="mb-4">
+            Under the Australian Privacy Principles, you have the right to request access to the personal data we hold about you or request its immediate deletion upon termination of your subscription.
+          </p>
+          <div class="p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] space-y-2 text-xs">
+            <p><strong>Privacy Inquiries Officer:</strong> AU IPTV Privacy & Compliance Team</p>
+            <p><strong>Email:</strong> <a href="mailto:contact@au-iptv.net" class="text-[#34D399] hover:underline">contact@au-iptv.net</a> / <a href="mailto:support@castvera.com" class="text-[#FDE047] hover:underline">support@castvera.com</a></p>
+            <p><strong>WhatsApp Support:</strong> <a href="https://wa.me/18036582620" class="text-[#34D399] hover:underline">+1 (803) 658-2620</a></p>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>

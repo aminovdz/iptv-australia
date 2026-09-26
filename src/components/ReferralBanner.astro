@@ -1,0 +1,60 @@
+---
+import { Gift, ArrowRight, Share2, Sparkles } from 'lucide-astro';
+
+const referralShareText = encodeURIComponent("G'day! I use AU IPTV for live NRL, AFL, and 4K sports with zero buffering. Use my invite and we both get 1 month free: https://au-iptv.net/referral");
+const whatsappShareUrl = `https://wa.me/?text=${referralShareText}`;
+---
+
+<section class="py-12 bg-[#060609]" aria-labelledby="referral-banner-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="relative rounded-3xl p-8 sm:p-10 bg-gradient-to-r from-[#0D1F17] via-[#0D0D14] to-[#14261C] border border-[#059669]/40 shadow-[0_10px_40px_rgba(0,0,0,0.6)] overflow-hidden">
+      
+      <!-- Ambient Glow -->
+      <div class="absolute -right-20 -top-20 w-80 h-80 bg-[#059669]/20 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+      <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-[#D97706]/15 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+      <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
+        
+        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#059669] to-[#047857] flex items-center justify-center shrink-0 shadow-[0_0_25px_rgba(5,150,105,0.4)] border border-[#10B981]">
+            <Gift class="w-8 h-8 text-[#FDE047]" />
+          </div>
+          <div>
+            <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#059669]/20 border border-[#059669]/40 text-[#34D399] text-[11px] font-black uppercase tracking-wider mb-2">
+              <Sparkles class="w-3 h-3 text-[#FDE047]" />
+              <span>Aussie Mate Referral Program</span>
+            </div>
+            <h2 id="referral-banner-heading" class="text-2xl sm:text-3xl font-black text-white tracking-tight mb-2">
+              Refer a Mate & <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#10B981] via-[#FDE047] to-[#D97706]">Both Get 1 Month Free!</span>
+            </h2>
+            <p class="text-gray-300 text-xs sm:text-sm max-w-xl leading-relaxed">
+              Love watching footy on AU IPTV? Introduce your mates or family. When they join any plan, they get 30 bonus days and you get 1 free month credited to your account.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto shrink-0">
+          <a
+            href={whatsappShareUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#25D366]/20 hover:bg-[#25D366]/30 text-[#25D366] border border-[#25D366]/40 text-xs font-bold uppercase tracking-wider transition-all"
+            aria-label="Share referral invitation on WhatsApp"
+          >
+            <Share2 class="w-4 h-4" />
+            <span>Share via WhatsApp</span>
+          </a>
+
+          <a
+            href="/referral"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#059669] to-[#047857] text-white text-xs font-black uppercase tracking-wider shadow-[0_0_20px_rgba(5,150,105,0.4)] hover:scale-105 transition-all border border-[#10B981]/50"
+          >
+            <span>Learn How It Works</span>
+            <ArrowRight class="w-4 h-4" />
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

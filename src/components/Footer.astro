@@ -1,0 +1,304 @@
+---
+import { Tv, Mail, MessageCircle, Send, MapPin, ExternalLink } from 'lucide-astro';
+
+const currentYear = new Date().getFullYear();
+
+const cities = [
+  { name: 'Sydney', slug: 'sydney', state: 'NSW' },
+  { name: 'Melbourne', slug: 'melbourne', state: 'VIC' },
+  { name: 'Brisbane', slug: 'brisbane', state: 'QLD' },
+  { name: 'Perth', slug: 'perth', state: 'WA' },
+  { name: 'Adelaide', slug: 'adelaide', state: 'SA' }
+];
+
+const quickLinks = [
+  { name: 'Home', href: '/' },
+  { name: 'IPTV Sports Pass (4K)', href: '/iptv-sports' },
+  { name: 'Cable TV Alternative', href: '/cable-alternative' },
+  { name: '12-Month Plan (Bestseller)', href: '/au-iptv-12-months' },
+  { name: 'Best IPTV Australia Guide', href: '/best-iptv' },
+  { name: 'Pricing Tiers', href: '/#pricing' },
+  { name: 'Supported Devices', href: '/#devices' },
+  { name: 'Referral Program', href: '/referral' },
+  { name: 'Contact Us', href: '/contact' }
+];
+
+const comparisonLinks = [
+  { name: 'AU IPTV vs IPTVV AU', href: '/compare/au-iptv-vs-iptvv-au' },
+  { name: 'AU IPTV vs Aussie IPTV', href: '/compare/au-iptv-vs-aussie-iptv' },
+  { name: 'AU IPTV vs Xtreme TV', href: '/compare/au-iptv-vs-xtreme-tv-australia' },
+  { name: 'AU IPTV vs Traditional Cable', href: '/compare/au-iptv-vs-traditional-cable' }
+];
+
+const guidesLinks = [
+  { name: 'How to Watch NRL & AFL in 4K', href: '/guides/how-to-watch-nrl-afl-australia' },
+  { name: 'Is IPTV Legal in Australia? (2026 Guide)', href: '/guides/is-iptv-legal-in-australia' },
+  { name: 'Best Fire Stick IPTV Setup in Australia', href: '/guides/best-iptv-fire-stick-australia' },
+  { name: 'All Guides & Tutorials', href: '/guides' }
+];
+
+const legalLinks = [
+  { name: 'Privacy Policy', href: '/privacy' },
+  { name: 'Terms of Service', href: '/terms' },
+  { name: 'Refund Policy (24-Hour Only)', href: '/refund' },
+  { name: 'DMCA Notice', href: '/dmca' },
+  { name: 'Disclaimer', href: '/disclaimer' }
+];
+---
+
+<footer class="bg-[#040407] border-t border-white/[0.08] text-gray-400 text-sm relative" aria-labelledby="footer-heading">
+  <h2 id="footer-heading" class="sr-only">AU IPTV Official Footer</h2>
+
+  <!-- Top Community Bar: WhatsApp & Telegram Channels -->
+  <div class="border-b border-white/[0.06] py-10 bg-[#060609]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 bg-[#0D0D14] rounded-2xl p-6 sm:p-8 border border-white/[0.08]">
+        <div>
+          <h3 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
+            <span>🇦🇺 Join the Official AU IPTV Community</span>
+          </h3>
+          <p class="text-gray-400 text-xs sm:text-sm max-w-xl">
+            Get instant sports fixture notifications, server status updates, app setup downloads, and exclusive Aussie seasonal promotions.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
+          <a
+            href="https://whatsapp.com/channel/0029VayVaLpD8SE3bf8wMY3v"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex-1 md:flex-none inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#059669]/15 hover:bg-[#059669]/25 text-[#34D399] border border-[#059669]/35 text-xs font-bold uppercase tracking-wider transition-colors"
+            aria-label="Join official WhatsApp Channel"
+          >
+            <MessageCircle class="w-4 h-4 text-[#10B981]" />
+            <span>WhatsApp Channel</span>
+            <ExternalLink class="w-3 h-3 ml-0.5 opacity-70" />
+          </a>
+          <a
+            href="https://t.me/castvera_com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex-1 md:flex-none inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#2563EB]/15 hover:bg-[#2563EB]/25 text-[#60A5FA] border border-[#2563EB]/35 text-xs font-bold uppercase tracking-wider transition-colors"
+            aria-label="Join official Telegram Channel"
+          >
+            <Send class="w-4 h-4" />
+            <span>Telegram Channel</span>
+            <ExternalLink class="w-3 h-3 ml-0.5 opacity-70" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Multi-Column Navigation Links -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+      
+      <!-- Brand & Summary Info (2 cols on lg) -->
+      <div class="lg:col-span-2">
+        <a href="/" class="flex items-center gap-3 mb-5" aria-label="AU IPTV Homepage">
+          <div class="w-10 h-10 rounded-xl bg-[#059669]/20 border border-[#059669]/50 flex items-center justify-center">
+            <Tv class="w-5 h-5 text-[#34D399]" />
+          </div>
+          <span class="font-black text-xl text-white tracking-tight">
+            AU <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#10B981] via-[#FDE047] to-[#D97706]">IPTV</span>
+          </span>
+        </a>
+
+        <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6 max-w-sm">
+          Australia's trusted high-performance IPTV streaming provider. Delivering uninterrupted 4K Ultra HD sports, live racing, and international entertainment with Anti-Freeze 9.8™ technology on dedicated Australian servers.
+        </p>
+
+        <!-- Direct Contact Points -->
+        <div class="space-y-2.5 text-xs text-gray-300 mb-6">
+          <div class="flex items-center gap-2.5">
+            <Mail class="w-4 h-4 text-[#34D399] shrink-0" />
+            <a href="mailto:contact@au-iptv.net" class="hover:text-white transition-colors">contact@au-iptv.net</a>
+          </div>
+          <div class="flex items-center gap-2.5">
+            <Mail class="w-4 h-4 text-[#FDE047] shrink-0" />
+            <a href="mailto:support@castvera.com" class="hover:text-white transition-colors">support@castvera.com</a>
+          </div>
+          <div class="flex items-center gap-2.5">
+            <MessageCircle class="w-4 h-4 text-[#10B981] shrink-0" />
+            <a href="https://wa.me/18036582620" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+              WhatsApp Support: +1 (803) 658-2620 (24/7 AEST)
+            </a>
+          </div>
+        </div>
+
+        <!-- Payment Badges -->
+        <div>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-gray-400 block mb-2">Accepted Payment Methods</span>
+          <div class="flex flex-wrap items-center gap-2 text-[10px] text-gray-300 font-semibold">
+            <span class="px-2.5 py-1 rounded bg-[#0D0D14] border border-white/[0.08]">Visa / Mastercard</span>
+            <span class="px-2.5 py-1 rounded bg-[#0D0D14] border border-white/[0.08]">PayPal</span>
+            <span class="px-2.5 py-1 rounded bg-[#0D0D14] border border-[#059669]/40 text-[#34D399]">Afterpay / Zip</span>
+            <span class="px-2.5 py-1 rounded bg-[#0D0D14] border border-white/[0.08]">Apple Pay</span>
+            <span class="px-2.5 py-1 rounded bg-[#0D0D14] border border-white/[0.08]">Crypto (USDT/BTC)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 2: Quick Links -->
+      <div>
+        <h3 class="text-xs font-bold text-white uppercase tracking-wider mb-4 border-l-2 border-[#059669] pl-2.5">
+          Navigation
+        </h3>
+        <ul class="space-y-2.5 text-xs">
+          {quickLinks.map((item) => (
+            <li>
+              <a href={item.href} class="hover:text-[#34D399] transition-colors">
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Column 3: Comparison & Competitor Reviews -->
+      <div>
+        <h3 class="text-xs font-bold text-white uppercase tracking-wider mb-4 border-l-2 border-[#D97706] pl-2.5">
+          Comparisons
+        </h3>
+        <ul class="space-y-2.5 text-xs">
+          {comparisonLinks.map((item) => (
+            <li>
+              <a href={item.href} class="hover:text-[#FDE047] transition-colors">
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <h3 class="text-xs font-bold text-white uppercase tracking-wider mt-6 mb-4 border-l-2 border-[#059669] pl-2.5">
+          Guides & Help
+        </h3>
+        <ul class="space-y-2.5 text-xs">
+          {guidesLinks.map((item) => (
+            <li>
+              <a href={item.href} class="hover:text-[#34D399] transition-colors">
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Column 4: Legal & Coverage -->
+      <div>
+        <h3 class="text-xs font-bold text-white uppercase tracking-wider mb-4 border-l-2 border-white/40 pl-2.5">
+          Legal & Compliance
+        </h3>
+        <ul class="space-y-2.5 text-xs">
+          {legalLinks.map((item) => (
+            <li>
+              <a href={item.href} class="hover:text-white transition-colors">
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <h3 class="text-xs font-bold text-white uppercase tracking-wider mt-6 mb-4 border-l-2 border-[#10B981] pl-2.5">
+          Target Australian Cities
+        </h3>
+        <ul class="space-y-2 text-xs">
+          {cities.map((city) => (
+            <li>
+              <a href={`/locations/${city.slug}`} class="hover:text-[#34D399] transition-colors flex items-center justify-between">
+                <span>{city.name}</span>
+                <span class="text-[10px] text-gray-500 font-mono">{city.state}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Interactive Australia Location Map Section -->
+    <div class="mt-14 pt-10 border-t border-white/[0.08]">
+      <div class="bg-[#0A0A10] rounded-2xl p-6 sm:p-8 border border-white/[0.06]">
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+          
+          <div class="max-w-md">
+            <div class="inline-flex items-center gap-1.5 text-xs font-bold text-[#34D399] uppercase tracking-wider mb-2">
+              <MapPin class="w-4 h-4" />
+              <span>Australian Server Infrastructure</span>
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Low-Latency NBN Edge Routing Nodes</h4>
+            <p class="text-xs text-gray-400 leading-relaxed mb-4">
+              To eliminate buffering, AU IPTV routes live feeds through dedicated localized points-of-presence in Sydney, Melbourne, Brisbane, Perth, and Adelaide.
+            </p>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div class="flex items-center gap-2 text-gray-300">
+                <span class="w-2 h-2 rounded-full bg-[#10B981]"></span>
+                <span>Sydney PoP (&lt;12ms)</span>
+              </div>
+              <div class="flex items-center gap-2 text-gray-300">
+                <span class="w-2 h-2 rounded-full bg-[#10B981]"></span>
+                <span>Melbourne PoP (&lt;14ms)</span>
+              </div>
+              <div class="flex items-center gap-2 text-gray-300">
+                <span class="w-2 h-2 rounded-full bg-[#10B981]"></span>
+                <span>Brisbane PoP (&lt;18ms)</span>
+              </div>
+              <div class="flex items-center gap-2 text-gray-300">
+                <span class="w-2 h-2 rounded-full bg-[#10B981]"></span>
+                <span>Perth PoP (&lt;24ms)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stylized Responsive Australia Vector Map -->
+          <div class="w-full max-w-sm relative aspect-[4/3] bg-[#060609] rounded-xl p-4 border border-white/[0.08] flex items-center justify-center">
+            <svg class="w-full h-full text-[#18182A]" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Australia Map with IPTV server locations">
+              <!-- Stylized Australian Continent Outline -->
+              <path d="M 60 110 C 80 80, 140 70, 180 85 C 220 90, 240 60, 270 70 C 300 90, 340 110, 350 150 C 360 190, 330 240, 290 260 C 250 270, 200 240, 160 250 C 120 260, 70 230, 50 190 C 40 160, 50 130, 60 110 Z" fill="#0D0D14" stroke="#059669" stroke-width="1.5" stroke-opacity="0.3"/>
+              <!-- Tasmania -->
+              <path d="M 285 275 C 295 272, 305 275, 300 288 C 290 292, 280 285, 285 275 Z" fill="#0D0D14" stroke="#059669" stroke-width="1.5" stroke-opacity="0.3"/>
+
+              <!-- Sydney Hub -->
+              <circle cx="330" cy="225" r="4" fill="#10B981" />
+              <circle cx="330" cy="225" r="9" stroke="#10B981" stroke-width="1" stroke-opacity="0.5" class="animate-ping" />
+              <text x="338" y="228" fill="#FFFFFF" font-size="9" font-weight="bold">Sydney</text>
+
+              <!-- Melbourne Hub -->
+              <circle cx="285" cy="252" r="4" fill="#10B981" />
+              <text x="230" y="255" fill="#FFFFFF" font-size="9" font-weight="bold">Melbourne</text>
+
+              <!-- Brisbane Hub -->
+              <circle cx="340" cy="170" r="4" fill="#10B981" />
+              <text x="348" y="173" fill="#FFFFFF" font-size="9" font-weight="bold">Brisbane</text>
+
+              <!-- Adelaide Hub -->
+              <circle cx="240" cy="235" r="4" fill="#10B981" />
+              <text x="195" y="238" fill="#FFFFFF" font-size="9" font-weight="bold">Adelaide</text>
+
+              <!-- Perth Hub -->
+              <circle cx="80" cy="210" r="4" fill="#10B981" />
+              <circle cx="80" cy="210" r="8" stroke="#10B981" stroke-width="1" stroke-opacity="0.5" class="animate-ping" />
+              <text x="88" y="213" fill="#FFFFFF" font-size="9" font-weight="bold">Perth</text>
+            </svg>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright & Legal Disclaimer -->
+    <div class="mt-12 pt-8 border-t border-white/[0.06] flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+      <p>
+        &copy; {currentYear} AU IPTV (au-iptv.net). All rights reserved. Operating under Australian digital streaming protocols.
+      </p>
+      <div class="flex items-center gap-4 text-[11px]">
+        <span>Strict 24-Hour Refund Guarantee</span>
+        <span>•</span>
+        <span>Secure 256-Bit SSL Checkout</span>
+        <span>•</span>
+        <span>Dedicated AEST Customer Support</span>
+      </div>
+    </div>
+
+  </div>
+</footer>

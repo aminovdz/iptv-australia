@@ -1,0 +1,144 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { Clock, ShieldCheck, CheckCircle2, MessageCircle, AlertTriangle } from 'lucide-astro';
+
+const currentYear = new Date().getFullYear();
+const whatsappRefundUrl = "https://wa.me/18036582620?text=G%27day%21+I+would+like+to+request+a+refund+under+the+24-hour+guarantee.";
+---
+
+<Layout
+  title={`24-Hour Refund Policy — AU IPTV Australia ${currentYear}`}
+  description="Official 24-Hour Money-Back Guarantee policy for AU IPTV. Strict and transparent: Full refund guaranteed within 24 hours of account activation."
+  canonicalURL="https://au-iptv.net/refund"
+>
+  <StickyHeader currentPath="/refund" />
+
+  <main class="flex-1 py-16 sm:py-24 bg-[#060609]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Page Header -->
+      <div class="mb-12 text-center">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#059669]/15 border border-[#059669]/30 text-[#34D399] text-xs font-bold uppercase tracking-wider mb-4">
+          <Clock class="w-3.5 h-3.5 text-[#FDE047]" />
+          <span>Strict 24-Hour Satisfaction Guarantee</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+          Refund Policy
+        </h1>
+        <p class="text-xs sm:text-sm text-gray-400 max-w-xl mx-auto leading-relaxed">
+          Transparent Australian Policy: Every new subscription includes a dedicated 24-hour testing period from the exact moment your credentials are delivered.
+        </p>
+      </div>
+
+      <!-- Main Legal Content Box -->
+      <div class="rounded-3xl bg-[#0D0D14] border border-white/[0.08] p-8 sm:p-12 space-y-8 text-gray-300 text-sm leading-relaxed">
+        
+        <!-- Highlight Callout Box -->
+        <div class="p-6 rounded-2xl bg-gradient-to-r from-[#0D1F17] to-[#0D0D14] border border-[#059669]/40 text-[#34D399] flex items-start gap-4">
+          <ShieldCheck class="w-7 h-7 text-[#10B981] shrink-0 mt-0.5" />
+          <div>
+            <h2 class="text-base font-bold text-white mb-1">Our 100% 24-Hour Money-Back Promise</h2>
+            <p class="text-xs sm:text-sm text-gray-300">
+              At <strong>AU IPTV</strong>, we stand behind our low-latency Australian servers and Anti-Freeze 9.8™ technology. If, within <strong>24 consecutive hours of receiving your activation codes</strong>, you encounter technical incompatibility or are unsatisfied with stream performance, we will refund 100% of your payment.
+            </p>
+          </div>
+        </div>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#34D399]">1.</span> Refund Eligibility Criteria
+          </h2>
+          <p class="mb-3">
+            To ensure fair operation and protect against unauthorized credential extraction, refunds are granted when the following conditions are met:
+          </p>
+          <ul class="space-y-2.5 pl-4">
+            <li class="flex items-start gap-2.5">
+              <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0 mt-0.5" />
+              <span>The refund request must be sent in writing within <strong>exactly 24 hours</strong> of the initial dispatch timestamp of your credentials on WhatsApp or email.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0 mt-0.5" />
+              <span>You must provide your order reference, the phone number or email used during purchase, and a brief description of the technical issue encountered.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0 mt-0.5" />
+              <span>You have allowed our 24/7 technical support team an opportunity to troubleshoot any basic device configuration or player app settings.</span>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#34D399]">2.</span> How to Request a Refund in 2 Simple Steps
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+            
+            <div class="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex flex-col justify-between">
+              <div>
+                <div class="text-[11px] font-bold text-[#34D399] uppercase tracking-wider mb-1">Fast Track (Recommended)</div>
+                <div class="text-base font-bold text-white mb-2">Live WhatsApp Support</div>
+                <p class="text-xs text-gray-400 mb-4 leading-relaxed">
+                  Message our 24/7 Australian desk at <strong>+1 (803) 658-2620</strong> with your order details for instant review and processing.
+                </p>
+              </div>
+              <a
+                href={whatsappRefundUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#059669]/20 text-[#34D399] text-xs font-bold hover:bg-[#059669]/30 transition-colors border border-[#059669]/40 w-fit"
+              >
+                <MessageCircle class="w-4 h-4 text-[#FDE047]" />
+                <span>Contact via WhatsApp</span>
+              </a>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex flex-col justify-between">
+              <div>
+                <div class="text-[11px] font-bold text-[#FDE047] uppercase tracking-wider mb-1">Email Inquiries</div>
+                <div class="text-base font-bold text-white mb-2">Support Email Inboxes</div>
+                <p class="text-xs text-gray-400 mb-4 leading-relaxed">
+                  Send an email to <strong>support@castvera.com</strong> or <strong>contact@au-iptv.net</strong> with the subject line <em>"Refund Request 24h - [Your Name]"</em>.
+                </p>
+              </div>
+              <a
+                href="mailto:support@castvera.com?subject=Refund%20Request%2024h"
+                class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/[0.05] text-white text-xs font-bold hover:bg-white/[0.1] transition-colors border border-white/[0.1] w-fit"
+              >
+                <span>Email Support Team</span>
+              </a>
+            </div>
+
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#34D399]">3.</span> Processing Time & Payment Reversal
+          </h2>
+          <p>
+            Once approved by our billing department, the refund is initiated within <strong>24 to 48 business hours</strong> via the original payment method (Visa/Mastercard, PayPal, or crypto wallet). Depending on your financial institution or bank in Australia, funds typically reflect in your account within 2 to 5 business days.
+          </p>
+        </section>
+
+        <section>
+          <div class="p-5 rounded-2xl bg-red-950/20 border border-red-500/30 text-xs text-gray-300 space-y-2">
+            <div class="flex items-center gap-2 text-red-400 font-bold text-sm">
+              <AlertTriangle class="w-4 h-4 shrink-0" />
+              <span>Strict 24-Hour Policy Notice</span>
+            </div>
+            <p>
+              Because digital IPTV streaming links are activated immediately upon purchase and utilize high-bandwidth server allocations, <strong>no refunds will be granted once the 24-hour guarantee window has expired</strong>. We encourage all subscribers to thoroughly test their streams and preferred channels upon initial activation.
+            </p>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>

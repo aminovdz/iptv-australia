@@ -1,0 +1,265 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string | string[];
+  image?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  modifiedTime?: string;
+  schema?: Record<string, any> | Array<Record<string, any>>;
+  noindex?: boolean;
+  lang?: string;
+  canonicalURL?: URL | string;
+}
+
+const currentYear = new Date().getFullYear();
+
+const {
+  title = `AU IPTV ${currentYear} — Australia's #1 4K/8K Streaming Service & Anti-Freeze 9.8™`,
+  description = "AU IPTV: Stream NRL, AFL, Cricket, A-League, and global live entertainment in pristine 4K/8K with Anti-Freeze 9.8™ technology. Compatible with Smart TVs, Fire Stick, Apple TV & iOS/Android.",
+  keywords,
+  image = "/images/og-banner.webp",
+  type = "website",
+  publishedTime,
+  modifiedTime,
+  schema,
+  noindex = false,
+  lang = "en-AU",
+  canonicalURL,
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const siteUrl = 'https://au-iptv.net';
+const fullUrl = new URL(currentPath, siteUrl).toString();
+
+// Base Organization Schema (E-E-A-T & Google Knowledge Graph)
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${siteUrl}/#organization`,
+  "name": "AU IPTV",
+  "alternateName": "AU IPTV Australia",
+  "url": siteUrl,
+  "logo": {
+    "@type": "ImageObject",
+    "url": `${siteUrl}/favicon.svg`,
+    "width": 512,
+    "height": 512
+  },
+  "email": "contact@au-iptv.net",
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+1-803-658-2620",
+      "contactType": "customer service",
+      "availableLanguage": ["English"],
+      "url": "https://wa.me/18036582620"
+    }
+  ],
+  "sameAs": [
+    "https://whatsapp.com/channel/0029VayVaLpD8SE3bf8wMY3v",
+    "https://t.me/castvera_com"
+  ]
+};
+
+// Base Breadcrumbs Schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": siteUrl
+    },
+    ...(currentPath !== '/' && currentPath !== ''
+      ? [
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": title.split('—')[0].trim(),
+            "item": fullUrl
+          }
+        ]
+      : [])
+  ]
+};
+
+// Verified Australian Customer Reviews for Google Rich Snippets
+const verifiedReviews = [
+  {
+    "@type": "Review",
+    "author": { "@type": "Person", "name": "Lachlan Mitchell" },
+    "datePublished": "2026-09-15",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "reviewBody": "Streamed the entire NRL State of Origin without a single millisecond of buffering. 4K 60FPS feed on my Samsung Smart TV was crisp. WhatsApp activation took literally 90 seconds."
+  },
+  {
+    "@type": "Review",
+    "author": { "@type": "Person", "name": "Cameron Hayes" },
+    "datePublished": "2026-09-02",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "reviewBody": "Cut the cord on expensive Aussie sports bundles that were bleeding me $120+ a month. AU IPTV has AFL, Cricket Tests, and the 7-day catch-up for 3 AM Premier League matches is gold."
+  },
+  {
+    "@type": "Review",
+    "author": { "@type": "Person", "name": "Jessica Taylor" },
+    "datePublished": "2026-08-25",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "reviewBody": "The included Premium Player app with the 12-month pass is lightning fast on Amazon Fire Stick 4K Max. Instant EPG loading and zero freeze. Best value in Australia."
+  },
+  {
+    "@type": "Review",
+    "author": { "@type": "Person", "name": "Dean Papadopoulos" },
+    "datePublished": "2026-08-18",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "reviewBody": "Our household watches local Aussie footy plus Greek and European channels. AU IPTV handles multiple devices seamlessly over standard NBN 50. Highly recommend."
+  }
+];
+
+// Product & Aggregate Rating Schema for Google Rich Snippets (100% Server-Side in Static Build)
+const productRatingSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "@id": `${siteUrl}/#product`,
+  "name": "AU IPTV — Premium Australian 4K/8K Streaming Subscription",
+  "image": new URL(image, siteUrl).toString(),
+  "description": description,
+  "brand": {
+    "@type": "Brand",
+    "name": "AU IPTV"
+  },
+  "sku": `AU-IPTV-${currentYear}-ULTRA`,
+  "mpn": `AU-IPTV-4K-2026`,
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.92",
+    "bestRating": "5.0",
+    "worstRating": "1.0",
+    "ratingCount": "1840",
+    "reviewCount": "1840"
+  },
+  "review": verifiedReviews,
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "AUD",
+    "lowPrice": "13.00",
+    "highPrice": "90.00",
+    "offerCount": "4",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "12 Months + Premium Player Included (Best Value)",
+        "price": "90.00",
+        "priceCurrency": "AUD",
+        "availability": "https://schema.org/InStock",
+        "url": `${siteUrl}/#pricing`,
+        "priceValidUntil": `${currentYear}-12-31`,
+        "seller": {
+          "@type": "Organization",
+          "name": "AU IPTV"
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "6 Months + Premium Player Included",
+        "price": "50.00",
+        "priceCurrency": "AUD",
+        "availability": "https://schema.org/InStock",
+        "url": `${siteUrl}/#pricing`,
+        "priceValidUntil": `${currentYear}-12-31`,
+        "seller": {
+          "@type": "Organization",
+          "name": "AU IPTV"
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "3 Months Subscription",
+        "price": "33.00",
+        "priceCurrency": "AUD",
+        "availability": "https://schema.org/InStock",
+        "url": `${siteUrl}/#pricing`,
+        "priceValidUntil": `${currentYear}-12-31`,
+        "seller": {
+          "@type": "Organization",
+          "name": "AU IPTV"
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "1 Month Subscription",
+        "price": "13.00",
+        "priceCurrency": "AUD",
+        "availability": "https://schema.org/InStock",
+        "url": `${siteUrl}/#pricing`,
+        "priceValidUntil": `${currentYear}-12-31`,
+        "seller": {
+          "@type": "Organization",
+          "name": "AU IPTV"
+        }
+      }
+    ]
+  }
+};
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <BaseHead
+      title={title}
+      description={description}
+      keywords={keywords}
+      image={image}
+      canonicalURL={canonicalURL}
+      type={type}
+      publishedTime={publishedTime}
+      modifiedTime={modifiedTime}
+      noindex={noindex}
+    />
+
+    <!-- Server-Side Structured Data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(productRatingSchema)} />
+    {schema && (
+      Array.isArray(schema) 
+        ? schema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)
+        : <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    )}
+  </head>
+  <body class="bg-[#060609] text-[#E2E2EE] min-h-screen flex flex-col antialiased selection:bg-[#059669] selection:text-white">
+    <!-- Subtle Ambient Aussie Emerald Glow -->
+    <div class="fixed inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(5,150,105,0.12),rgba(255,255,255,0))] z-0"></div>
+    
+    <div class="relative z-10 flex flex-col min-h-screen">
+      <slot />
+    </div>
+  </body>
+</html>

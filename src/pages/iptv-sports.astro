@@ -1,0 +1,149 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Hero from '../components/Hero.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import PricingCard from '../components/PricingCard.astro';
+import ReferralBanner from '../components/ReferralBanner.astro';
+import UserReviewsSection from '../components/UserReviewsSection.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import SupportedDevices from '../components/SupportedDevices.astro';
+import LiveScores from '../components/LiveScores.astro';
+import CitiesList from '../components/CitiesList.astro';
+import ContactForm from '../components/ContactForm.astro';
+import FAQSection from '../components/FAQSection.astro';
+import CTASection from '../components/CTASection.astro';
+import Footer from '../components/Footer.astro';
+
+// Interactive Conversion & Retention Popups (24h localStorage Capped)
+import ExitPopup from '../components/ExitPopup.astro';
+import SocialPopup from '../components/SocialPopup.astro';
+import GroupsPopup from '../components/GroupsPopup.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+
+const currentYear = new Date().getFullYear();
+---
+
+<Layout
+  title={`Best IPTV Australia for Sports ${currentYear} — Live NRL, AFL, EPL & PPV in 4K 60FPS`}
+  description="Watch every NRL match, AFL Grand Final, Ashes cricket, and Premier League fixture in native 4K 60FPS. Zero buffering with Anti-Freeze 9.8™ and 7-day breakfast catch-up."
+  keywords={[
+    'iptv sports australia',
+    'watch nrl live stream',
+    'afl iptv stream',
+    'cricket live stream iptv',
+    'epl iptv australia',
+    'sports streaming alternative australia',
+    'live pay per view iptv',
+    'best sports iptv 2026'
+  ]}
+  canonicalURL="https://au-iptv.net/iptv-sports"
+>
+  <!-- Sticky Global Navigation -->
+  <StickyHeader currentPath="/iptv-sports" />
+
+  <!-- Main Content Sequence (Strict Required Order) -->
+  <main id="main-content" class="flex-1 flex flex-col">
+    <!-- 1. Hero Conversion Section (Tuned for Aussie Sports) -->
+    <Hero
+      headline="AU IPTV Sports — Every NRL, AFL & Cricket Match in 4K 60FPS"
+      subheadline="Why pay $120+ AUD every month across 4 different streaming apps just to watch your home footy and European football? AU IPTV consolidates all Aussie and global sports into a single 4K broadcast feed with Anti-Freeze 9.8™ and 7-day breakfast catch-up from only $7.50 AUD per month."
+    />
+
+    <!-- Dedicated Sports Deep Dive Editorial Section with High-Impact Cinematic Image -->
+    <section class="py-12 bg-[#090A10] border-y border-white/[0.06]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Visual Featured Sports Graphic -->
+        <div class="mb-10 rounded-3xl overflow-hidden border border-white/[0.1] shadow-2xl relative max-w-4xl mx-auto">
+          <img
+            src="/images/guides/watch-nrl-afl-australia.webp"
+            alt="AU IPTV Sports Edition — Live NRL, AFL and Cricket in 4K 60FPS across Australia under stadium floodlights"
+            class="w-full h-auto max-h-[420px] object-cover"
+            loading="eager"
+            width="1200"
+            height="630"
+          />
+        </div>
+
+        <div class="max-w-3xl mx-auto text-center space-y-4">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#059669]/15 text-[#34D399] border border-[#059669]/30">
+            Engineered for Live Australian Sports
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Stop Subscribing to 5 Apps Just to Watch the Weekend Footy
+          </h2>
+          <p class="text-gray-300 text-base leading-relaxed">
+            Australian sports fans face the most fractured sports broadcast market on earth. Friday night footy is on one channel, Sunday Premier League is on an overseas app, cricket is locked behind another paywall, and Saturday night fight cards cost $60 AUD each. AU IPTV brings it all under one lightning-fast roof with dedicated 50FPS and 60FPS server pipes.
+          </p>
+        </div>
+
+        <!-- 3 Pillars Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-5xl mx-auto">
+          <div class="p-6 rounded-2xl bg-[#0D0D14] border border-white/[0.08]">
+            <div class="text-[#34D399] text-2xl font-black mb-2">60 FPS</div>
+            <h3 class="text-lg font-bold text-white mb-2">Native High Frame Rate</h3>
+            <p class="text-gray-400 text-xs sm:text-sm">
+              Ball-tracking smoothness with zero judder. Fast-paced AFL kicks, NRL offloads, and 140km/h cricket deliveries look sharp and crystal clear.
+            </p>
+          </div>
+          <div class="p-6 rounded-2xl bg-[#0D0D14] border border-white/[0.08]">
+            <div class="text-[#FDE047] text-2xl font-black mb-2">&lt; 15s Latency</div>
+            <h3 class="text-lg font-bold text-white mb-2">Ahead of the Group Chat</h3>
+            <p class="text-gray-400 text-xs sm:text-sm">
+              Our direct Sydney (Equinix SY4) and Melbourne (NextDC M1) ingest servers beat traditional internet streaming delays by up to 35 seconds.
+            </p>
+          </div>
+          <div class="p-6 rounded-2xl bg-[#0D0D14] border border-white/[0.08]">
+            <div class="text-[#60A5FA] text-2xl font-black mb-2">All PPV Included</div>
+            <h3 class="text-lg font-bold text-white mb-2">Zero Extra Fight Fees</h3>
+            <p class="text-gray-400 text-xs sm:text-sm">
+              Every major UFC championship, international boxing card, and wrestling PPV is included with your AU IPTV subscription at zero additional cost.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Feature Grid -->
+    <FeatureGrid />
+
+    <!-- 3. Real Live Sports Scoreboard Component -->
+    <LiveScores />
+
+    <!-- 4. Interactive Pricing Cards -->
+    <PricingCard />
+
+    <!-- 5. Referral Banner (15% commission) -->
+    <ReferralBanner />
+
+    <!-- 6. Verified Australian Customer Reviews -->
+    <UserReviewsSection />
+
+    <!-- 7. 3-Step Setup Process -->
+    <ProcessSteps />
+
+    <!-- 8. Supported Devices Matrix -->
+    <SupportedDevices />
+
+    <!-- 9. Major Aussie Metro Cities Covered -->
+    <CitiesList />
+
+    <!-- 10. Direct Contact Form (Telegram / WhatsApp Fallback) -->
+    <ContactForm />
+
+    <!-- 11. Frequently Asked Questions -->
+    <FAQSection />
+
+    <!-- 12. Final High-Conversion CTA Banner -->
+    <CTASection />
+  </main>
+
+  <!-- Global Footer -->
+  <Footer />
+
+  <!-- Conversion & Retention Boosters (Capped 24h via LocalStorage) -->
+  <ExitPopup />
+  <SocialPopup />
+  <GroupsPopup />
+  <FloatingWhatsApp />
+</Layout>

@@ -1,0 +1,80 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { Tv, Home, ArrowRight, MessageCircle } from 'lucide-astro';
+---
+
+<Layout
+  title="404 — Page Not Found | AU IPTV Australia"
+  description="Sorry, the page you are looking for cannot be found. Return to AU IPTV Australia homepage or contact our 24/7 support team."
+  noindex={true}
+>
+  <StickyHeader />
+
+  <main class="flex-1 flex items-center justify-center py-20 md:py-32 bg-[#060609] relative overflow-hidden">
+    <!-- Ambient Glow -->
+    <div class="absolute inset-0 pointer-events-none -z-10" aria-hidden="true">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gradient-to-r from-[#059669]/20 via-[#D97706]/10 to-[#059669]/20 rounded-full blur-[140px]"></div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 text-center">
+      
+      <!-- Custom 404 Emblem (Zero Default Astro Icons) -->
+      <div class="w-20 h-20 rounded-3xl bg-[#0D0D14] border border-[#059669]/40 flex items-center justify-center mx-auto mb-6 shadow-[0_0_30px_rgba(5,150,105,0.3)]">
+        <Tv class="w-10 h-10 text-[#34D399]" />
+      </div>
+
+      <span class="text-xs font-black uppercase tracking-widest text-[#FDE047] bg-[#D97706]/20 px-3 py-1 rounded-full border border-[#D97706]/35 mb-4 inline-block font-mono">
+        Error 404 • Channel Not Found
+      </span>
+
+      <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight mb-4">
+        Lost Your Signal, Mate?
+      </h1>
+
+      <p class="text-gray-300 text-sm sm:text-base leading-relaxed mb-8 max-w-md mx-auto">
+        The page or channel you requested has moved or doesn't exist. Don't worry, your favourite Aussie sports and 4K streams are right where you left them.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+        <a
+          href="/"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-gradient-to-r from-[#059669] via-[#047857] to-[#059669] text-white font-black text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(5,150,105,0.4)] hover:scale-105 transition-all border border-[#10B981]/50"
+        >
+          <Home class="w-4 h-4 text-[#FDE047]" />
+          <span>Return to Homepage</span>
+        </a>
+
+        <a
+          href="/#pricing"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-[#0D0D14] hover:bg-[#131320] text-white font-bold text-xs uppercase tracking-wider border border-white/[0.12] transition-all"
+        >
+          <span>View Pricing Plans</span>
+          <ArrowRight class="w-4 h-4 text-[#34D399]" />
+        </a>
+      </div>
+
+      <!-- Quick Helpful Links -->
+      <div class="pt-8 border-t border-white/[0.08] text-xs text-gray-400">
+        <span class="font-bold text-white block mb-2">Need immediate assistance?</span>
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <a href="/contact" class="hover:text-[#34D399] transition-colors">Contact Support</a>
+          <span>•</span>
+          <a href="/guides" class="hover:text-[#34D399] transition-colors">Setup Guides & Blog</a>
+          <span>•</span>
+          <a href="https://wa.me/18036582620" target="_blank" rel="noopener noreferrer" class="text-[#34D399] hover:underline flex items-center gap-1">
+            <MessageCircle class="w-3.5 h-3.5" />
+            <span>WhatsApp 24/7 Help</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>

@@ -1,0 +1,143 @@
+---
+import { Zap, Tv, Clock, Headphones, Wifi, Film, Sparkles, Smartphone, ShieldCheck, Trophy } from 'lucide-astro';
+
+const features = [
+  {
+    icon: Zap,
+    title: "Anti-Freeze 9.8™ Technology",
+    description: "Our dedicated Australian load-balanced server network eliminates stream freezing and buffer loops, ensuring uninterrupted 60 FPS playback during peak live events like NRL State of Origin and AFL Finals.",
+    badge: "99.98% Uptime",
+    color: "emerald"
+  },
+  {
+    icon: Tv,
+    title: "Native 4K & 8K Ultra HD (60 FPS)",
+    description: "Experience broadcast-level clarity with uncompressed 60 FPS sports feeds, vibrant HDR color reproduction, and high-fidelity multi-channel audio designed for big-screen home cinema viewing.",
+    badge: "Native 60 FPS",
+    color: "gold"
+  },
+  {
+    icon: Film,
+    title: "7-Day Catch-Up TV & Live EPG",
+    description: "Australian time zones shouldn't stop you from watching your favourite teams. Catch up on 2 AM and 4 AM European football kickoffs over breakfast with our interactive 7-day replay and program guide.",
+    badge: "Time-Zone Solved",
+    color: "emerald"
+  },
+  {
+    icon: Wifi,
+    title: "Optimized for Australia's NBN",
+    description: "Engineered specifically to thrive across all NBN tiers (NBN 25, 50, 100, 250) and 4G/5G mobile connections with intelligent dynamic bitrate scaling that prevents ISP bandwidth throttling.",
+    badge: "Zero NBN Throttling",
+    color: "gold"
+  },
+  {
+    icon: Smartphone,
+    title: "Premium Player Included (6 & 12M)",
+    description: "Receive our high-performance licensed Premium Player application with instant zapping, custom category sorting, and multi-connection capability free with your 6 or 12-month pass.",
+    badge: "Free Player Included",
+    color: "emerald"
+  },
+  {
+    icon: Clock,
+    title: "Instant 2-Minute Activation",
+    description: "No waiting for shipping or engineer visits. Once confirmed, your M3U playlist link and Xtream Codes credentials are delivered directly to your WhatsApp or email within 120 seconds.",
+    badge: "Instant Delivery",
+    color: "gold"
+  },
+  {
+    icon: Trophy,
+    title: "All Aussie & Global Sports in One",
+    description: "Consolidate every subscription into one unified dashboard. From Aussie rules, rugby league, and summer cricket tests to motorsport, tennis grand slams, and overseas leagues.",
+    badge: "All-in-One Hub",
+    color: "emerald"
+  },
+  {
+    icon: Headphones,
+    title: "24/7 Dedicated Support in AEST",
+    description: "No overseas call centers or automated bots. Our Australian-trained technical staff assists you live via WhatsApp and email with step-by-step setup guides for any smart device.",
+    badge: "Local AEST Team",
+    color: "gold"
+  }
+];
+---
+
+<section id="features" class="py-20 md:py-28 relative bg-[#060609]" aria-labelledby="features-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Heading -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#059669]/15 border border-[#059669]/30 text-[#34D399] text-xs font-bold uppercase tracking-wider mb-4">
+        <Sparkles class="w-3.5 h-3.5 text-[#FDE047]" />
+        <span>Why Australians Choose AU IPTV</span>
+      </div>
+      <h2 id="features-heading" class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+        Engineered for <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#10B981] via-[#FDE047] to-[#D97706]">Peak Performance</span> & Zero Freezing
+      </h2>
+      <p class="text-gray-300 text-base sm:text-lg leading-relaxed font-normal">
+        Say goodbye to pixelated streams and endless buffering on game day. Discover why thousands of Aussie households have switched to AU IPTV for superior streaming and unmatched savings.
+      </p>
+    </div>
+
+    <!-- Features Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {features.map((feature) => {
+        const IconComponent = feature.icon;
+        const isEmerald = feature.color === "emerald";
+        return (
+          <div class="group relative bg-[#0D0D14] hover:bg-[#131320] rounded-2xl p-6 sm:p-7 border border-white/[0.08] hover:border-[#059669]/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(5,150,105,0.2)] flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class={`w-12 h-12 rounded-xl flex items-center justify-center border transition-all duration-300 ${
+                  isEmerald 
+                    ? 'bg-[#059669]/15 border-[#059669]/30 text-[#34D399] group-hover:bg-[#059669] group-hover:text-white group-hover:border-[#10B981]' 
+                    : 'bg-[#D97706]/15 border-[#D97706]/30 text-[#FDE047] group-hover:bg-[#D97706] group-hover:text-white group-hover:border-[#F59E0B]'
+                }`}>
+                  <IconComponent class="w-6 h-6" />
+                </div>
+                <span class={`text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md border tracking-wider ${
+                  isEmerald 
+                    ? 'bg-[#059669]/10 text-[#34D399] border-[#059669]/25' 
+                    : 'bg-[#D97706]/10 text-[#FDE047] border-[#D97706]/25'
+                }`}>
+                  {feature.badge}
+                </span>
+              </div>
+
+              <h3 class="text-lg font-bold text-white mb-2.5 group-hover:text-[#34D399] transition-colors">
+                {feature.title}
+              </h3>
+              <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">
+                {feature.description}
+              </p>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-gray-500 font-semibold">
+              <span>Verified Feature</span>
+              <span class="text-[#10B981]">Active & Tested</span>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Bottom Feature Summary Banner -->
+    <div class="mt-12 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-[#131320] via-[#0D0D14] to-[#131320] border border-white/[0.1] flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-[#059669]/20 border border-[#059669]/40 flex items-center justify-center shrink-0">
+          <ShieldCheck class="w-6 h-6 text-[#34D399]" />
+        </div>
+        <div>
+          <h4 class="text-base font-bold text-white">Risk-Free 24-Hour Guarantee & Instant Activation</h4>
+          <p class="text-xs sm:text-sm text-gray-400">Test all sports feeds and 4K stability on your own devices before committing to long plans.</p>
+        </div>
+      </div>
+      <a
+        href="/#pricing"
+        class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-gradient-to-r from-[#059669] to-[#047857] hover:from-[#10B981] hover:to-[#059669] text-white text-xs font-black uppercase tracking-wider transition-all duration-300 hover:scale-105 shrink-0 shadow-[0_0_20px_rgba(5,150,105,0.35)]"
+      >
+        <span>Compare All Plans</span>
+      </a>
+    </div>
+
+  </div>
+</section>

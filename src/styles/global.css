@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #059669;
+  --color-primary-hover: #047857;
+  --color-primary-glow: rgba(5, 150, 105, 0.35);
+  --color-secondary: #D97706;
+  --color-secondary-hover: #B45309;
+  --color-secondary-glow: rgba(217, 119, 6, 0.35);
+  --color-accent-gold: #F59E0B;
+  --color-accent-green: #10B981;
+  --color-accent-blue: #2563EB;
+  --color-dark-bg: #060609;
+  --color-dark-card: #0D0D14;
+  --color-dark-card-hover: #131320;
+  --color-dark-border: #18182A;
+  --color-dark-border-glow: #282846;
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+:root {
+  --primary: #059669;
+  --primary-rgb: 5, 150, 105;
+  --secondary: #D97706;
+  --secondary-rgb: 217, 119, 6;
+  --gold: #F59E0B;
+  --green: #10B981;
+  --blue: #2563EB;
+  --bg-dark: #060609;
+  --bg-card: #0D0D14;
+  --bg-card-hover: #131320;
+  --border-subtle: #18182A;
+  --text-main: #E2E2EE;
+  --text-muted: #8585A0;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  background-color: #060609;
+  color: #E2E2EE;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Australian Sporting Green & Gold Text Gradients */
+.text-brand-gradient {
+  background: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 50%, #10B981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #FDE68A 0%, #F59E0B 50%, #D97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-australia-gradient {
+  background: linear-gradient(135deg, #34D399 0%, #FDE047 50%, #F59E0B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Glassmorphism System */
+.glass-panel {
+  background: rgba(13, 13, 20, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-panel-hover:hover {
+  background: rgba(19, 19, 32, 0.9);
+  border-color: rgba(5, 150, 105, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -10px rgba(5, 150, 105, 0.3);
+}
+
+.glass-card-featured {
+  background: linear-gradient(135deg, rgba(8, 28, 20, 0.92) 0%, rgba(13, 13, 20, 0.98) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(5, 150, 105, 0.55);
+  box-shadow: 0 15px 35px -10px rgba(5, 150, 105, 0.35);
+}
+
+.glow-primary {
+  box-shadow: 0 0 25px rgba(5, 150, 105, 0.35);
+}
+
+.glow-secondary {
+  box-shadow: 0 0 25px rgba(217, 119, 6, 0.35);
+}
+
+/* Micro-animations */
+@keyframes pulseSubtle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.88; transform: scale(0.985); }
+}
+
+.animate-pulse-subtle {
+  animation: pulseSubtle 3s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #060609;
+}
+::-webkit-scrollbar-thumb {
+  background: #18182A;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #059669;
+}

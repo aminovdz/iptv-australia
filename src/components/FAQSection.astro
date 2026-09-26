@@ -1,0 +1,119 @@
+---
+import { HelpCircle, ChevronDown, MessageCircle } from 'lucide-astro';
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+const faqs: FAQItem[] = [
+  {
+    question: "What is AU IPTV and how does it work in Australia?",
+    answer: "AU IPTV is a next-generation television streaming service that delivers live Australian free-to-air networks, dedicated sports channels, and international entertainment directly over your high-speed internet connection. Unlike traditional cable or satellite pay-TV, there are no proprietary hardware boxes, satellite dishes, or lock-in contracts. You simply install our app (or compatible players like TiviMate or IPTV Smarters) on your Smart TV, Fire Stick, Apple TV, or mobile device and start streaming immediately."
+  },
+  {
+    question: "Is IPTV legal in Australia?",
+    answer: "Yes, IPTV technology is completely legal in Australia and is widely used across telecommunications networks. In Australia, copyright enforcement under Section 115A of the Copyright Act focuses on domain-level ISP injunctions against unauthorized host servers rather than individual viewers. AU IPTV operates high-availability private routing nodes with 256-bit encryption to ensure maximum privacy, security, and continuous viewing stability."
+  },
+  {
+    question: "What NBN internet speed do I need for buffer-free 4K streaming?",
+    answer: "Our Anti-Freeze 9.8™ streams are engineered for high efficiency. For Full HD (1080p 60FPS) playback, a steady connection of at least 15 Mbps is recommended. For native 4K Ultra HD and 8K HDR streams, a connection of 25 Mbps or higher is optimal. This means standard NBN 25, NBN 50, and NBN 100 plans (as well as 4G/5G and Starlink connections) perform flawlessly across all Aussie households."
+  },
+  {
+    question: "Can I watch live NRL, AFL, Summer Cricket, and Premier League matches?",
+    answer: "Absolutely. AU IPTV covers all regular-season fixtures, finals, and marquee sporting events including the NRL Premiership, State of Origin, AFL Grand Final, Australian Open tennis, international cricket test series, The Ashes, Big Bash League, A-League, English Premier League, and Formula 1. All major games are broadcast in crystal-clear 60 FPS feeds."
+  },
+  {
+    question: "How does the 7-day catch-up TV work for late-night sports kick-offs?",
+    answer: "Because many European football matches and international motorsport races take place between 1:00 AM and 5:00 AM Australian Eastern Standard Time (AEST), our service includes a built-in 7-Day Catch-Up TV feature. You can replay any broadcast match from the beginning over breakfast without staying up all night or worrying about manual recordings."
+  },
+  {
+    question: "How quickly do I get my activation codes after subscribing?",
+    answer: "Activation is virtually instantaneous. Within 2 minutes of your order confirmation, you will receive your M3U playlist URL, Xtream Codes credentials, and step-by-step setup guides via WhatsApp or email. Our automated dispatch system operates 24/7."
+  },
+  {
+    question: "What is your refund policy?",
+    answer: "We offer a strict 24-Hour Satisfaction Guarantee. If you experience technical incompatibility or are unsatisfied with the streaming performance within the first 24 hours of account activation, contact our support team on WhatsApp or email for a prompt refund."
+  },
+  {
+    question: "How does the included Premium Player app work with the 6 & 12-month plans?",
+    answer: "Customers who select our 6-Month ($50 AUD) or 12-Month ($90 AUD) pass receive an official licensed activation of our Premium Player application completely free of charge. This player features lightning-fast channel switching (under 0.3s), automatic EPG synchronization, custom favorites lists, and dual-connection capability on your main home device."
+  }
+];
+
+// Server-side JSON-LD FAQ Schema code for Google Rich Snippets
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((faq) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+---
+
+<section id="faq" class="py-20 md:py-28 relative bg-[#060609]" aria-labelledby="faq-heading">
+  <!-- Server-Side FAQ JSON-LD -->
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Heading -->
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#059669]/15 border border-[#059669]/30 text-[#34D399] text-xs font-bold uppercase tracking-wider mb-4">
+        <HelpCircle class="w-3.5 h-3.5 text-[#FDE047]" />
+        <span>Frequently Asked Questions</span>
+      </div>
+      <h2 id="faq-heading" class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+        Everything You Need to Know About <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#10B981] via-[#FDE047] to-[#D97706]">AU IPTV</span>
+      </h2>
+      <p class="text-gray-300 text-base sm:text-lg leading-relaxed font-normal">
+        Got questions about NBN compatibility, Aussie sports fixtures, or how to get started? We have direct, honest answers.
+      </p>
+    </div>
+
+    <!-- Accordion FAQ Items -->
+    <div class="space-y-4">
+      {faqs.map((faq, index) => (
+        <details
+          class="group bg-[#0D0D14] hover:bg-[#131320] rounded-2xl border border-white/[0.08] open:border-[#059669]/50 transition-all duration-200 overflow-hidden"
+          id={`faq-item-${index}`}
+        >
+          <summary class="flex items-center justify-between p-6 cursor-pointer list-none select-none focus:outline-none focus:ring-1 focus:ring-[#059669] rounded-2xl">
+            <h3 class="text-base sm:text-lg font-bold text-white group-open:text-[#34D399] transition-colors pr-4 text-left">
+              {faq.question}
+            </h3>
+            <div class="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center shrink-0 group-open:rotate-180 transition-transform text-gray-400 group-open:text-[#34D399]">
+              <ChevronDown class="w-4 h-4" />
+            </div>
+          </summary>
+          <div class="px-6 pb-6 pt-2 text-sm text-gray-300 leading-relaxed border-t border-white/[0.04]">
+            <p>{faq.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <!-- Still Have Questions Banner -->
+    <div class="mt-12 p-6 sm:p-8 rounded-2xl bg-[#0D0D14] border border-white/[0.08] text-center">
+      <h3 class="text-lg font-bold text-white mb-2">Still Have Questions About Your Device or Connection?</h3>
+      <p class="text-xs sm:text-sm text-gray-400 mb-6">
+        Our Aussie support team is online 24/7 on WhatsApp to verify your NBN speed or help install on your TV.
+      </p>
+      <a
+        href="https://wa.me/18036582620?text=G%27day%21+I+have+a+question+about+AU+IPTV."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#059669] hover:bg-[#047857] text-white text-xs font-bold uppercase tracking-wider transition-all hover:scale-105 shadow-[0_0_20px_rgba(5,150,105,0.35)]"
+      >
+        <MessageCircle class="w-4 h-4 text-[#FDE047]" />
+        <span>Ask Us on WhatsApp Live</span>
+      </a>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,259 @@
+---
+import { Mail, MessageCircle, Send, Clock, Sparkles, ExternalLink } from 'lucide-astro';
+
+const whatsappChannelUrl = "https://whatsapp.com/channel/0029VayVaLpD8SE3bf8wMY3v";
+const telegramChannelUrl = "https://t.me/castvera_com";
+---
+
+<section id="contact-section" class="py-20 md:py-28 relative bg-[#060609]" aria-labelledby="contact-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Heading -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#059669]/15 border border-[#059669]/30 text-[#34D399] text-xs font-bold uppercase tracking-wider mb-4">
+        <Sparkles class="w-3.5 h-3.5 text-[#FDE047]" />
+        <span>Australian Customer Care</span>
+      </div>
+      <h2 id="contact-heading" class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+        Get in Touch with the <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#10B981] via-[#FDE047] to-[#D97706]">AU IPTV Team</span>
+      </h2>
+      <p class="text-gray-300 text-base sm:text-lg leading-relaxed font-normal">
+        Have questions about NBN compatibility, smart TV setup, or custom playlist requests? Our technical support team is online 24/7 in Australian Eastern Standard Time (AEST).
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      
+      <!-- Left Column: Official Contact Points & Channels -->
+      <div class="lg:col-span-5 space-y-6">
+        
+        <!-- Live WhatsApp Support Card -->
+        <div class="p-6 sm:p-7 rounded-2xl bg-[#0D0D14] border border-[#059669]/40 relative overflow-hidden">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-12 h-12 rounded-xl bg-[#25D366]/20 border border-[#25D366]/40 flex items-center justify-center text-[#25D366]">
+              <MessageCircle class="w-6 h-6" />
+            </div>
+            <div>
+              <span class="text-[10px] font-black uppercase tracking-wider text-[#34D399] block">Instant Help (Fastest)</span>
+              <h3 class="text-lg font-bold text-white">Live WhatsApp Desk</h3>
+            </div>
+          </div>
+          <p class="text-xs text-gray-300 mb-4 leading-relaxed">
+            Get instant responses for free trials, activation codes, and setup troubleshooting within 2 minutes.
+          </p>
+          <a
+            href="https://wa.me/18036582620?text=G%27day%21+I+need+support+with+AU+IPTV."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-[#059669] to-[#047857] text-white text-xs font-black uppercase tracking-wider shadow-[0_0_20px_rgba(5,150,105,0.35)] hover:scale-105 transition-all w-full justify-center"
+          >
+            <MessageCircle class="w-4 h-4 text-[#FDE047]" />
+            <span>Chat on WhatsApp (+1 803-658-2620)</span>
+          </a>
+        </div>
+
+        <!-- Official Channels -->
+        <div class="p-6 rounded-2xl bg-[#0D0D14] border border-white/[0.08] space-y-4">
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+            <span>Community Channels</span>
+          </h4>
+          <div class="space-y-3">
+            <a
+              href={whatsappChannelUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center justify-between p-3.5 rounded-xl bg-white/[0.03] hover:bg-[#25D366]/10 border border-white/[0.06] hover:border-[#25D366]/30 transition-all text-xs group"
+            >
+              <div class="flex items-center gap-3">
+                <MessageCircle class="w-5 h-5 text-[#25D366]" />
+                <div>
+                  <span class="font-bold text-white block group-hover:text-[#25D366] transition-colors">WhatsApp Channel</span>
+                  <span class="text-[11px] text-gray-400">Match schedules & promo codes</span>
+                </div>
+              </div>
+              <ExternalLink class="w-4 h-4 text-gray-500 group-hover:text-white" />
+            </a>
+
+            <a
+              href={telegramChannelUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center justify-between p-3.5 rounded-xl bg-white/[0.03] hover:bg-[#0088cc]/10 border border-white/[0.06] hover:border-[#0088cc]/30 transition-all text-xs group"
+            >
+              <div class="flex items-center gap-3">
+                <Send class="w-5 h-5 text-[#29b6f6]" />
+                <div>
+                  <span class="font-bold text-white block group-hover:text-[#29b6f6] transition-colors">Telegram VIP Channel</span>
+                  <span class="text-[11px] text-gray-400">Server status & instant updates</span>
+                </div>
+              </div>
+              <ExternalLink class="w-4 h-4 text-gray-500 group-hover:text-white" />
+            </a>
+          </div>
+        </div>
+
+        <!-- Email Inboxes -->
+        <div class="p-6 rounded-2xl bg-[#0D0D14] border border-white/[0.08] space-y-3 text-xs">
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2">Dedicated Email Support</h4>
+          <div class="flex items-center gap-3 text-gray-300">
+            <Mail class="w-4 h-4 text-[#34D399] shrink-0" />
+            <div>
+              <span class="text-gray-500 block text-[10px]">Primary Contact:</span>
+              <a href="mailto:contact@au-iptv.net" class="hover:text-white font-semibold">contact@au-iptv.net</a>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 text-gray-300 pt-2 border-t border-white/[0.04]">
+            <Mail class="w-4 h-4 text-[#FDE047] shrink-0" />
+            <div>
+              <span class="text-gray-500 block text-[10px]">Technical Escalations:</span>
+              <a href="mailto:support@castvera.com" class="hover:text-white font-semibold">support@castvera.com</a>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 pt-2 text-[11px] text-gray-400">
+            <Clock class="w-3.5 h-3.5 text-[#10B981]" />
+            <span>Average response time: &lt; 15 minutes</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Interactive Form -->
+      <div class="lg:col-span-7">
+        <div class="p-6 sm:p-10 rounded-3xl bg-[#0D0D14] border border-white/[0.08] shadow-2xl">
+          <h3 class="text-xl font-bold text-white mb-2">Send Us a Direct Message</h3>
+          <p class="text-xs sm:text-sm text-gray-400 mb-6">
+            Fill in your device details below or click the WhatsApp button for instant live support.
+          </p>
+
+          <form id="contact-inquiry-form" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="contact-name" class="block text-xs font-semibold text-gray-300 mb-1.5">
+                  Your Full Name <span class="text-[#10B981]">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="contact-name"
+                  name="name"
+                  required
+                  placeholder="e.g. Lachlan Mitchell"
+                  class="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/[0.1] text-white text-xs placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all"
+                />
+              </div>
+
+              <div>
+                <label for="contact-email" class="block text-xs font-semibold text-gray-300 mb-1.5">
+                  Email Address <span class="text-[#10B981]">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="contact-email"
+                  name="email"
+                  required
+                  placeholder="name@example.com.au"
+                  class="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/[0.1] text-white text-xs placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="contact-device" class="block text-xs font-semibold text-gray-300 mb-1.5">
+                  Primary Device
+                </label>
+                <select
+                  id="contact-device"
+                  name="device"
+                  class="w-full px-4 py-3 rounded-xl bg-[#131320] border border-white/[0.1] text-white text-xs focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all"
+                >
+                  <option value="Amazon Fire Stick 4K">Amazon Fire Stick 4K / Max</option>
+                  <option value="Samsung Smart TV">Samsung Smart TV (Tizen)</option>
+                  <option value="LG Smart TV">LG Smart TV (webOS)</option>
+                  <option value="Apple TV / iOS">Apple TV 4K / iPhone / iPad</option>
+                  <option value="Android TV / Shield">Android TV / Chromecast / Shield</option>
+                  <option value="Windows PC / Mac">Windows PC / macOS</option>
+                  <option value="Other Device">Dedicated IPTV Box (Formuler / MAG)</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="contact-plan" class="block text-xs font-semibold text-gray-300 mb-1.5">
+                  Plan of Interest
+                </label>
+                <select
+                  id="contact-plan"
+                  name="plan"
+                  class="w-full px-4 py-3 rounded-xl bg-[#131320] border border-white/[0.1] text-white text-xs focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all"
+                >
+                  <option value="12 Months ($90 AUD)">12 Months ($90 AUD) — Free Player Included</option>
+                  <option value="6 Months ($50 AUD)">6 Months ($50 AUD) — Free Player Included</option>
+                  <option value="3 Months ($33 AUD)">3 Months ($33 AUD)</option>
+                  <option value="1 Month ($13 AUD)">1 Month ($13 AUD)</option>
+                  <option value="24h Free Trial">24-Hour Free Trial (Test First)</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="contact-message" class="block text-xs font-semibold text-gray-300 mb-1.5">
+                Your Message or Questions <span class="text-[#10B981]">*</span>
+              </label>
+              <textarea
+                id="contact-message"
+                name="message"
+                rows="4"
+                required
+                placeholder="Ask us anything about setup on your TV, NBN connection speeds, or sports coverage..."
+                class="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/[0.1] text-white text-xs placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all"
+              ></textarea>
+            </div>
+
+            <div class="pt-2">
+              <button
+                type="submit"
+                id="submit-contact-btn"
+                class="w-full inline-flex items-center justify-center gap-2.5 py-4 px-6 rounded-2xl bg-gradient-to-r from-[#059669] via-[#047857] to-[#059669] text-white font-black text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(5,150,105,0.4)] hover:shadow-[0_0_35px_rgba(5,150,105,0.65)] hover:scale-[1.02] active:scale-[0.98] transition-all border border-[#10B981]/40"
+              >
+                <Send class="w-4 h-4 text-[#FDE047]" />
+                <span>Send Inquiry via WhatsApp Fast Lane</span>
+              </button>
+            </div>
+            
+            <p id="form-feedback" class="text-xs text-center text-[#34D399] hidden pt-2 font-semibold">
+              Thank you! Redirecting to our 24/7 Aussie support agent on WhatsApp...
+            </p>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('contact-inquiry-form') as HTMLFormElement | null;
+  const feedback = document.getElementById('form-feedback');
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = (document.getElementById('contact-name') as HTMLInputElement)?.value || '';
+      const email = (document.getElementById('contact-email') as HTMLInputElement)?.value || '';
+      const device = (document.getElementById('contact-device') as HTMLSelectElement)?.value || '';
+      const plan = (document.getElementById('contact-plan') as HTMLSelectElement)?.value || '';
+      const message = (document.getElementById('contact-message') as HTMLTextAreaElement)?.value || '';
+
+      const text = encodeURIComponent(
+        `G'day AU IPTV Support!\n\nName: ${name}\nEmail: ${email}\nDevice: ${device}\nPlan: ${plan}\n\nMessage:\n${message}`
+      );
+
+      if (feedback) feedback.classList.remove('hidden');
+
+      setTimeout(() => {
+        window.open(`https://wa.me/18036582620?text=${text}`, '_blank');
+      }, 500);
+    });
+  }
+</script>

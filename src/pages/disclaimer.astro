@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { ShieldAlert } from 'lucide-astro';
+
+const currentYear = new Date().getFullYear();
+---
+
+<Layout
+  title={`Legal Disclaimer — AU IPTV Australia ${currentYear}`}
+  description="Official legal disclaimer and service limitations for AU IPTV Australia. Information on third-party software, NBN internet speeds, and content availability."
+  canonicalURL="https://au-iptv.net/disclaimer"
+>
+  <StickyHeader currentPath="/disclaimer" />
+
+  <main class="flex-1 py-16 sm:py-24 bg-[#060609]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Page Header -->
+      <div class="mb-12 text-center">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#059669]/15 border border-[#059669]/30 text-[#34D399] text-xs font-bold uppercase tracking-wider mb-4">
+          <ShieldAlert class="w-3.5 h-3.5 text-[#FDE047]" />
+          <span>General Regulatory Disclaimer</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+          Legal Disclaimer
+        </h1>
+        <p class="text-xs sm:text-sm text-gray-400">
+          Last Updated: September 2026 • AU IPTV Australia (au-iptv.net)
+        </p>
+      </div>
+
+      <!-- Legal Content Box -->
+      <div class="rounded-3xl bg-[#0D0D14] border border-white/[0.08] p-8 sm:p-12 space-y-8 text-gray-300 text-sm leading-relaxed">
+        
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#34D399]">1.</span> Informational & Technical Purposes Only
+          </h2>
+          <p>
+            The content, technical setup guides, and documentation provided on <code>au-iptv.net</code> are provided for informational and technical configuration purposes. While we strive to ensure that all information regarding compatible smart television applications and NBN broadband speeds is accurate, we make no representations or warranties regarding third-party external networks.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#34D399]">2.</span> Third-Party Applications & Hardware
+          </h2>
+          <p class="mb-3">
+            AU IPTV does not develop or own third-party media players such as TiviMate, IPTV Smarters, VLC, Kodi, or IBO Player. These applications are independent software tools developed by third parties. References to these applications are made solely to assist Australian end users with device compatibility.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#34D399]">3.</span> Stream Stability & Broadband Variables
+          </h2>
+          <p>
+            Streaming quality (including Full HD, 4K Ultra HD, and 60 FPS refresh rates) is dependent upon external factors outside our direct control, including your local NBN broadband connection speed, Wi-Fi router congestion, domestic ISP routing protocols, and device processing limits. We recommend a minimum of 25 Mbps download speeds for optimal 4K viewing.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#34D399]">4.</span> Channel Availability & Schedules
+          </h2>
+          <p>
+            Broadcast lineups, sporting fixture timing, and channel availability are subject to periodic server maintenance and optimization. AU IPTV reserves the right to reconfigure, update, or replace specific stream transmission nodes to maintain overall network stability without prior individual notice.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#34D399]">5.</span> Inquiries
+          </h2>
+          <p class="text-xs text-gray-400">
+            For further inquiries regarding this disclaimer: <br/>
+            Email: <a href="mailto:contact@au-iptv.net" class="text-[#34D399]">contact@au-iptv.net</a> / <a href="mailto:support@castvera.com" class="text-[#FDE047]">support@castvera.com</a>
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>
