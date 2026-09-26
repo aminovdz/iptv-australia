@@ -1,0 +1,257 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Hero from '../components/Hero.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import PricingCard from '../components/PricingCard.astro';
+import ReferralBanner from '../components/ReferralBanner.astro';
+import UserReviewsSection from '../components/UserReviewsSection.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import SupportedDevices from '../components/SupportedDevices.astro';
+import LiveScores from '../components/LiveScores.astro';
+import CitiesList from '../components/CitiesList.astro';
+import ContactForm from '../components/ContactForm.astro';
+import FAQSection from '../components/FAQSection.astro';
+import CTASection from '../components/CTASection.astro';
+import Footer from '../components/Footer.astro';
+
+// Interactive Conversion & Retention Popups (24h localStorage Capped)
+import ExitPopup from '../components/ExitPopup.astro';
+import SocialPopup from '../components/SocialPopup.astro';
+import GroupsPopup from '../components/GroupsPopup.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+
+import { 
+  ShieldCheck, 
+  Clock, 
+  Wifi, 
+  Sparkles,
+  Server
+} from 'lucide-astro';
+
+const currentYear = new Date().getFullYear();
+
+// Server-Side FAQ Schema specifically targeting "iptv for australia"
+const iptvForAustraliaFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does IPTV for Australia work on the NBN?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "IPTV for Australia connects your streaming device directly to local Australian edge servers via your NBN or 5G broadband connection. Digital video streams are compressed using modern H.265 codecs, delivering flawless 4K 60FPS video with as little as 15 Mbps to 25 Mbps bandwidth."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the best IPTV device for Australia in 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Amazon Fire TV Stick 4K and 4K Max are the #1 ranked streaming devices in Australia. They support hardware decoding, Wi-Fi 6, and open sideloading for professional player apps like TiviMate and our custom AU IPTV player."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I watch live NRL, AFL and cricket on IPTV in Australia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. AU IPTV provides dedicated high-frame-rate 50FPS and 60FPS feeds for all Australian sporting codes including NRL, AFL, international Test cricket, Big Bash, and Supercars, plus 380 live English Premier League fixtures."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How quickly is an AU IPTV account activated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Activation is completely automated and takes under 120 seconds. Once your order is placed, your secure Xtream API server URL, username, and password are sent directly to your WhatsApp and email."
+      }
+    }
+  ]
+};
+---
+
+<Layout
+  title={`IPTV for Australia ${currentYear} — Complete Guide, Channel List & 4K Setup`}
+  description="Everything you need to know about IPTV for Australia. Learn how to stream Australian sports, live TV channels, and 4K movies with zero buffering and no lock-in contracts."
+  keywords={[
+    'iptv for australia',
+    'iptv for australian channels',
+    'best iptv for australia 2026',
+    'cheap iptv for australia',
+    'iptv subscription australia',
+    'how to watch iptv australia',
+    'australian iptv channels'
+  ]}
+  canonicalURL="https://au-iptv.net/iptv-for-australia"
+  schema={iptvForAustraliaFaqSchema}
+>
+  <!-- Sticky Global Navigation -->
+  <StickyHeader currentPath="/iptv-for-australia" />
+
+  <!-- Main Content Sequence -->
+  <main id="main-content" class="flex-1 flex flex-col">
+    <!-- 1. Hero Conversion Section -->
+    <Hero
+      headline="IPTV for Australia — Everything You Need to Know Before You Subscribe"
+      subheadline="Looking for a reliable, buffer-free IPTV service tailored for Australian internet conditions? AU IPTV delivers native 4K 60FPS sports, full Australian and international channel lineups, and local AEST customer support from just $7.50 AUD per month."
+    />
+
+    <!-- Visual Cinematic Showcase Graphic -->
+    <section class="py-8 bg-[#060609]">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="rounded-3xl overflow-hidden border border-white/[0.1] shadow-2xl relative">
+          <img
+            src="/images/guides/best-iptv-fire-stick-australia.webp"
+            alt="IPTV for Australia — Amazon Fire Stick 4K Streaming Setup on Modern Wall Mounted OLED TV"
+            class="w-full h-auto max-h-[420px] object-cover"
+            loading="eager"
+            width="1200"
+            height="630"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Essential Buyer's Guide & Australian Checklist -->
+    <section class="py-14 bg-[#090A10] border-y border-white/[0.06]">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#059669]/15 text-[#34D399] border border-[#059669]/30 mb-4">
+            <Sparkles class="w-3.5 h-3.5 text-[#FDE047]" />
+            Buyer's Decision Guide
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight">
+            What Makes AU IPTV the Right Choice for Australia?
+          </h2>
+          <p class="text-gray-300 text-sm sm:text-base mt-4 leading-relaxed">
+            Most generic IPTV services are hosted on distant overseas servers with high latency and zero optimization for Australia's unique NBN network architecture. Here is how AU IPTV is engineered specifically for Australian viewers.
+          </p>
+        </div>
+
+        <!-- 4-Point Technical Checklist -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          
+          <div class="bg-[#0D0D14] p-7 rounded-2xl border border-white/[0.08] flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-[#059669]/20 flex items-center justify-center text-[#34D399] shrink-0 border border-[#059669]/30">
+              <Server class="w-6 h-6" />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">Domestic NBN Edge Peering</h3>
+              <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">
+                Rather than routing video 14,000 km across the Pacific, our traffic stays inside Australian borders via direct interconnects in Sydney and Melbourne, dropping latency to under 15ms.
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-[#0D0D14] p-7 rounded-2xl border border-white/[0.08] flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-[#D97706]/20 flex items-center justify-center text-[#FDE047] shrink-0 border border-[#D97706]/30">
+              <Wifi class="w-6 h-6" />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">Anti-Throttle Protocol Encryption</h3>
+              <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">
+                Aussie ISPs frequently throttle unclassified video streams during Friday night sports. Anti-Freeze 9.8™ automatically obfuscates packet headers, keeping speeds high without requiring a VPN.
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-[#0D0D14] p-7 rounded-2xl border border-white/[0.08] flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-[#2563EB]/20 flex items-center justify-center text-[#60A5FA] shrink-0 border border-[#2563EB]/30">
+              <Clock class="w-6 h-6" />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">Australian Timezone Catch-Up</h3>
+              <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">
+                Living in AEST, ACST, or AWST often means overseas matches kick off in the middle of the night. Our 7-day replay functionality lets you watch any match on your own schedule.
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-[#0D0D14] p-7 rounded-2xl border border-white/[0.08] flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-[#059669]/20 flex items-center justify-center text-[#10B981] shrink-0 border border-[#059669]/30">
+              <ShieldCheck class="w-6 h-6" />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">24-Hour Satisfaction Guarantee</h3>
+              <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">
+                Test AU IPTV in your living room completely risk-free. If you experience any technical incompatibility within 24 hours, our support team will refund your payment in full.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Broadband Compatibility Matrix -->
+        <div class="bg-[#0D0D14] rounded-3xl p-8 border border-white/[0.08]">
+          <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <span>Australian Internet Compatibility (NBN & 5G)</span>
+          </h3>
+          <p class="text-gray-300 text-xs sm:text-sm mb-6 leading-relaxed">
+            AU IPTV is optimized for all Australian NBN tiers and major cellular providers (Telstra, Optus, Vodafone, Aussie Broadband, TPG, Superloop):
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+            <div class="p-4 rounded-xl bg-white/[0.03] border border-white/[0.05]">
+              <span class="text-[#34D399] font-bold text-sm block mb-1">NBN 25 (Standard)</span>
+              <p class="text-gray-400">Perfect for 1080p 50FPS streaming on up to 2 devices simultaneously.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-white/[0.03] border border-white/[0.05]">
+              <span class="text-[#FDE047] font-bold text-sm block mb-1">NBN 50 (Standard Plus)</span>
+              <p class="text-gray-400">Recommended for crystal clear 4K 60FPS sports with zero buffering.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-white/[0.03] border border-white/[0.05]">
+              <span class="text-[#60A5FA] font-bold text-sm block mb-1">NBN 100 / 5G Home</span>
+              <p class="text-gray-400">Ultra-fast multi-room 4K streaming and instant channel switching under 0.5s.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 2. Feature Grid -->
+    <FeatureGrid />
+
+    <!-- 3. Real Live Sports Scoreboard Component -->
+    <LiveScores />
+
+    <!-- 4. Interactive Pricing Cards -->
+    <PricingCard />
+
+    <!-- 5. Referral Banner (15% commission) -->
+    <ReferralBanner />
+
+    <!-- 6. Verified Australian Customer Reviews -->
+    <UserReviewsSection />
+
+    <!-- 7. 3-Step Setup Process -->
+    <ProcessSteps />
+
+    <!-- 8. Supported Devices Matrix -->
+    <SupportedDevices />
+
+    <!-- 9. Major Aussie Metro Cities Covered -->
+    <CitiesList />
+
+    <!-- 10. Direct Contact Form -->
+    <ContactForm />
+
+    <!-- 11. Frequently Asked Questions -->
+    <FAQSection />
+
+    <!-- 12. Final High-Conversion CTA Banner -->
+    <CTASection />
+  </main>
+
+  <!-- Global Footer -->
+  <Footer />
+
+  <!-- Conversion & Retention Boosters -->
+  <ExitPopup />
+  <SocialPopup />
+  <GroupsPopup />
+  <FloatingWhatsApp />
+</Layout>

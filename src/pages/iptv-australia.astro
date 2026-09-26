@@ -1,0 +1,244 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Hero from '../components/Hero.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import PricingCard from '../components/PricingCard.astro';
+import ReferralBanner from '../components/ReferralBanner.astro';
+import UserReviewsSection from '../components/UserReviewsSection.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import SupportedDevices from '../components/SupportedDevices.astro';
+import LiveScores from '../components/LiveScores.astro';
+import CitiesList from '../components/CitiesList.astro';
+import ContactForm from '../components/ContactForm.astro';
+import FAQSection from '../components/FAQSection.astro';
+import CTASection from '../components/CTASection.astro';
+import Footer from '../components/Footer.astro';
+
+// Interactive Conversion & Retention Popups (24h localStorage Capped)
+import ExitPopup from '../components/ExitPopup.astro';
+import SocialPopup from '../components/SocialPopup.astro';
+import GroupsPopup from '../components/GroupsPopup.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+
+import { 
+  Zap, 
+  Clock, 
+  TrendingDown, 
+  Calendar
+} from 'lucide-astro';
+
+const currentYear = new Date().getFullYear();
+
+// Server-Side FAQ Schema tailored for "IPTV Australia"
+const iptvAustraliaFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is IPTV Australia and how does it work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "IPTV Australia delivers live television, high-definition sports, and video on demand over standard Australian broadband (NBN or 5G) instead of satellite dishes or legacy cable cords. It connects to your Smart TV, Fire Stick, or mobile device using modern streaming protocols with zero lock-in contracts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much can Australian households save switching to AU IPTV?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The average Australian household pays upwards of $100 to $150 AUD every month for fragmented cable and sports packages. AU IPTV provides complete 4K sports, news, and entertainment starting at just $7.50 AUD per month ($90 AUD for a full 12-month pass), saving families over $1,500 AUD every year."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What NBN internet speed is required for 4K IPTV in Australia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For buffer-free 4K 60FPS streaming, a stable 25 Mbps connection (NBN 25, NBN 50, or NBN 100) is recommended. AU IPTV utilizes H.265 HEVC video compression and domestic Australian edge caching in Sydney and Melbourne, ensuring flawless performance even during peak internet hours."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a VPN to use IPTV in Australia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. AU IPTV features proprietary Anti-Freeze 9.8™ technology with automated protocol obfuscation and direct domestic NBN peering. This ensures smooth, unthrottled streaming across Telstra, Optus, TPG, and Aussie Broadband without requiring an additional VPN subscription."
+      }
+    }
+  ]
+};
+---
+
+<Layout
+  title={`IPTV Australia ${currentYear} — Watch Every Aussie Sport & International Channel in 4K`}
+  description="Discover the #1 IPTV Australia service. Stream live NRL, AFL, cricket, EPL, and PPV in uncompressed 4K 60FPS. Anti-Freeze 9.8™ domestic servers from $7.50 AUD/mo."
+  keywords={[
+    'iptv australia',
+    'iptv subscription australia',
+    'iptv providers australia',
+    'australian iptv service 2026',
+    'best iptv australia',
+    'cheap iptv australia',
+    'watch nrl live iptv',
+    'afl iptv stream'
+  ]}
+  canonicalURL="https://au-iptv.net/iptv-australia"
+  schema={iptvAustraliaFaqSchema}
+>
+  <!-- Sticky Global Navigation -->
+  <StickyHeader currentPath="/iptv-australia" />
+
+  <!-- Main Content Sequence -->
+  <main id="main-content" class="flex-1 flex flex-col">
+    <!-- 1. Hero Conversion Section -->
+    <Hero
+      headline="IPTV Australia — Watch Every Aussie Sport & International Live Feed in 4K"
+      subheadline="Say goodbye to expensive cable bills and fragmented sports apps. AU IPTV consolidates every NRL round, AFL clash, Ashes cricket, and Premier League fixture into a single ultra-stable 4K broadcast feed with Anti-Freeze 9.8™ domestic servers from only $7.50 AUD/mo."
+    />
+
+    <!-- Visual Cinematic Showcase Card -->
+    <section class="py-8 bg-[#060609]">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="rounded-3xl overflow-hidden border border-white/[0.1] shadow-2xl relative">
+          <img
+            src="/images/og-banner.webp"
+            alt="IPTV Australia — Modern 4K Smart TV Streaming Setup in Australian Living Room"
+            class="w-full h-auto max-h-[420px] object-cover"
+            loading="eager"
+            width="1200"
+            height="630"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Deep-Dive Editorial: Why Australians Are Switching to IPTV -->
+    <section class="py-14 bg-[#090A10] border-y border-white/[0.06]">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#059669]/15 text-[#34D399] border border-[#059669]/30 mb-4">
+            Aussie Cord-Cutting Revolution
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight">
+            Why Australia Is Moving to Modern IPTV Streaming
+          </h2>
+          <p class="text-gray-300 text-sm sm:text-base mt-4 leading-relaxed">
+            Australian households face some of the highest entertainment subscription fees on the planet. Traditional pay-TV packages charge over $1,400 AUD every year, while sports streaming rights remain split across five separate mobile apps. AU IPTV changes the game with domestic low-ping servers and crystal clear 4K 60FPS sports.
+          </p>
+        </div>
+
+        <!-- 3 Core Architectural Pillars -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <div class="bg-[#0D0D14] p-6 rounded-2xl border border-white/[0.08]">
+            <div class="w-12 h-12 rounded-xl bg-[#059669]/20 flex items-center justify-center text-[#34D399] mb-4 border border-[#059669]/30">
+              <Zap class="w-6 h-6" />
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Anti-Freeze 9.8™ Domestic Ingest</h3>
+            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">
+              Direct fiber interconnects in Sydney (Equinix SY4) and Melbourne (NextDC) ensure ping times stay below 15ms with zero Friday night buffering.
+            </p>
+          </div>
+
+          <div class="bg-[#0D0D14] p-6 rounded-2xl border border-white/[0.08]">
+            <div class="w-12 h-12 rounded-xl bg-[#D97706]/20 flex items-center justify-center text-[#FDE047] mb-4 border border-[#D97706]/30">
+              <Clock class="w-6 h-6" />
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">7-Day Breakfast Catch-Up</h3>
+            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">
+              Never set a 3:00 AM alarm again. Replay Premier League, European Champions League, and F1 qualifiers over your morning coffee in full 4K.
+            </p>
+          </div>
+
+          <div class="bg-[#0D0D14] p-6 rounded-2xl border border-white/[0.08]">
+            <div class="w-12 h-12 rounded-xl bg-[#2563EB]/20 flex items-center justify-center text-[#60A5FA] mb-4 border border-[#2563EB]/30">
+              <TrendingDown class="w-6 h-6" />
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Save Over $1,500 AUD / Year</h3>
+            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">
+              No contracts, no rental equipment, and no hidden regional surcharges. Just pure uncompressed television for as little as $7.50 AUD/mo.
+            </p>
+          </div>
+        </div>
+
+        <!-- Australian Sports Seasonal Breakdown -->
+        <div class="bg-[#0D0D14] rounded-3xl p-8 border border-white/[0.08]">
+          <h3 class="text-xl sm:text-2xl font-black text-white mb-6 flex items-center gap-2.5">
+            <Calendar class="w-6 h-6 text-[#10B981]" />
+            <span>Australian Live Sports Calendar by Season</span>
+          </h3>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+            <div class="p-4 rounded-xl bg-white/[0.03] border border-white/[0.05]">
+              <span class="text-[#34D399] font-bold uppercase tracking-wider block mb-1">March – October</span>
+              <strong class="text-white text-sm block mb-1">NRL Premiership</strong>
+              <p class="text-gray-400">Every regular round, State of Origin series, and the NRL Grand Final in 60FPS.</p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-white/[0.03] border border-white/[0.05]">
+              <span class="text-[#FDE047] font-bold uppercase tracking-wider block mb-1">March – September</span>
+              <strong class="text-white text-sm block mb-1">AFL Premiership</strong>
+              <p class="text-gray-400">All home & away matches, finals fever, and the AFL Grand Final at the MCG.</p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-white/[0.03] border border-white/[0.05]">
+              <span class="text-[#60A5FA] font-bold uppercase tracking-wider block mb-1">October – March</span>
+              <strong class="text-white text-sm block mb-1">Cricket & The Ashes</strong>
+              <p class="text-gray-400">Boxing Day Test, Big Bash League, ODI international tours, and ICC tournaments.</p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-white/[0.03] border border-white/[0.05]">
+              <span class="text-[#A78BFA] font-bold uppercase tracking-wider block mb-1">August – May</span>
+              <strong class="text-white text-sm block mb-1">EPL & Champions League</strong>
+              <p class="text-gray-400">All 380 English Premier League matches live with interactive 7-day replay.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 2. Feature Grid -->
+    <FeatureGrid />
+
+    <!-- 3. Real Live Sports Scoreboard Component -->
+    <LiveScores />
+
+    <!-- 4. Interactive Pricing Cards -->
+    <PricingCard />
+
+    <!-- 5. Referral Banner (15% commission) -->
+    <ReferralBanner />
+
+    <!-- 6. Verified Australian Customer Reviews -->
+    <UserReviewsSection />
+
+    <!-- 7. 3-Step Setup Process -->
+    <ProcessSteps />
+
+    <!-- 8. Supported Devices Matrix -->
+    <SupportedDevices />
+
+    <!-- 9. Major Aussie Metro Cities Covered -->
+    <CitiesList />
+
+    <!-- 10. Direct Contact Form -->
+    <ContactForm />
+
+    <!-- 11. Frequently Asked Questions -->
+    <FAQSection />
+
+    <!-- 12. Final High-Conversion CTA Banner -->
+    <CTASection />
+  </main>
+
+  <!-- Global Footer -->
+  <Footer />
+
+  <!-- Conversion & Retention Boosters -->
+  <ExitPopup />
+  <SocialPopup />
+  <GroupsPopup />
+  <FloatingWhatsApp />
+</Layout>

@@ -1,0 +1,158 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Hero from '../components/Hero.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import PricingCard from '../components/PricingCard.astro';
+import ReferralBanner from '../components/ReferralBanner.astro';
+import UserReviewsSection from '../components/UserReviewsSection.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import SupportedDevices from '../components/SupportedDevices.astro';
+import LiveScores from '../components/LiveScores.astro';
+import CitiesList from '../components/CitiesList.astro';
+import ContactForm from '../components/ContactForm.astro';
+import FAQSection from '../components/FAQSection.astro';
+import CTASection from '../components/CTASection.astro';
+import Footer from '../components/Footer.astro';
+
+// Interactive Conversion & Retention Popups (24h localStorage Capped)
+import ExitPopup from '../components/ExitPopup.astro';
+import SocialPopup from '../components/SocialPopup.astro';
+import GroupsPopup from '../components/GroupsPopup.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+
+import { 
+  ShieldCheck, 
+  Zap, 
+  Crown,
+  ArrowRight,
+  Gift
+} from 'lucide-astro';
+
+const currentYear = new Date().getFullYear();
+const whatsappOrderUrl = "https://wa.me/18036582620?text=G%27day%21+I+want+to+order+the+12-Month+AU+IPTV+Pass+%28%2490+AUD%29+with+Free+Player+Included.";
+---
+
+<Layout
+  title={`AU IPTV 12-Month Pass ${currentYear} — Bestseller ($90 AUD / ~$7.50/mo) + Free Player`}
+  description="Lock in the best value in Australia. AU IPTV 12-Month Pass for only $90 AUD (~$7.50/mo). Includes 4K 60FPS sports, Anti-Freeze 9.8™, and a free activated Premium Player app."
+  keywords={[
+    'au iptv 12 months',
+    'iptv 12 month subscription australia',
+    'cheap iptv australia yearly',
+    'best value iptv australia',
+    'iptv australia promo',
+    'iptv pass australia'
+  ]}
+  canonicalURL="https://au-iptv.net/au-iptv-12-months"
+>
+  <!-- Sticky Global Navigation -->
+  <StickyHeader currentPath="/au-iptv-12-months" />
+
+  <main id="main-content" class="flex-1 flex flex-col">
+    <!-- Hero Header -->
+    <Hero
+      headline="AU IPTV 12-Month Pass — Australia's #1 Value Streaming Package"
+      subheadline="Stream an entire year of NRL, AFL, Cricket, Premier League, and 4K movies for just $90 AUD total (~$7.50/mo). Zero buffering with Anti-Freeze 9.8™, 2 concurrent connections, and a custom Premium Player app included free."
+    />
+
+    <!-- Highlighted Plan Spotlight Card -->
+    <section class="py-10 bg-[#060609]">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="relative rounded-3xl bg-gradient-to-b from-[#14261C] via-[#0D0D14] to-[#060609] border-2 border-[#059669] p-8 sm:p-10 shadow-[0_0_60px_rgba(5,150,105,0.35)] text-center overflow-hidden">
+          
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#059669] text-white text-xs font-black uppercase tracking-wider mb-6 shadow-lg">
+            <Crown class="w-4 h-4 text-[#FDE047]" />
+            <span>Most Popular Choice across Australia</span>
+          </div>
+
+          <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight mb-2">
+            12 Months + Premium Player Included
+          </h2>
+          
+          <div class="flex items-baseline justify-center gap-2 my-6">
+            <span class="text-5xl sm:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#10B981] via-[#FDE047] to-[#D97706]">
+              $90.00
+            </span>
+            <span class="text-gray-400 text-sm font-semibold">AUD / Year</span>
+            <span class="text-xs px-2.5 py-1 rounded bg-[#059669]/20 text-[#34D399] font-bold border border-[#059669]/40">
+              ~$7.50 / mo
+            </span>
+          </div>
+
+          <p class="text-gray-300 text-sm max-w-lg mx-auto mb-8 leading-relaxed">
+            Replaces expensive $1,500+ AUD yearly cable contracts with pure 4K Ultra HD streaming, 2 connections, and instant 120-second setup.
+          </p>
+
+          <!-- Bonus Inclusion Banner -->
+          <div class="mb-8 p-4 rounded-2xl bg-[#059669]/15 border border-[#059669]/30 flex items-center justify-center gap-3 text-left">
+            <Gift class="w-8 h-8 text-[#FDE047] shrink-0" />
+            <div class="text-xs">
+              <strong class="text-white block text-sm">Free Premium Player License Included ($35 AUD Value)</strong>
+              <span class="text-gray-300">Activated pro license for Fire Stick and Android TV ready to stream immediately.</span>
+            </div>
+          </div>
+
+          <!-- CTA Button -->
+          <a
+            href={whatsappOrderUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full inline-flex items-center justify-center gap-3 py-4 px-8 rounded-2xl bg-gradient-to-r from-[#059669] via-[#047857] to-[#059669] text-white font-black text-base uppercase tracking-wider shadow-[0_0_30px_rgba(5,150,105,0.5)] hover:shadow-[0_0_45px_rgba(5,150,105,0.7)] transition-all duration-300 hover:scale-[1.02] border border-[#10B981]"
+          >
+            <span>Activate 12-Month Pass Now</span>
+            <ArrowRight class="w-5 h-5 text-[#FDE047]" />
+          </a>
+
+          <div class="mt-4 flex items-center justify-center gap-6 text-xs text-gray-400">
+            <span class="flex items-center gap-1.5"><ShieldCheck class="w-4 h-4 text-[#10B981]" /> 24-Hour Guarantee</span>
+            <span class="flex items-center gap-1.5"><Zap class="w-4 h-4 text-[#FDE047]" /> Instant WhatsApp Delivery</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Feature Grid -->
+    <FeatureGrid />
+
+    <!-- 3. Real Live Sports Scoreboard Component -->
+    <LiveScores />
+
+    <!-- 4. Interactive Pricing Cards -->
+    <PricingCard />
+
+    <!-- 5. Referral Banner (15% commission) -->
+    <ReferralBanner />
+
+    <!-- 6. Verified Australian Customer Reviews -->
+    <UserReviewsSection />
+
+    <!-- 7. 3-Step Setup Process -->
+    <ProcessSteps />
+
+    <!-- 8. Supported Devices Matrix -->
+    <SupportedDevices />
+
+    <!-- 9. Major Aussie Metro Cities Covered -->
+    <CitiesList />
+
+    <!-- 10. Direct Contact Form -->
+    <ContactForm />
+
+    <!-- 11. Frequently Asked Questions -->
+    <FAQSection />
+
+    <!-- 12. Final High-Conversion CTA Banner -->
+    <CTASection />
+  </main>
+
+  <!-- Global Footer -->
+  <Footer />
+
+  <!-- Conversion & Retention Boosters -->
+  <ExitPopup />
+  <SocialPopup />
+  <GroupsPopup />
+  <FloatingWhatsApp />
+</Layout>
