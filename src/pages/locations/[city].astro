@@ -172,6 +172,9 @@ const localBusinessSchema = {
       subheadline={`Experience the premier AU IPTV streaming service in ${city.name} (${city.stateCode}) without locked contracts or expensive cable boxes. Enjoy live 4K 60FPS sports like ${city.sportsHighlight}, backed by Anti-Freeze 9.8™ technology and direct connection to the ${city.localNbnNode}.`}
     />
 
+    <!-- Real Sports Match Center & Infinite Loop Carousel -->
+    <LiveScores />
+
     <!-- Local Network & Edge Server Performance Card -->
     <section class="py-12 bg-[#0B0B12] border-y border-white/[0.06] relative overflow-hidden" aria-label={`Network Performance in ${city.name}`}>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -345,10 +348,7 @@ const localBusinessSchema = {
     <!-- 7. Supported Devices & Compatibility -->
     <SupportedDevices />
 
-    <!-- 8. Real Sports Match Center & Broadcast Status -->
-    <LiveScores />
-
-    <!-- 9. Australian Cities Directory -->
+    <!-- 8. Australian Cities Directory -->
     <CitiesList />
 
     <!-- 10. Direct Contact Channels & Interactive Form -->
