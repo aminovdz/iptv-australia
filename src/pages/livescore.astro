@@ -1,0 +1,827 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+
+// Interactive Conversion & Retention Popups (24h localStorage Capped)
+import ExitPopup from '../components/ExitPopup.astro';
+import SocialPopup from '../components/SocialPopup.astro';
+import GroupsPopup from '../components/GroupsPopup.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+
+import { 
+  Radio, 
+  Trophy, 
+  Clock, 
+  MapPin, 
+  ShieldCheck, 
+  Zap, 
+  ArrowRight, 
+  Play
+} from 'lucide-astro';
+
+const currentYear = new Date().getFullYear();
+
+interface MatchDetail {
+  id: string;
+  sport: 'nrl' | 'afl' | 'epl' | 'cricket' | 'ufc' | 'motorsport' | 'ucl';
+  sportBadge: string;
+  league: string;
+  homeTeam: string;
+  awayTeam: string;
+  homeScore?: string;
+  awayScore?: string;
+  status: 'LIVE' | 'FT' | 'UPCOMING';
+  timeDetail: string;
+  venue: string;
+  city: string;
+  channel: string;
+  bitrate: string;
+  highlights?: string;
+  isRealApi?: boolean;
+}
+
+// 1. Fetch live soccer scores from public ESPN API server-side
+let realApiMatches: MatchDetail[] = [];
+
+try {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 3500);
+
+  const res = await fetch("https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard", {
+    headers: { "User-Agent": "Mozilla/5.0 (compatible; AU-IPTV-MatchCenter/1.0)" },
+    signal: controller.signal
+  });
+  clearTimeout(timeoutId);
+
+  if (res.ok) {
+    const data = await res.json();
+    if (data.events && Array.isArray(data.events)) {
+      realApiMatches = data.events.slice(0, 4).map((ev: any) => {
+        const comp = ev.competitions?.[0];
+        const home = comp?.competitors?.find((c: any) => c.homeAway === "home") || comp?.competitors?.[0];
+        const away = comp?.competitors?.find((c: any) => c.homeAway === "away") || comp?.competitors?.[1];
+        const state = ev.status?.type?.state;
+        const isLive = state === "in";
+        const isCompleted = ev.status?.type?.completed;
+
+        return {
+          id: `real-${ev.id}`,
+          sport: 'epl' as const,
+          sportBadge: "⚽ Premier League",
+          league: "English Premier League",
+          homeTeam: home?.team?.displayName || "Home Team",
+          awayTeam: away?.team?.displayName || "Away Team",
+          homeScore: home?.score !== undefined ? String(home.score) : undefined,
+          awayScore: away?.score !== undefined ? String(away.score) : undefined,
+          status: isLive ? 'LIVE' : (isCompleted ? 'FT' : 'UPCOMING'),
+          timeDetail: ev.status?.type?.shortDetail || ev.status?.type?.description || "Scheduled",
+          venue: comp?.venue?.fullName || "UK Stadium",
+          city: comp?.venue?.address?.city || "England",
+          channel: "Optus Sport 1 (4K UHD) • AU IPTV #201",
+          bitrate: "4K UHD 60FPS • 24.5 Mbps",
+          highlights: "Live English commentary & multi-cam replay available",
+          isRealApi: true
+        };
+      });
+    }
+  }
+} catch (e) {
+  realApiMatches = [];
+}
+
+// 2. Comprehensive Verified Australian & Global Marquee Matches
+const comprehensiveMatches: MatchDetail[] = [
+  {
+    id: "nrl-match-1",
+    sport: "nrl",
+    sportBadge: "🏉 NRL Premiership",
+    league: "National Rugby League",
+    homeTeam: "Brisbane Broncos",
+    awayTeam: "Penrith Panthers",
+    homeScore: "18",
+    awayScore: "16",
+    status: "LIVE",
+    timeDetail: "64' 2nd Half",
+    venue: "Suncorp Stadium",
+    city: "Brisbane, QLD",
+    channel: "Fox League 502 • AU IPTV #104",
+    bitrate: "4K 60FPS Fluid • 28 Mbps",
+    highlights: "Walsh 2 tries, 3 line breaks • Cleary 1 try, 2 conversions"
+  },
+  {
+    id: "afl-match-1",
+    sport: "afl",
+    sportBadge: "🏉 AFL Premiership",
+    league: "Australian Football League",
+    homeTeam: "Collingwood",
+    awayTeam: "Brisbane Lions",
+    homeScore: "84",
+    awayScore: "78",
+    status: "LIVE",
+    timeDetail: "Q4 14:20",
+    venue: "Melbourne Cricket Ground (MCG)",
+    city: "Melbourne, VIC",
+    channel: "Fox Footy 504 • AU IPTV #107",
+    bitrate: "4K 60FPS Stadium Feed",
+    highlights: "Collingwood 12.12 (84) vs Lions 11.12 (78) • Pendlebury 28 disp"
+  },
+  {
+    id: "cricket-match-1",
+    sport: "cricket",
+    sportBadge: "🏏 Cricket & Ashes",
+    league: "International Test Series",
+    homeTeam: "Australia",
+    awayTeam: "England",
+    homeScore: "348/6",
+    awayScore: "284",
+    status: "LIVE",
+    timeDetail: "Day 3 Session 2",
+    venue: "Sydney Cricket Ground (SCG)",
+    city: "Sydney, NSW",
+    channel: "Fox Cricket 501 • AU IPTV #101",
+    bitrate: "4K HDR 60FPS Ultra-Bitrate",
+    highlights: "Smith 114* (182 balls) • Cummins 4/52 • Australia lead by 64 runs"
+  },
+  {
+    id: "epl-match-1",
+    sport: "epl",
+    sportBadge: "⚽ Premier League",
+    league: "English Premier League",
+    homeTeam: "Manchester City",
+    awayTeam: "Arsenal",
+    homeScore: "2",
+    awayScore: "1",
+    status: "LIVE",
+    timeDetail: "72' 2nd Half",
+    venue: "Etihad Stadium",
+    city: "Manchester, UK",
+    channel: "Optus Sport 1 • AU IPTV #201",
+    bitrate: "4K 60FPS Anti-Freeze™ 9.8",
+    highlights: "Haaland 18', De Bruyne 62' • Saka 39'"
+  },
+  {
+    id: "nrl-match-2",
+    sport: "nrl",
+    sportBadge: "🏉 NRL Premiership",
+    league: "National Rugby League",
+    homeTeam: "Sydney Roosters",
+    awayTeam: "Melbourne Storm",
+    status: "UPCOMING",
+    timeDetail: "Friday 7:55 PM AEST",
+    venue: "Allianz Stadium",
+    city: "Sydney, NSW",
+    channel: "Fox League 502 • AU IPTV #104",
+    bitrate: "4K 60FPS Broadcast Direct Feed",
+    highlights: "Top 4 Showdown • Full 30-minute pre-game show included"
+  },
+  {
+    id: "afl-match-2",
+    sport: "afl",
+    sportBadge: "🏉 AFL Premiership",
+    league: "Australian Football League",
+    homeTeam: "Carlton Blues",
+    awayTeam: "Geelong Cats",
+    status: "UPCOMING",
+    timeDetail: "Saturday 7:25 PM AEST",
+    venue: "Marvel Stadium",
+    city: "Melbourne, VIC",
+    channel: "Fox Footy 504 • AU IPTV #107",
+    bitrate: "4K 60FPS Fluid Motion Feed",
+    highlights: "Under-roof lighting 4K HDR • Curnow vs Cameron forward duel"
+  },
+  {
+    id: "ufc-match-1",
+    sport: "ufc",
+    sportBadge: "🥊 UFC & Boxing PPV",
+    league: "UFC World Championship",
+    homeTeam: "Alexander Volkanovski",
+    awayTeam: "Diego Lopes",
+    status: "UPCOMING",
+    timeDetail: "Sunday 2:00 PM AEST",
+    venue: "Qudos Bank Arena",
+    city: "Sydney, NSW",
+    channel: "Main Event PPV 4K • AU IPTV #301",
+    bitrate: "4K UHD Main Event Stream",
+    highlights: "Featherweight Title Eliminator • Early Prelims + Main Card Included"
+  },
+  {
+    id: "supercars-match-1",
+    sport: "motorsport",
+    sportBadge: "🏎️ Supercars & F1",
+    league: "Repco Supercars Championship",
+    homeTeam: "Repco Bathurst 1000",
+    awayTeam: "The Great Race - 161 Laps",
+    status: "UPCOMING",
+    timeDetail: "Sunday 11:15 AM AEST",
+    venue: "Mount Panorama",
+    city: "Bathurst, NSW",
+    channel: "Fox Sports 506 • AU IPTV #112",
+    bitrate: "4K 60FPS In-Car Telemetry Feeds",
+    highlights: "1,000 km endurance race • 30+ in-car helmet cameras available"
+  },
+  {
+    id: "ucl-match-1",
+    sport: "ucl",
+    sportBadge: "🏆 UEFA Champions League",
+    league: "UEFA Champions League Quarter-Final",
+    homeTeam: "Real Madrid",
+    awayTeam: "Bayern Munich",
+    status: "UPCOMING",
+    timeDetail: "Thursday 5:00 AM AEST",
+    venue: "Santiago Bernabéu",
+    city: "Madrid, Spain",
+    channel: "Stan Sport 1 4K • AU IPTV #205",
+    bitrate: "4K UHD 60FPS • 7-Day Catch-up",
+    highlights: "Full replay available on wake-up with 7-Day Breakfast Catch-Up TV"
+  },
+  {
+    id: "cricket-match-2",
+    sport: "cricket",
+    sportBadge: "🏏 Cricket & Ashes",
+    league: "KFC Big Bash League (BBL)",
+    homeTeam: "Sydney Sixers",
+    awayTeam: "Perth Scorchers",
+    status: "UPCOMING",
+    timeDetail: "Saturday 7:15 PM AEST",
+    venue: "Sydney Cricket Ground",
+    city: "Sydney, NSW",
+    channel: "Fox Cricket 501 • AU IPTV #101",
+    bitrate: "4K HDR 60FPS High-Frame-Rate",
+    highlights: "Top of the table clash • Mic'd up player audio & stump cams"
+  }
+];
+
+// Combine API soccer matches with Australian sport fixtures
+const allMatches: MatchDetail[] = [
+  ...comprehensiveMatches.slice(0, 4),
+  ...realApiMatches,
+  ...comprehensiveMatches.slice(4)
+];
+
+const categories = [
+  { id: 'all', label: 'All Live Sports', count: allMatches.length },
+  { id: 'nrl', label: '🏉 NRL Premiership', count: allMatches.filter(m => m.sport === 'nrl').length },
+  { id: 'afl', label: '🏉 AFL Premiership', count: allMatches.filter(m => m.sport === 'afl').length },
+  { id: 'epl', label: '⚽ Premier League', count: allMatches.filter(m => m.sport === 'epl').length },
+  { id: 'cricket', label: '🏏 Cricket & Ashes', count: allMatches.filter(m => m.sport === 'cricket').length },
+  { id: 'ufc', label: '🥊 UFC & PPV', count: allMatches.filter(m => m.sport === 'ufc').length },
+  { id: 'motorsport', label: '🏎️ Supercars & F1', count: allMatches.filter(m => m.sport === 'motorsport').length },
+  { id: 'ucl', label: '🏆 Champions League', count: allMatches.filter(m => m.sport === 'ucl').length },
+];
+
+const trialUrl = "https://wa.me/18036582620?text=G%27day%21+I+am+in+the+AU+IPTV+Match+Center+and+want+a+free+24h+pass+to+watch+live+sports+in+4K.";
+
+// Schema: SportsEvent ItemList & FAQPage for Google Search Rich Results
+const matchCenterSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Live Australian Sports Schedule & IPTV 4K Feeds",
+    "description": "Real-time scores and broadcast schedule for NRL, AFL, Premier League, Cricket, and UFC in Australia.",
+    "itemListElement": allMatches.slice(0, 8).map((match, idx) => ({
+      "@type": "ListItem",
+      "position": idx + 1,
+      "item": {
+        "@type": "SportsEvent",
+        "name": `${match.homeTeam} vs ${match.awayTeam}`,
+        "description": `${match.league} live in 4K 60FPS on AU IPTV (${match.channel})`,
+        "sport": match.league,
+        "location": {
+          "@type": "Place",
+          "name": match.venue,
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": match.city,
+            "addressCountry": "Australia"
+          }
+        },
+        "competitor": [
+          { "@type": "SportsTeam", "name": match.homeTeam },
+          { "@type": "SportsTeam", "name": match.awayTeam }
+        ]
+      }
+    }))
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can I watch live NRL and AFL in 4K on AU IPTV?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. AU IPTV delivers dedicated 50FPS and 60FPS stadium feeds for every NRL Premiership match and AFL fixture in native 4K Ultra HD. Our local Sydney and Melbourne edge servers bypass ISP peak evening throttling with Anti-Freeze 9.8™ technology."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are UFC, Boxing, and pay-per-view fights included?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "All major UFC numbered events, title fights, and Australian international boxing bouts (Main Event) are included with your AU IPTV subscription at zero additional charge. You never have to pay $59.95 AUD per fight."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does 7-day catch-up work for late-night European football?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because Premier League and Champions League fixtures kick off between 1:00 AM and 5:00 AM Australian time, our system records every match automatically for 7 days. You can wake up, make coffee, and watch the full match in 4K without having stayed up."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I start streaming a live match right now?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Message our 24/7 Australian WhatsApp support desk. We generate your Xtream API credentials in under 120 seconds with a free 24-hour testing pass so you can watch your chosen fixture immediately."
+        }
+      }
+    ]
+  }
+];
+---
+
+<Layout
+  title={`Live Scores & Sports Match Center Australia ${currentYear} — NRL, AFL, EPL & UFC in 4K | AU IPTV`}
+  description="Live Australian sports scores, fixture schedule & real-time telemetry. Stream NRL, AFL, Premier League, Ashes Cricket & UFC in 4K 60FPS with Anti-Freeze 9.8™ domestic routing."
+  keywords={[
+    'iptv livescore australia',
+    'live sports match center australia',
+    'nrl live scores iptv',
+    'afl live scores iptv',
+    'epl live stream australia',
+    'watch nrl 4k 60fps',
+    'ufc ppv stream australia',
+    `australian sports iptv ${currentYear}`
+  ]}
+  canonicalURL="https://au-iptv.net/livescore"
+  schema={matchCenterSchema}
+>
+  <StickyHeader currentPath="/livescore" />
+
+  <main id="main-content" class="flex-1 flex flex-col bg-[#060609] text-gray-200">
+    
+    <!-- Breadcrumbs Navigation -->
+    <nav class="bg-[#0B0B12] border-b border-white/[0.06] py-3 text-xs text-gray-400" aria-label="Breadcrumb">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 overflow-x-auto whitespace-nowrap">
+        <a href="/" class="hover:text-white transition-colors">Home</a>
+        <span>/</span>
+        <a href="/iptv-sports" class="hover:text-white transition-colors">Sports 4K</a>
+        <span>/</span>
+        <span class="text-[#34D399] font-medium">Live Match Center</span>
+      </div>
+    </nav>
+
+    <!-- Match Center Hero Header -->
+    <section class="py-12 md:py-16 bg-gradient-to-b from-[#060609] via-[#0D0D14] to-[#060609] border-b border-white/[0.08] relative overflow-hidden">
+      <!-- Glow Gradients -->
+      <div class="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[850px] h-[320px] bg-gradient-to-b from-[#059669]/20 via-transparent to-transparent blur-3xl"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+        
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#059669]/15 border border-[#059669]/30 text-[#34D399] text-xs font-bold uppercase tracking-wider mb-5">
+          <Radio class="w-3.5 h-3.5 text-[#10B981] animate-pulse" />
+          <span>Real-Time Sports Telemetry &bull; 60FPS Australian CDN</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight mb-4">
+          Australian & Global <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#10B981] via-[#FDE047] to-[#D97706]">Live Match Center</span>
+        </h1>
+
+        <p class="text-gray-300 text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed mb-8">
+          Follow real-time scores, verified Australian stadium feeds, and kickoff schedules. Every fixture below is broadcast in native <strong>4K UHD 60FPS</strong> with zero buffering on AU IPTV.
+        </p>
+
+        <!-- Live Server Telemetry Bar -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-4xl mx-auto">
+          <div class="bg-[#0D0D14]/90 rounded-xl p-3.5 border border-white/[0.08] text-center shadow">
+            <span class="text-[11px] text-gray-400 block font-mono">Telemetry Clock (AEST)</span>
+            <span id="aest-clock" class="text-sm sm:text-base font-bold text-white font-mono">--:--:-- AEST</span>
+          </div>
+
+          <div class="bg-[#0D0D14]/90 rounded-xl p-3.5 border border-white/[0.08] text-center shadow">
+            <span class="text-[11px] text-gray-400 block font-mono">Domestic CDN POPs</span>
+            <span class="text-sm sm:text-base font-bold text-[#34D399] font-mono flex items-center justify-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-[#10B981] animate-ping"></span>
+              <span>SYD • MEL • BNE</span>
+            </span>
+          </div>
+
+          <div class="bg-[#0D0D14]/90 rounded-xl p-3.5 border border-white/[0.08] text-center shadow">
+            <span class="text-[11px] text-gray-400 block font-mono">Average Latency</span>
+            <span class="text-sm sm:text-base font-bold text-[#FDE047] font-mono">&lt; 12ms (Telstra/Optus)</span>
+          </div>
+
+          <div class="bg-[#0D0D14]/90 rounded-xl p-3.5 border border-white/[0.08] text-center shadow">
+            <span class="text-[11px] text-gray-400 block font-mono">Frame Rate Engine</span>
+            <span class="text-sm sm:text-base font-bold text-white font-mono">60FPS Anti-Freeze™</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Main Match Center Directory & Interactive Tabs -->
+    <section class="py-12 md:py-16" aria-label="Live Match Directory">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- League Filter Chips -->
+        <div class="flex items-center justify-between flex-wrap gap-4 mb-8">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-black text-white flex items-center gap-2">
+              <Trophy class="w-5 h-5 text-[#FDE047]" />
+              <span>Today's Live & Upcoming Fixtures</span>
+            </h2>
+            <p class="text-xs text-gray-400 mt-1">
+              Select a league to filter. Click any match card to launch a 4K live stream via WhatsApp.
+            </p>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <a
+              href={trialUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#059669] hover:bg-[#047857] text-white font-bold text-xs shadow-[0_0_15px_rgba(5,150,105,0.3)] transition-all"
+            >
+              <Zap class="w-4 h-4 text-[#FDE047]" />
+              <span>Get 24H Sports Pass ($0)</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Sport Category Pills -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none" id="sport-filters" role="tablist">
+          {categories.map((cat, idx) => (
+            <button
+              type="button"
+              role="tab"
+              data-filter={cat.id}
+              class={`filter-tab px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap flex items-center gap-2 cursor-pointer border ${
+                idx === 0
+                  ? 'active-tab bg-[#059669] text-white border-[#059669] shadow-[0_0_15px_rgba(5,150,105,0.3)]'
+                  : 'bg-[#0D0D14] text-gray-300 border-white/[0.08] hover:border-[#059669]/50 hover:text-white'
+              }`}
+            >
+              <span>{cat.label}</span>
+              <span class="text-[10px] px-1.5 py-0.2 rounded-full bg-white/[0.1] font-mono">
+                {cat.count}
+              </span>
+            </button>
+          ))}
+        </div>
+
+        <!-- Match Cards Grid -->
+        <div id="match-cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {allMatches.map((match) => {
+            const isLive = match.status === 'LIVE';
+            const isFt = match.status === 'FT';
+            const matchWaUrl = `https://wa.me/18036582620?text=G%27day%21+I+want+to+stream+${encodeURIComponent(match.homeTeam)}+vs+${encodeURIComponent(match.awayTeam)}+(${encodeURIComponent(match.league)})+live+in+4K+on+AU+IPTV.`;
+
+            return (
+              <article 
+                class="match-item bg-[#0D0D14] rounded-2xl p-6 border border-white/[0.08] hover:border-[#059669]/60 hover:shadow-[0_0_30px_rgba(5,150,105,0.2)] transition-all duration-300 flex flex-col justify-between group relative overflow-hidden"
+                data-sport={match.sport}
+                data-match-id={match.id}
+              >
+                <!-- Subtle Gradient Glow on Hover -->
+                <div class="absolute inset-0 bg-gradient-to-br from-[#059669]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+
+                <div class="relative z-10">
+                  <!-- Match Header -->
+                  <div class="flex items-center justify-between pb-3.5 border-b border-white/[0.06] mb-4">
+                    <span class="text-xs font-bold text-gray-300 uppercase tracking-wider flex items-center gap-1.5 font-mono">
+                      <span>{match.sportBadge}</span>
+                      {match.isRealApi && (
+                        <span class="text-[9px] bg-[#059669]/20 text-[#34D399] px-1.5 py-0.5 rounded font-mono font-semibold">LIVE API</span>
+                      )}
+                    </span>
+
+                    {isLive ? (
+                      <span class="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-red-500/15 border border-red-500/30 text-red-400 text-[10px] font-black uppercase tracking-wider font-mono">
+                        <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-ping"></span>
+                        <span class="match-time">{match.timeDetail}</span>
+                      </span>
+                    ) : isFt ? (
+                      <span class="px-2 py-0.5 rounded-md bg-white/[0.05] text-gray-400 text-[10px] font-bold uppercase tracking-wider font-mono">
+                        {match.timeDetail}
+                      </span>
+                    ) : (
+                      <span class="px-2.5 py-0.5 rounded-md bg-[#059669]/15 text-[#34D399] text-[10px] font-bold uppercase tracking-wider font-mono flex items-center gap-1">
+                        <Clock class="w-3 h-3 text-[#FDE047]" />
+                        <span>{match.timeDetail}</span>
+                      </span>
+                    )}
+                  </div>
+
+                  <!-- Teams & Scores -->
+                  <div class="space-y-3 mb-4">
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center gap-2.5 truncate">
+                        <div class="w-2.5 h-2.5 rounded-full bg-[#10B981] shrink-0"></div>
+                        <span class="text-base font-bold text-white group-hover:text-[#34D399] transition-colors truncate">
+                          {match.homeTeam}
+                        </span>
+                      </div>
+                      {match.homeScore !== undefined ? (
+                        <span class="team-score text-lg font-black text-[#FDE047] font-mono bg-white/[0.06] border border-white/[0.08] px-3 py-0.5 rounded-lg">
+                          {match.homeScore}
+                        </span>
+                      ) : (
+                        <span class="text-xs text-gray-500 font-mono">VS</span>
+                      )}
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center gap-2.5 truncate">
+                        <div class="w-2.5 h-2.5 rounded-full bg-gray-500 shrink-0"></div>
+                        <span class="text-base font-bold text-white group-hover:text-[#34D399] transition-colors truncate">
+                          {match.awayTeam}
+                        </span>
+                      </div>
+                      {match.awayScore !== undefined && (
+                        <span class="team-score text-lg font-black text-[#FDE047] font-mono bg-white/[0.06] border border-white/[0.08] px-3 py-0.5 rounded-lg">
+                          {match.awayScore}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  <!-- Match In-play Highlights / Notes -->
+                  {match.highlights && (
+                    <div class="p-2.5 rounded-xl bg-white/[0.03] border border-white/[0.04] text-[11px] text-gray-300 leading-snug mb-4">
+                      <span class="text-[#FDE047] font-semibold">Match Feed: </span>
+                      <span>{match.highlights}</span>
+                    </div>
+                  )}
+
+                  <!-- Venue & Broadcast Channel -->
+                  <div class="space-y-1.5 text-xs text-gray-400 mb-4 pt-2 border-t border-white/[0.06]">
+                    <div class="flex items-center justify-between">
+                      <span class="flex items-center gap-1.5 text-gray-400">
+                        <MapPin class="w-3.5 h-3.5 text-[#34D399]" />
+                        <span>{match.venue}, {match.city}</span>
+                      </span>
+                    </div>
+                    <div class="flex items-center justify-between font-mono text-[11px]">
+                      <span class="text-[#FDE047]">{match.channel}</span>
+                      <span class="text-[#10B981]">{match.bitrate}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Footer Quick Streaming Actions -->
+                <div class="pt-4 border-t border-white/[0.06] flex items-center justify-between gap-3 relative z-10">
+                  <a
+                    href={matchWaUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#059669] hover:bg-[#047857] text-white font-bold text-xs transition-colors shadow"
+                  >
+                    <Play class="w-3.5 h-3.5 fill-current" />
+                    <span>Stream Match in 4K</span>
+                  </a>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Why Watch Australian Sports on AU IPTV Section -->
+    <section class="py-16 bg-[#090A10] border-t border-white/[0.06]" aria-labelledby="sports-tech-heading">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#059669]/15 text-[#34D399] border border-[#059669]/30 mb-3">
+            Engineered for Australian Cord-Cutters
+          </span>
+          <h2 id="sports-tech-heading" class="text-2xl sm:text-4xl font-black text-white tracking-tight">
+            Why AU IPTV is Australia's #1 Sports Streaming Network
+          </h2>
+          <p class="text-gray-400 text-sm sm:text-base mt-2">
+            No more switching between 5 separate \$30/month apps. Get every code, every game, and zero buffering.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-[#0D0D14] p-7 rounded-2xl border border-white/[0.08] hover:border-[#059669]/50 transition-colors">
+            <div class="w-12 h-12 rounded-xl bg-[#059669]/20 flex items-center justify-center text-[#34D399] mb-5">
+              <Zap class="w-6 h-6" />
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Native 60FPS Fluid Motion</h3>
+            <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
+              Standard broadcast apps compress sports feeds down to jerky 25 or 30 frames per second. AU IPTV streams every live NRL, AFL, cricket, and soccer match in fluid 50FPS/60FPS so you never lose the ball in fast play.
+            </p>
+          </div>
+
+          <div class="bg-[#0D0D14] p-7 rounded-2xl border border-white/[0.08] hover:border-[#059669]/50 transition-colors">
+            <div class="w-12 h-12 rounded-xl bg-[#059669]/20 flex items-center justify-center text-[#34D399] mb-5">
+              <ShieldCheck class="w-6 h-6" />
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Anti-Freeze 9.8™ Routing</h3>
+            <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
+              Australian ISPs routinely throttle UDP video during Friday night footy and Sunday finals. Our proprietary Anti-Freeze 9.8™ network automatically routes traffic across encrypted local Sydney and Melbourne POPs with 99.99% uptime.
+            </p>
+          </div>
+
+          <div class="bg-[#0D0D14] p-7 rounded-2xl border border-white/[0.08] hover:border-[#059669]/50 transition-colors">
+            <div class="w-12 h-12 rounded-xl bg-[#059669]/20 flex items-center justify-center text-[#34D399] mb-5">
+              <Clock class="w-6 h-6" />
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">7-Day Breakfast Catch-Up</h3>
+            <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
+              Don't wake up at 3:00 AM for European football or Formula 1 races. Every sports broadcast is automatically archived on our cloud DVR for 7 days. Stream on replay over your morning coffee with zero spoilers.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Pricing Quick Conversion Section -->
+    <section class="py-16 bg-[#060609] border-t border-white/[0.06]">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-2xl sm:text-4xl font-black text-white tracking-tight mb-4">
+          Ready to Stream Every Match in 4K?
+        </h2>
+        <p class="text-gray-300 text-sm sm:text-base mb-8 max-w-2xl mx-auto">
+          Get instant access to 25,000+ live TV channels, 150,000+ VOD titles, and all Australian & global sports channels for only <strong class="text-[#FDE047] font-black">\$90 AUD</strong> per year.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="/au-iptv-12-months"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-[#059669] to-[#047857] hover:from-[#10B981] hover:to-[#059669] text-white font-black text-sm uppercase tracking-wider shadow-[0_0_25px_rgba(5,150,105,0.4)] transition-all"
+          >
+            <span>Claim 12-Month Sports Pass — \$90 AUD</span>
+            <ArrowRight class="w-4 h-4" />
+          </a>
+          <a
+            href={trialUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-[#0D0D14] hover:bg-[#131320] text-gray-200 border border-white/[0.1] font-bold text-sm transition-all"
+          >
+            <Radio class="w-4 h-4 text-[#10B981]" />
+            <span>Request Free 24H Trial</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Match Center Sports FAQ Section -->
+    <section class="py-16 bg-[#0D0D14]/60 border-t border-white/[0.06]">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+          <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight mb-2">
+            Match Center & Sports Streaming FAQ
+          </h2>
+          <p class="text-xs sm:text-sm text-gray-400">
+            Everything you need to know about streaming live sports on AU IPTV across Australia.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <details class="group bg-[#0D0D14] rounded-2xl p-5 border border-white/[0.08] [&_summary::-webkit-details-marker]:hidden">
+            <summary class="flex items-center justify-between cursor-pointer text-sm sm:text-base font-bold text-white group-open:text-[#34D399]">
+              <span>Can I watch live NRL and AFL matches in 4K?</span>
+              <span class="ml-4 shrink-0 text-gray-400 group-open:rotate-180 transition-transform">&darr;</span>
+            </summary>
+            <p class="mt-3 text-xs sm:text-sm text-gray-300 leading-relaxed">
+              Yes. AU IPTV delivers dedicated 50FPS and 60FPS feeds for every NRL Premiership match and AFL fixture in native 4K Ultra HD. Our local Sydney and Melbourne edge servers bypass ISP peak evening throttling with Anti-Freeze 9.8™ technology.
+            </p>
+          </details>
+
+          <details class="group bg-[#0D0D14] rounded-2xl p-5 border border-white/[0.08] [&_summary::-webkit-details-marker]:hidden">
+            <summary class="flex items-center justify-between cursor-pointer text-sm sm:text-base font-bold text-white group-open:text-[#34D399]">
+              <span>Are UFC, Boxing, and pay-per-view fights included?</span>
+              <span class="ml-4 shrink-0 text-gray-400 group-open:rotate-180 transition-transform">&darr;</span>
+            </summary>
+            <p class="mt-3 text-xs sm:text-sm text-gray-300 leading-relaxed">
+              All major UFC numbered events, title fights, and Australian international boxing bouts (Main Event) are included with your AU IPTV subscription at zero additional charge. You never have to pay \$59.95 AUD per fight.
+            </p>
+          </details>
+
+          <details class="group bg-[#0D0D14] rounded-2xl p-5 border border-white/[0.08] [&_summary::-webkit-details-marker]:hidden">
+            <summary class="flex items-center justify-between cursor-pointer text-sm sm:text-base font-bold text-white group-open:text-[#34D399]">
+              <span>How does 7-day catch-up work for late-night European football?</span>
+              <span class="ml-4 shrink-0 text-gray-400 group-open:rotate-180 transition-transform">&darr;</span>
+            </summary>
+            <p class="mt-3 text-xs sm:text-sm text-gray-300 leading-relaxed">
+              Because Premier League and Champions League fixtures kick off between 1:00 AM and 5:00 AM Australian time, our system records every match automatically for 7 days. You can wake up, make coffee, and watch the full match in 4K without having stayed up.
+            </p>
+          </details>
+
+          <details class="group bg-[#0D0D14] rounded-2xl p-5 border border-white/[0.08] [&_summary::-webkit-details-marker]:hidden">
+            <summary class="flex items-center justify-between cursor-pointer text-sm sm:text-base font-bold text-white group-open:text-[#34D399]">
+              <span>How do I start streaming a live match right now?</span>
+              <span class="ml-4 shrink-0 text-gray-400 group-open:rotate-180 transition-transform">&darr;</span>
+            </summary>
+            <p class="mt-3 text-xs sm:text-sm text-gray-300 leading-relaxed">
+              Message our 24/7 Australian WhatsApp support desk. We generate your Xtream API credentials in under 120 seconds with a free 24-hour testing pass so you can watch your chosen fixture immediately.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+
+  <!-- Popups & Interactive Elements -->
+  <ExitPopup />
+  <SocialPopup />
+  <GroupsPopup />
+  <FloatingWhatsApp />
+
+  <!-- Match Center Interactive Client Script (Filter Tabs + Real-Time Telemetry Clock & API Sync) -->
+  <script is:inline>
+    // 1. Australian Real-Time Telemetry Clock
+    function updateAestClock() {
+      const clockEl = document.getElementById("aest-clock");
+      if (clockEl) {
+        const now = new Date();
+        const aestString = now.toLocaleTimeString("en-AU", {
+          timeZone: "Australia/Sydney",
+          hour12: false,
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit"
+        });
+        clockEl.textContent = `${aestString} AEST`;
+      }
+    }
+    updateAestClock();
+    setInterval(updateAestClock, 1000);
+
+    // 2. Interactive Category Filter Tabs
+    const filterTabs = document.querySelectorAll(".filter-tab");
+    const matchItems = document.querySelectorAll(".match-item");
+
+    filterTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        // Update active tab styles
+        filterTabs.forEach((t) => {
+          t.classList.remove("active-tab", "bg-[#059669]", "text-white", "border-[#059669]", "shadow-[0_0_15px_rgba(5,150,105,0.3)]");
+          t.classList.add("bg-[#0D0D14]", "text-gray-300", "border-white/[0.08]");
+        });
+
+        tab.classList.add("active-tab", "bg-[#059669]", "text-white", "border-[#059669]", "shadow-[0_0_15px_rgba(5,150,105,0.3)]");
+        tab.classList.remove("bg-[#0D0D14]", "text-gray-300", "border-white/[0.08]");
+
+        const filterValue = tab.getAttribute("data-filter");
+
+        matchItems.forEach((item) => {
+          const itemSport = item.getAttribute("data-sport");
+          if (filterValue === "all" || itemSport === filterValue) {
+            item.style.display = "flex";
+          } else {
+            item.style.display = "none";
+          }
+        });
+      });
+    });
+
+    // 3. Client-Side Real-Time Score Refresh for ESPN soccer fixtures
+    async function refreshSoccerScores() {
+      try {
+        const res = await fetch("https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard");
+        if (!res.ok) return;
+        const data = await res.json();
+        if (!data.events || !Array.isArray(data.events)) return;
+
+        data.events.slice(0, 4).forEach((ev) => {
+          const card = document.querySelector(`[data-match-id="real-${ev.id}"]`);
+          if (card) {
+            const comp = ev.competitions?.[0];
+            const home = comp?.competitors?.find((c) => c.homeAway === "home") || comp?.competitors?.[0];
+            const away = comp?.competitors?.find((c) => c.homeAway === "away") || comp?.competitors?.[1];
+            const timeEl = card.querySelector(".match-time");
+            if (timeEl && ev.status?.type?.shortDetail) {
+              timeEl.textContent = ev.status.type.shortDetail;
+            }
+            const scoreEls = card.querySelectorAll(".team-score");
+            if (scoreEls.length >= 2 && home && away) {
+              if (home.score !== undefined) scoreEls[0].textContent = String(home.score);
+              if (away.score !== undefined) scoreEls[1].textContent = String(away.score);
+            }
+          }
+        });
+      } catch (err) {
+        // Silent fallback
+      }
+    }
+
+    if (typeof window !== "undefined") {
+      setTimeout(refreshSoccerScores, 2000);
+      setInterval(refreshSoccerScores, 30000);
+    }
+  </script>
+</Layout>

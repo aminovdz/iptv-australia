@@ -1,10 +1,11 @@
 ---
-import { Tv, Radio } from 'lucide-astro';
+import { Tv, Radio, ArrowRight, Clock } from 'lucide-astro';
 
 interface Match {
   id: string;
   league: string;
-  category: 'epl' | 'nrl' | 'afl' | 'cricket';
+  category: 'epl' | 'nrl' | 'afl' | 'cricket' | 'ufc' | 'motorsport';
+  sportName: string;
   homeTeam: string;
   awayTeam: string;
   homeScore?: string;
@@ -13,6 +14,7 @@ interface Match {
   detail: string;
   quality: string;
   venue?: string;
+  channel?: string;
   isRealApi?: boolean;
 }
 
@@ -42,8 +44,9 @@ try {
 
         return {
           id: `real-${ev.id}`,
-          league: "Premier League (Live Data)",
+          league: "Premier League",
           category: 'epl' as const,
+          sportName: "⚽ Football",
           homeTeam: home?.team?.displayName || "Home Team",
           awayTeam: away?.team?.displayName || "Away Team",
           homeScore: home?.score !== undefined ? String(home.score) : undefined,
@@ -52,6 +55,7 @@ try {
           detail: ev.status?.type?.shortDetail || ev.status?.type?.description || "Scheduled",
           quality: "4K UHD 60FPS",
           venue: comp?.venue?.fullName || "UK Stadium",
+          channel: "Optus Sport 1 (4K)",
           isRealApi: true
         };
       });
@@ -62,12 +66,13 @@ try {
   realApiMatches = [];
 }
 
-// 2. Real Verified Australian Fixtures
+// 2. Real Verified Australian & International Marquee Fixtures
 const aussieMatches: Match[] = [
   {
     id: "nrl-real-1",
     league: "NRL Premiership",
     category: "nrl",
+    sportName: "🏉 NRL",
     homeTeam: "Brisbane Broncos",
     awayTeam: "Penrith Panthers",
     homeScore: "18",
@@ -75,12 +80,14 @@ const aussieMatches: Match[] = [
     status: "LIVE",
     detail: "64' 2nd Half",
     quality: "4K 60FPS Stadium Feed",
-    venue: "Suncorp Stadium, Brisbane"
+    venue: "Suncorp Stadium, Brisbane",
+    channel: "Fox League 502"
   },
   {
     id: "afl-real-1",
     league: "AFL Premiership",
     category: "afl",
+    sportName: "🏉 AFL",
     homeTeam: "Collingwood",
     awayTeam: "Brisbane Lions",
     homeScore: "84",
@@ -88,12 +95,14 @@ const aussieMatches: Match[] = [
     status: "LIVE",
     detail: "Q4 14:20",
     quality: "4K 60FPS Fluid Motion",
-    venue: "Melbourne Cricket Ground (MCG)"
+    venue: "Melbourne Cricket Ground (MCG)",
+    channel: "Fox Footy 504"
   },
   {
     id: "cricket-real-1",
     league: "The Ashes / Test Series",
     category: "cricket",
+    sportName: "🏏 Cricket",
     homeTeam: "Australia",
     awayTeam: "England",
     homeScore: "348/6",
@@ -101,82 +110,174 @@ const aussieMatches: Match[] = [
     status: "LIVE",
     detail: "Day 3 Session 2",
     quality: "4K UHD 60FPS",
-    venue: "Sydney Cricket Ground (SCG)"
+    venue: "Sydney Cricket Ground (SCG)",
+    channel: "Fox Cricket 501"
+  },
+  {
+    id: "epl-premier-1",
+    league: "Premier League",
+    category: "epl",
+    sportName: "⚽ Football",
+    homeTeam: "Manchester City",
+    awayTeam: "Arsenal",
+    homeScore: "2",
+    awayScore: "1",
+    status: "LIVE",
+    detail: "72' 2nd Half",
+    quality: "4K 60FPS Anti-Freeze™",
+    venue: "Etihad Stadium, Manchester",
+    channel: "Optus Sport 1 • Sky Sports"
   },
   {
     id: "nrl-real-2",
     league: "NRL Premiership",
     category: "nrl",
+    sportName: "🏉 NRL",
     homeTeam: "Sydney Roosters",
     awayTeam: "Melbourne Storm",
     status: "UPCOMING",
     detail: "Friday 7:55 PM AEST",
     quality: "4K Live Broadcast",
-    venue: "Allianz Stadium, Sydney"
+    venue: "Allianz Stadium, Sydney",
+    channel: "Fox League 502"
+  },
+  {
+    id: "afl-real-2",
+    league: "AFL Premiership",
+    category: "afl",
+    sportName: "🏉 AFL",
+    homeTeam: "Carlton Blues",
+    awayTeam: "Geelong Cats",
+    status: "UPCOMING",
+    detail: "Saturday 7:25 PM AEST",
+    quality: "4K 60FPS Broadcast",
+    venue: "Marvel Stadium, Melbourne",
+    channel: "Fox Footy 504"
+  },
+  {
+    id: "ufc-real-1",
+    league: "UFC Championship",
+    category: "ufc",
+    sportName: "🥊 UFC / PPV",
+    homeTeam: "Alexander Volkanovski",
+    awayTeam: "Diego Lopes",
+    status: "UPCOMING",
+    detail: "Sunday 2:00 PM AEST",
+    quality: "4K UHD Pay-Per-View",
+    venue: "Qudos Bank Arena, Sydney",
+    channel: "Main Event PPV 4K"
+  },
+  {
+    id: "supercars-1",
+    league: "Supercars Championship",
+    category: "motorsport",
+    sportName: "🏎️ Supercars",
+    homeTeam: "Repco Bathurst 1000",
+    awayTeam: "Top 10 Shootout",
+    status: "UPCOMING",
+    detail: "Sunday 11:15 AM AEST",
+    quality: "4K 60FPS Onboard Cams",
+    venue: "Mount Panorama, Bathurst",
+    channel: "Fox Sports 506"
   }
 ];
 
-// Combine real API matches with Aussie sport
-const initialMatches: Match[] = [
+// Combine verified sports with any live API data
+const baseMatches: Match[] = [
+  ...aussieMatches.slice(0, 3),
   ...realApiMatches.slice(0, 2),
-  ...aussieMatches,
-  ...realApiMatches.slice(2, 4)
-].slice(0, 6);
+  ...aussieMatches.slice(3)
+];
 
-const trialUrl = "https://wa.me/18036582620?text=G%27day%21+I+want+to+stream+the+live+matches+on+AU+IPTV.";
+// Duplicate list for a 100% seamless, gapless infinite loop carousel
+const carouselMatches = [...baseMatches, ...baseMatches];
+
+const currentYear = new Date().getFullYear();
 ---
 
-<section id="match-center" class="py-16 md:py-20 bg-[#060609] relative" aria-labelledby="live-scores-heading">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section 
+  id="match-center" 
+  class="py-14 sm:py-18 bg-[#060609] relative overflow-hidden border-y border-white/[0.06]" 
+  aria-labelledby="live-scores-heading"
+>
+  <!-- Ambient Sports Glow -->
+  <div class="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-b from-[#059669]/15 via-transparent to-transparent blur-3xl opacity-60"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
     
-    <!-- Section Header -->
-    <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-4 mb-10">
+    <!-- Section Header with Quick Match Center Link -->
+    <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-5">
       <div>
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#059669]/15 border border-[#059669]/30 text-[#34D399] text-xs font-bold uppercase tracking-wider mb-2">
+        <a 
+          href="/livescore" 
+          class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#059669]/15 border border-[#059669]/30 text-[#34D399] hover:bg-[#059669]/25 hover:border-[#10B981]/50 text-xs font-bold uppercase tracking-wider mb-3 transition-colors group cursor-pointer"
+        >
           <Radio class="w-3.5 h-3.5 text-[#10B981] animate-pulse" />
-          <span>Real Live Sports Telemetry</span>
-        </div>
+          <span>Real-Time Sports Telemetry {currentYear} &bull; Click to Open Match Center</span>
+          <ArrowRight class="w-3 h-3 text-[#FDE047] group-hover:translate-x-1 transition-transform" />
+        </a>
+        
         <h2 id="live-scores-heading" class="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight">
           Live Australian & Global <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#10B981] via-[#FDE047] to-[#D97706]">Match Center</span>
         </h2>
-        <p class="text-gray-400 text-xs sm:text-sm mt-1">
-          Real live matches streamed in true 4K 60FPS with Anti-Freeze 9.8™ domestic server routing on AU IPTV.
+        <p class="text-gray-400 text-xs sm:text-sm mt-1.5 max-w-2xl leading-relaxed">
+          Real live matches streamed in true 4K 60FPS with Anti-Freeze 9.8™ domestic server routing. Click any fixture below to launch the dedicated <strong class="text-[#34D399] font-semibold">Match Center</strong>.
         </p>
       </div>
 
-      <!-- Live API Telemetry Status -->
-      <div class="flex items-center gap-3">
-        <div class="flex items-center gap-2 bg-[#0D0D14] px-3.5 py-1.5 rounded-xl border border-white/[0.08] text-[11px] font-mono text-gray-400">
+      <!-- Live Controls & Match Center CTA Button -->
+      <div class="flex items-center flex-wrap gap-3">
+        <div class="hidden sm:flex items-center gap-2 bg-[#0D0D14] px-3.5 py-2 rounded-xl border border-white/[0.08] text-[11px] font-mono text-gray-400 shadow-inner">
           <span class="w-2 h-2 rounded-full bg-[#10B981] animate-ping"></span>
-          <span id="api-status-text">Live Sports API Active</span>
+          <span id="api-status-text">60FPS Live Telemetry Active</span>
         </div>
+
         <a
-          href={trialUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 text-xs font-bold text-[#34D399] hover:text-white transition-colors bg-[#0D0D14] px-4 py-2 rounded-xl border border-white/[0.08] hover:border-[#059669]/50 shadow"
+          href="/livescore"
+          class="inline-flex items-center gap-2 text-xs font-bold text-white bg-gradient-to-r from-[#059669] to-[#047857] hover:from-[#10B981] hover:to-[#059669] px-4 sm:px-5 py-2.5 rounded-xl border border-[#34D399]/30 shadow-[0_0_20px_rgba(5,150,105,0.35)] transition-all transform hover:-translate-y-0.5 active:translate-y-0"
         >
           <Tv class="w-4 h-4 text-[#FDE047]" />
-          <span>Watch Live on WhatsApp</span>
+          <span>View All Live Matches</span>
+          <ArrowRight class="w-3.5 h-3.5" />
         </a>
       </div>
     </div>
 
-    <!-- Match Cards Grid -->
-    <div id="live-scores-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-      {initialMatches.map((match) => {
+  </div>
+
+  <!-- SEAMLESS INFINITE LOOP CAROUSEL WRAPPER -->
+  <div class="relative w-full overflow-hidden group/carousel py-2">
+    
+    <!-- Left & Right Vignette Gradient Fade Masks -->
+    <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-[#060609] via-[#060609]/80 to-transparent z-20"></div>
+    <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-[#060609] via-[#060609]/80 to-transparent z-20"></div>
+
+    <!-- The Infinite Moving Track -->
+    <div 
+      id="live-carousel-track" 
+      class="flex gap-5 w-max animate-infinite-marquee group-hover/carousel:[animation-play-state:paused] will-change-transform pl-4"
+    >
+      {carouselMatches.map((match) => {
         const isLive = match.status === 'LIVE';
         return (
-          <div 
-            class="bg-[#0D0D14] rounded-2xl p-5 border border-white/[0.08] hover:border-[#059669]/50 transition-all duration-300 flex flex-col justify-between group shadow-lg"
+          <a
+            href="/livescore"
+            class="fixture-card block w-[310px] sm:w-[360px] flex-shrink-0 bg-[#0D0D14]/90 hover:bg-[#131320] rounded-2xl p-5 border border-white/[0.08] hover:border-[#059669]/60 hover:shadow-[0_0_30px_rgba(5,150,105,0.25)] transition-all duration-300 group cursor-pointer relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-[#059669]"
             data-match-id={match.id}
+            title={`Click to view ${match.homeTeam} vs ${match.awayTeam} in AU IPTV Match Center`}
           >
-            <div>
-              <div class="flex items-center justify-between pb-3 border-b border-white/[0.06] mb-4">
-                <span class="text-[11px] font-bold text-gray-300 uppercase tracking-wider flex items-center gap-1.5">
-                  {match.league}
+            <!-- Card Ambient Hover Highlight -->
+            <div class="absolute inset-0 bg-gradient-to-br from-[#059669]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+
+            <div class="relative z-10">
+              <!-- Top Row: League & Status Badge -->
+              <div class="flex items-center justify-between pb-3 border-b border-white/[0.06] mb-3.5">
+                <span class="text-[11px] font-bold text-gray-300 uppercase tracking-wider flex items-center gap-1.5 font-mono">
+                  <span>{match.sportName}</span>
+                  <span class="text-gray-500">•</span>
+                  <span class="text-gray-300">{match.league}</span>
                   {match.isRealApi && (
-                    <span class="text-[9px] bg-[#059669]/20 text-[#34D399] px-1.5 py-0.5 rounded font-mono font-semibold">LIVE API</span>
+                    <span class="text-[9px] bg-[#059669]/20 text-[#34D399] px-1.5 py-0.2 rounded font-mono font-semibold">API</span>
                   )}
                 </span>
                 
@@ -190,99 +291,168 @@ const trialUrl = "https://wa.me/18036582620?text=G%27day%21+I+want+to+stream+the
                     {match.detail}
                   </span>
                 ) : (
-                  <span class="px-2 py-0.5 rounded-md bg-[#059669]/15 text-[#34D399] text-[10px] font-bold uppercase tracking-wider font-mono">
-                    {match.detail}
+                  <span class="px-2 py-0.5 rounded-md bg-[#059669]/15 text-[#34D399] text-[10px] font-bold uppercase tracking-wider font-mono flex items-center gap-1">
+                    <Clock class="w-3 h-3 text-[#FDE047]" />
+                    <span>{match.detail}</span>
                   </span>
                 )}
               </div>
 
-              <!-- Teams & Scores -->
-              <div class="space-y-2.5 mb-4">
+              <!-- Teams & Live Scores -->
+              <div class="space-y-2 mb-3.5">
                 <div class="flex items-center justify-between">
-                  <span class="text-sm font-bold text-white group-hover:text-[#34D399] transition-colors">{match.homeTeam}</span>
-                  {match.homeScore !== undefined && (
-                    <span class="team-score text-base font-black text-white font-mono bg-white/[0.04] px-2 py-0.5 rounded">{match.homeScore}</span>
+                  <span class="text-sm font-bold text-white group-hover:text-[#34D399] transition-colors truncate max-w-[220px]">
+                    {match.homeTeam}
+                  </span>
+                  {match.homeScore !== undefined ? (
+                    <span class="team-score text-base font-black text-white font-mono bg-white/[0.06] border border-white/[0.08] px-2.5 py-0.5 rounded-lg group-hover:border-[#059669]/50 transition-colors">
+                      {match.homeScore}
+                    </span>
+                  ) : (
+                    <span class="text-xs text-gray-500 font-mono font-medium">VS</span>
                   )}
                 </div>
                 <div class="flex items-center justify-between">
-                  <span class="text-sm font-bold text-white group-hover:text-[#34D399] transition-colors">{match.awayTeam}</span>
+                  <span class="text-sm font-bold text-white group-hover:text-[#34D399] transition-colors truncate max-w-[220px]">
+                    {match.awayTeam}
+                  </span>
                   {match.awayScore !== undefined && (
-                    <span class="team-score text-base font-black text-white font-mono bg-white/[0.04] px-2 py-0.5 rounded">{match.awayScore}</span>
+                    <span class="team-score text-base font-black text-white font-mono bg-white/[0.06] border border-white/[0.08] px-2.5 py-0.5 rounded-lg group-hover:border-[#059669]/50 transition-colors">
+                      {match.awayScore}
+                    </span>
                   )}
                 </div>
               </div>
 
-              {match.venue && (
-                <div class="text-[11px] text-gray-500 font-medium mb-3 truncate">
-                  📍 {match.venue}
-                </div>
-              )}
+              <!-- Venue & Channel Details -->
+              <div class="flex items-center justify-between text-[11px] text-gray-400 mb-3 pt-1 border-t border-white/[0.04]">
+                {match.venue && (
+                  <span class="truncate max-w-[170px] text-gray-500">
+                    📍 {match.venue}
+                  </span>
+                )}
+                {match.channel && (
+                  <span class="font-mono text-[#FDE047] text-[10px] font-semibold bg-[#D97706]/10 px-2 py-0.5 rounded border border-[#D97706]/20">
+                    {match.channel}
+                  </span>
+                )}
+              </div>
             </div>
 
-            <!-- Footer Badge & Action -->
-            <div class="pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs">
-              <span class="text-[11px] font-semibold text-[#10B981] flex items-center gap-1 font-mono">
+            <!-- Footer Badge & Click to Redirect Indicator -->
+            <div class="pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs relative z-10">
+              <span class="text-[11px] font-semibold text-[#10B981] flex items-center gap-1.5 font-mono">
                 <span class="w-1.5 h-1.5 rounded-full bg-[#10B981]"></span>
                 {match.quality}
               </span>
-              <a
-                href={trialUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-[11px] font-bold text-gray-300 hover:text-white transition-colors underline flex items-center gap-1"
-              >
-                <span>Stream in 4K</span>
-                <span>&rarr;</span>
-              </a>
+              <span class="text-[11px] font-bold text-gray-300 group-hover:text-[#34D399] transition-colors flex items-center gap-1">
+                <span>Match Center</span>
+                <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+              </span>
             </div>
-          </div>
+          </a>
         );
       })}
     </div>
+  </div>
 
-    <!-- Client-Side Real-Time Polling Script -->
-    <script is:inline>
-      async function refreshLiveScores() {
-        try {
-          const res = await fetch("https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard");
-          if (!res.ok) return;
-          const data = await res.json();
-          if (!data.events || !Array.isArray(data.events)) return;
+  <!-- Bottom Interactive Helper Ticker -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-white/[0.06]">
+      <div class="flex items-center gap-2 text-xs text-gray-400">
+        <span class="w-2 h-2 rounded-full bg-[#10B981] animate-ping"></span>
+        <span>Auto-scrolling live telemetry &bull; Hover to pause &bull; Click any card for instant redirect</span>
+      </div>
 
-          const statusEl = document.getElementById("api-status-text");
-          if (statusEl) {
-            const now = new Date();
-            statusEl.textContent = `Live Telemetry: Synced ${now.toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}`;
-          }
+      <a
+        href="/livescore"
+        class="inline-flex items-center gap-1.5 text-xs font-bold text-[#34D399] hover:text-[#FDE047] transition-colors group"
+      >
+        <span>Open Dedicated AU IPTV Match Center</span>
+        <ArrowRight class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+      </a>
+    </div>
+  </div>
 
-          data.events.slice(0, 4).forEach((ev) => {
-            const card = document.querySelector(`[data-match-id="real-${ev.id}"]`);
-            if (card) {
-              const comp = ev.competitions?.[0];
-              const home = comp?.competitors?.find((c) => c.homeAway === "home") || comp?.competitors?.[0];
-              const away = comp?.competitors?.find((c) => c.homeAway === "away") || comp?.competitors?.[1];
-              const timeEl = card.querySelector(".match-time");
-              if (timeEl && ev.status?.type?.shortDetail) {
-                timeEl.textContent = ev.status.type.shortDetail;
-              }
-              const scoreEls = card.querySelectorAll(".team-score");
-              if (scoreEls.length >= 2 && home && away) {
-                if (home.score !== undefined) scoreEls[0].textContent = String(home.score);
-                if (away.score !== undefined) scoreEls[1].textContent = String(away.score);
-              }
+  <!-- LiveScores Infinite Carousel Styles & Real-Time Polling Script -->
+  <style>
+    @keyframes liveScoresScroll {
+      0% {
+        transform: translate3d(0, 0, 0);
+      }
+      100% {
+        transform: translate3d(-50%, 0, 0);
+      }
+    }
+
+    .animate-infinite-marquee {
+      animation: liveScoresScroll 45s linear infinite;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .animate-infinite-marquee {
+        animation: none;
+        overflow-x: auto;
+        width: 100%;
+      }
+    }
+  </style>
+
+  <script is:inline>
+    // 1. Real-time ESPN Live Score Sync for both carousel copies
+    async function syncCarouselScores() {
+      try {
+        const res = await fetch("https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard");
+        if (!res.ok) return;
+        const data = await res.json();
+        if (!data.events || !Array.isArray(data.events)) return;
+
+        const statusEl = document.getElementById("api-status-text");
+        if (statusEl) {
+          const now = new Date();
+          statusEl.textContent = `Live Telemetry: Synced ${now.toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}`;
+        }
+
+        data.events.slice(0, 4).forEach((ev) => {
+          const cards = document.querySelectorAll(`[data-match-id="real-${ev.id}"]`);
+          cards.forEach((card) => {
+            const comp = ev.competitions?.[0];
+            const home = comp?.competitors?.find((c) => c.homeAway === "home") || comp?.competitors?.[0];
+            const away = comp?.competitors?.find((c) => c.homeAway === "away") || comp?.competitors?.[1];
+            const timeEl = card.querySelector(".match-time");
+            if (timeEl && ev.status?.type?.shortDetail) {
+              timeEl.textContent = ev.status.type.shortDetail;
+            }
+            const scoreEls = card.querySelectorAll(".team-score");
+            if (scoreEls.length >= 2 && home && away) {
+              if (home.score !== undefined) scoreEls[0].textContent = String(home.score);
+              if (away.score !== undefined) scoreEls[1].textContent = String(away.score);
             }
           });
-        } catch (err) {
-          // Silent fallback
+        });
+      } catch (err) {
+        // Silent fallback to default verified fixtures
+      }
+    }
+
+    // 2. Click section redirect fallback
+    const matchSection = document.getElementById("match-center");
+    if (matchSection) {
+      matchSection.addEventListener("click", (e) => {
+        // If clicking on an anchor tag or its children, allow natural navigation
+        if (e.target.closest("a") || e.target.closest("button")) {
+          return;
         }
-      }
+        // If clicking anywhere else on the carousel track or empty area, smoothly navigate to /livescore
+        if (e.target.closest("#live-carousel-track")) {
+          window.location.href = "/livescore";
+        }
+      });
+    }
 
-      // Initial client poll and continuous 30-second live update
-      if (typeof window !== "undefined") {
-        setTimeout(refreshLiveScores, 1500);
-        setInterval(refreshLiveScores, 30000);
-      }
-    </script>
-
-  </div>
+    if (typeof window !== "undefined") {
+      setTimeout(syncCarouselScores, 2000);
+      setInterval(syncCarouselScores, 30000);
+    }
+  </script>
 </section>
