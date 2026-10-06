@@ -170,7 +170,7 @@ If you intend to enjoy high-definition television and live sports via IPTV in Au
 1. **Verify Your NBN Tier:** For flawless 4K 60FPS streaming, an **NBN 50** or **NBN 100** connection is ideal. A minimum steady download speed of 25 Mbps is recommended for ultra-high-definition feeds.
 2. **Use 5GHz Wi-Fi or Ethernet:** Connect your streaming hardware (Fire Stick or Smart TV) to your router's 5GHz Wi-Fi band or via a direct Ethernet cable to avoid local 2.4GHz interference.
 3. **Change Default DNS:** Point your router’s DNS to Cloudflare (`1.1.1.1`) or Google (`8.8.8.8`) to ensure uninterrupted hostname resolution.
-4. **Choose a Reliable Australian-Optimized Provider:** Avoid anonymous overseas sellers with zero customer support. Choose [AU IPTV](https://au-iptv.net) for dedicated Australian server peering, live WhatsApp customer care in Australian Eastern Standard Time (+1 803-658-2620), and our strict 24-hour money-back policy.
+4. **Choose a Reliable Australian-Optimized Provider:** Avoid anonymous overseas sellers with zero customer support. Choose [AU IPTV](https://au-iptv.net) for dedicated Australian server peering, live WhatsApp customer care in Australian Eastern Standard Time (+213 550 592 200), and our strict 24-hour money-back policy.
 
 ---
 

@@ -137,7 +137,7 @@ AU IPTV Infrastructure Advantages:
 ✔ Anti-Freeze 9.8™ Load Balancing prevents buffering during peak 8 PM sports matches
 ✔ Full Transparent AUD Pricing: $13 (1M), $33 (3M), $50 (6M), and $90 (12M + Free Player)
 ✔ Up to 2 Concurrent Connections included on the 12-Month Annual Pass
-✔ Dedicated Australian Customer Care via WhatsApp (+1 803-658-2620 in AEST)
+✔ Dedicated Australian Customer Care via WhatsApp (+213 550 592 200 in AEST)
 ✔ Strict 24-Hour Money-Back Guarantee for total peace of mind
 ```
 
@@ -168,7 +168,7 @@ Yes! Our popular **12-Month Pass (\$90 AUD)** includes **2 concurrent connection
 Yes. AU IPTV is compatible with the Fire TV Stick Lite, Fire TV Stick 2nd/3rd Gen, Fire TV Stick 4K, Fire TV Stick 4K Max, and Fire TV Cube. For 4K 60FPS sports feeds, we recommend either the 4K or 4K Max model.
 
 ### What if I need assistance during setup?
-Our Australian customer care team is available directly via WhatsApp at **+1 803-658-2620** during Australian Eastern Standard Time. We can walk you through the setup step-by-step or verify your credentials instantly.
+Our Australian customer care team is available directly via WhatsApp at **+213 550 592 200** during Australian Eastern Standard Time. We can walk you through the setup step-by-step or verify your credentials instantly.
 
 ---
 

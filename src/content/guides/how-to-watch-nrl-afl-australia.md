@@ -148,7 +148,7 @@ Let’s review the actual numbers comparing traditional Australian cable televis
 | **Lock-in Contract** | 12 to 24 Months | **Zero Contracts (Total Freedom)** |
 | **Proprietary Hardware Fee** | \$150 - \$250 AUD Setup | **\$0 (Use Devices You Already Own)** |
 | **Simultaneous Connections** | Extra \$15-$25/mo per room | **2 Screens Included** |
-| **Customer Support Channels** | Call centers with 45m holds | **Direct WhatsApp (+1 803-658-2620)** |
+| **Customer Support Channels** | Call centers with 45m holds | **Direct WhatsApp (+213 550 592 200)** |
 | **Refund Policy Guarantee** | Complex cancellation fees | **Strict 24-Hour Guarantee** |
 
 ```
