@@ -29,7 +29,10 @@ const keywordsString = Array.isArray(keywords)
   : (keywords || defaultKeywords);
 
 const siteUrl = 'https://au-iptv.net';
-const fullCanonicalURL = typeof canonicalURL === 'string' ? canonicalURL : new URL(Astro.url.pathname, Astro.site || siteUrl).toString();
+let fullCanonicalURL = typeof canonicalURL === 'string' ? canonicalURL : new URL(Astro.url.pathname, Astro.site || siteUrl).toString();
+if (!fullCanonicalURL.endsWith('/')) {
+  fullCanonicalURL = fullCanonicalURL + '/';
+}
 const ogImageUrl = new URL(image, Astro.site || siteUrl).toString();
 ---
 

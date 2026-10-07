@@ -6,6 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://au-iptv.net',
+  trailingSlash: 'always',
   output: 'static',
   adapter: cloudflare({
     imageService: 'compile'
