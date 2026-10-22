@@ -13,39 +13,39 @@ const cities = [
 
 const quickLinks = [
   { name: 'Home', href: '/' },
-  { name: 'IPTV Australia', href: '/iptv-australia' },
-  { name: 'IPTV for Australia (Guide)', href: '/iptv-for-australia' },
-  { name: 'IPTV Sports Pass (4K)', href: '/iptv-sports' },
-  { name: 'Live Sports Match Center', href: '/livescore' },
-  { name: 'Cable TV Alternative', href: '/cable-alternative' },
-  { name: '12-Month Plan (Bestseller)', href: '/au-iptv-12-months' },
-  { name: 'Best IPTV Australia Guide', href: '/best-iptv' },
+  { name: 'IPTV Australia', href: '/iptv-australia/' },
+  { name: 'IPTV for Australia (Guide)', href: '/iptv-for-australia/' },
+  { name: 'IPTV Sports Pass (4K)', href: '/iptv-sports/' },
+  { name: 'Live Sports Match Center', href: '/livescore/' },
+  { name: 'Cable TV Alternative', href: '/cable-alternative/' },
+  { name: '12-Month Plan (Bestseller)', href: '/au-iptv-12-months/' },
+  { name: 'Best IPTV Australia Guide', href: '/best-iptv/' },
   { name: 'Pricing Tiers', href: '/#pricing' },
   { name: 'Supported Devices', href: '/#devices' },
-  { name: 'Referral Program', href: '/referral' },
-  { name: 'Contact Us', href: '/contact' }
+  { name: 'Referral Program', href: '/referral/' },
+  { name: 'Contact Us', href: '/contact/' }
 ];
 
 const comparisonLinks = [
-  { name: 'AU IPTV vs IPTVV AU', href: '/compare/au-iptv-vs-iptvv-au' },
-  { name: 'AU IPTV vs Aussie IPTV', href: '/compare/au-iptv-vs-aussie-iptv' },
-  { name: 'AU IPTV vs Xtreme TV', href: '/compare/au-iptv-vs-xtreme-tv-australia' },
-  { name: 'AU IPTV vs Traditional Cable', href: '/compare/au-iptv-vs-traditional-cable' }
+  { name: 'AU IPTV vs IPTVV AU', href: '/compare/au-iptv-vs-iptvv-au/' },
+  { name: 'AU IPTV vs Aussie IPTV', href: '/compare/au-iptv-vs-aussie-iptv/' },
+  { name: 'AU IPTV vs Xtreme TV', href: '/compare/au-iptv-vs-xtreme-tv-australia/' },
+  { name: 'AU IPTV vs Traditional Cable', href: '/compare/au-iptv-vs-traditional-cable/' }
 ];
 
 const guidesLinks = [
-  { name: 'How to Watch NRL & AFL in 4K', href: '/guides/how-to-watch-nrl-afl-australia' },
-  { name: `Is IPTV Legal in Australia? (${currentYear} Guide)`, href: '/guides/is-iptv-legal-in-australia' },
-  { name: 'Best Fire Stick IPTV Setup in Australia', href: '/guides/best-iptv-fire-stick-australia' },
-  { name: 'All Guides & Tutorials', href: '/guides' }
+  { name: 'How to Watch NRL & AFL in 4K', href: '/guides/how-to-watch-nrl-afl-australia/' },
+  { name: `Is IPTV Legal in Australia? (${currentYear} Guide)`, href: '/guides/is-iptv-legal-in-australia/' },
+  { name: 'Best Fire Stick IPTV Setup in Australia', href: '/guides/best-iptv-fire-stick-australia/' },
+  { name: 'All Guides & Tutorials', href: '/guides/' }
 ];
 
 const legalLinks = [
-  { name: 'Privacy Policy', href: '/privacy' },
-  { name: 'Terms of Service', href: '/terms' },
-  { name: 'Refund Policy (24-Hour Only)', href: '/refund' },
-  { name: 'DMCA Notice', href: '/dmca' },
-  { name: 'Disclaimer', href: '/disclaimer' }
+  { name: 'Privacy Policy', href: '/privacy/' },
+  { name: 'Terms of Service', href: '/terms/' },
+  { name: 'Refund Policy (24-Hour Only)', href: '/refund/' },
+  { name: 'DMCA Notice', href: '/dmca/' },
+  { name: 'Disclaimer', href: '/disclaimer/' }
 ];
 ---
 
@@ -208,7 +208,7 @@ const legalLinks = [
         <ul class="space-y-2 text-xs">
           {cities.map((city) => (
             <li>
-              <a href={`/locations/${city.slug}`} class="hover:text-[#34D399] transition-colors flex items-center justify-between">
+              <a href={`/locations/${city.slug}/`} class="hover:text-[#34D399] transition-colors flex items-center justify-between">
                 <span>{city.name}</span>
                 <span class="text-[10px] text-gray-500 font-mono">{city.state}</span>
               </a>

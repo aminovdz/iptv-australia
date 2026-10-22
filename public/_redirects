@@ -1,0 +1,40 @@
+# Enforce HTTPS (HTTP → HTTPS)
+http://au-iptv.net/* https://au-iptv.net/:splat 301
+
+# Enforce trailing slash: redirect all non-trailing-slash URLs to their trailing-slash equivalents
+# Core pages
+/cable-alternative /cable-alternative/ 301
+/guides /guides/ 301
+/referral /referral/ 301
+/terms /terms/ 301
+/iptv-australia /iptv-australia/ 301
+/iptv-for-australia /iptv-for-australia/ 301
+/contact /contact/ 301
+/disclaimer /disclaimer/ 301
+/au-iptv-12-months /au-iptv-12-months/ 301
+/livescore /livescore/ 301
+/best-iptv /best-iptv/ 301
+/iptv-sports /iptv-sports/ 301
+/cable-alternative /cable-alternative/ 301
+/privacy /privacy/ 301
+/refund /refund/ 301
+/dmca /dmca/ 301
+/compare /compare/ 301
+
+# Compare pages
+/compare/au-iptv-vs-xtreme-tv-australia /compare/au-iptv-vs-xtreme-tv-australia/ 301
+/compare/au-iptv-vs-traditional-cable /compare/au-iptv-vs-traditional-cable/ 301
+/compare/au-iptv-vs-aussie-iptv /compare/au-iptv-vs-aussie-iptv/ 301
+/compare/au-iptv-vs-iptvv-au /compare/au-iptv-vs-iptvv-au/ 301
+
+# Location pages
+/locations/sydney /locations/sydney/ 301
+/locations/melbourne /locations/melbourne/ 301
+/locations/brisbane /locations/brisbane/ 301
+/locations/perth /locations/perth/ 301
+/locations/adelaide /locations/adelaide/ 301
+
+# Guide pages
+/guides/is-iptv-legal-in-australia /guides/is-iptv-legal-in-australia/ 301
+/guides/best-iptv-fire-stick-australia /guides/best-iptv-fire-stick-australia/ 301
+/guides/how-to-watch-nrl-afl-australia /guides/how-to-watch-nrl-afl-australia/ 301
